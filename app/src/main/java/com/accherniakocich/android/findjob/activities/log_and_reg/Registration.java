@@ -38,10 +38,7 @@ public class Registration extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private ProgressBar progress_bar_registration;
     private FrameLayout container_frame_registration;
-
-    private FirebaseDatabase database;
     private DatabaseReference reference;
-
     private EditText et_email;
     private EditText et_password;
     private EditText et_fio;

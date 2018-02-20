@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@android:drawable/dialog_holo_light_frame"
-    android:padding="10dp"
+    android:padding="15dp"
     android:layout_gravity="start"
     android:gravity="start"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -32,19 +32,40 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
     <TextView
+        tools:text="О компании!"
         android:id="@+id/about_company"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <TextView
+        tools:text="Работаем с 1998 года"
         android:id="@+id/year_start"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <TextView
+        tools:text="Посменная работа"
         android:id="@+id/type_of_work"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <RatingBar
+        android:layout_gravity="center"
+        android:rating="3"
+        android:isIndicator="true"
         android:id="@+id/rating_company"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        tools:text="Москва, Ленина 8"
+        android:id="@+id/location_company"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        tools:text="Категория: Производство строительных материалов"
+        android:id="@+id/category_company"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        tools:text="+3654458555 \n example@example.com"
+        android:id="@+id/contacts_company"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 </LinearLayout>

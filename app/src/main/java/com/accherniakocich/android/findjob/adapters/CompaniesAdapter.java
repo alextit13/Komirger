@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.accherniakocich.android.findjob.R;
@@ -20,10 +21,12 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class CompaniesAdapter extends BaseAdapter {
+
     Context ctx;
     LayoutInflater lInflater;
     ArrayList<Company> companies;
-    User userFromClass;
+    TextView text_company_name,about_company,year_start,type_of_work,location_company,category_company,contacts_company;
+    RatingBar rating_company;
 
     public CompaniesAdapter(Context context, ArrayList<Company> products) {
         ctx = context;
@@ -57,7 +60,6 @@ public class CompaniesAdapter extends BaseAdapter {
 
     @Override
     public int getItemViewType(int position) {
-
         return position;
     }
 
@@ -69,9 +71,28 @@ public class CompaniesAdapter extends BaseAdapter {
         if (view == null) {
             view = lInflater.inflate(R.layout.item_company, parent, false);
         }
-
         Company company = getCompany(position);
+        init(view);
+        text_company_name.setText(company.getName());
+        about_company.setText(company.getAbout());
+        year_start.setText(company.getYear_start());
+        type_of_work.setText(company.getType_of_work());
+        location_company.setText(company.getAdress());
+        category_company.setText(company.getCategory());
+        contacts_company.setText(company.getContakts());
         return view;
+    }
+
+    private void init(View view) {
+        text_company_name = (TextView)view.findViewById(R.id.text_company_name);
+        about_company = (TextView)view.findViewById(R.id.about_company);
+        year_start = (TextView)view.findViewById(R.id.year_start);
+        type_of_work = (TextView)view.findViewById(R.id.type_of_work);
+        location_company = (TextView)view.findViewById(R.id.location_company);
+        category_company = (TextView)view.findViewById(R.id.category_company);
+        contacts_company = (TextView)view.findViewById(R.id.contacts_company);
+
+        rating_company = (RatingBar) view.findViewById(R.id.rating_company);
     }
 
     // товар по позиции

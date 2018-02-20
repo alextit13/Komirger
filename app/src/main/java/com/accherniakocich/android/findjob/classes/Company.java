@@ -11,11 +11,13 @@ public class Company implements Serializable{
     int rating;
     boolean location;
     String category;
+    String contakts;
+    String adress;
 
     public Company() {
     }
 
-    public Company(String name, String about, String dateID, String year_start, String type_of_work, int rating, boolean location, String category) {
+    public Company(String name, String about, String dateID, String year_start, String type_of_work, int rating, boolean location, String category, String contakts, String adress) {
         this.name = name;
         this.about = about;
         this.dateID = dateID;
@@ -24,6 +26,8 @@ public class Company implements Serializable{
         this.rating = rating;
         this.location = location;
         this.category = category;
+        this.contakts = contakts;
+        this.adress = adress;
     }
 
     @Override
@@ -37,7 +41,25 @@ public class Company implements Serializable{
                 ", rating=" + rating +
                 ", location=" + location +
                 ", category='" + category + '\'' +
+                ", contakts='" + contakts + '\'' +
+                ", adress='" + adress + '\'' +
                 '}';
+    }
+
+    public String getAdress() {
+        return adress;
+    }
+
+    public void setAdress(String adress) {
+        this.adress = adress;
+    }
+
+    public String getContakts() {
+        return contakts;
+    }
+
+    public void setContakts(String contakts) {
+        this.contakts = contakts;
     }
 
     public String getName() {

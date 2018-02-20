@@ -11,6 +11,7 @@ import android.view.View;
 import com.accherniakocich.android.findjob.R;
 import com.accherniakocich.android.findjob.activities.MainList;
 import com.accherniakocich.android.findjob.classes.User;
+import com.accherniakocich.android.findjob.fragments.RegistrationFragments;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 
@@ -89,8 +90,6 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("user",user);
                 startActivity(intent);
             }
-
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -107,17 +106,22 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.sign_in_user:
                 //вход как физ лицо
-                Log.d(LOG_TAG, "вход как физ лицо");
                 sign_in();
                 break;
             case R.id.registration_fiz:
                 // регистрация физ лица
-                Log.d(LOG_TAG, "регистрация как физ лицо");
                 registration_fiz();
                 break;
+            case R.id.reg_yur:
+                // регистрация юр лица - фирмы
+                registration_yur();
             default:
                 break;
         }
+    }
+
+    private void registration_yur() {
+        startActivity(new Intent(MainActivity.this,ActivityContainerReg.class));
     }
 
     private void sign_in() {

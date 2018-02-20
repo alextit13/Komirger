@@ -6,7 +6,7 @@
     <integer name="com_vk_sdk_AppId">6328701</integer>
 
     <string name="sign_in_people">Войти</string>
-    <string name="registration_in_people">Регистрация</string>
+    <string name="registration_in_people">Регистрация физ. лица</string>
     <string name="sign_in_organization">Войти как организация</string>
     <string name="registration_in_organization">Регистрация организации</string>
     <string name="author">\@Виталий Мукменёв</string>
@@ -118,4 +118,10 @@
     <string name="my_locate">Показывать мое местоположение</string>
     <string name="about_me">Обо мне</string>
     <string name="all_companys">Все компании</string>
+    <string name="registration_yur">Регистрация юр лица</string>
+    <string name="name_company">Название компании</string>
+    <string name="about_company">О компании</string>
+    <string name="date_start_company">Дата основания компании</string>
+    <string name="type_of_work">Тип работы(посменно, свободный график и и.д)</string>
+    <string name="contacts_company">Контакты</string>
 </resources>
