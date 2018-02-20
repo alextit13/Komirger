@@ -55,8 +55,8 @@ public class FragmentAllCompanys extends Fragment{
         mTakeDataFromServer.getFromServerCompanise();
     }
     @Subscribe
-    public void mGettingListWithCompanies(ArrayList<Company>listCompany){
-        CompaniesAdapter adapter = new CompaniesAdapter(mContext,listCompany);
+    public void mGettingListWithCompanies(ArrayList<Company>LC){
+        CompaniesAdapter adapter = new CompaniesAdapter(mContext,LC);
         mListCategory.setAdapter(adapter);
     }
 }

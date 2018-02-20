@@ -61,7 +61,9 @@ public class TakeDataFromFirebase{
 
     @Subscribe
     private void recieveDataWithCompanies(ArrayList<Company> LC) {
-        if (LC!=null&&LC.size()!=0){BusStation.getBus().post(LC);}
+        if (LC!=null&&LC.size()!=0){
+            BusStation.getBus().post(LC);
+        }
     }
 
     @Subscribe

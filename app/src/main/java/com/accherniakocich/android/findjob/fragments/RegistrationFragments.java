@@ -13,11 +13,14 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.accherniakocich.android.findjob.R;
+import com.accherniakocich.android.findjob.classes.Company;
 import com.accherniakocich.android.findjob.classes.EnumForAdapter;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -67,7 +70,15 @@ public class RegistrationFragments extends Fragment {
     }
 
     private void saveDataCompany() {
-
+        Company company = new Company(name_company.getText().toString(),
+                about_company.getText().toString()
+        ,new Date().getTime()+"",date_of_start_company.getText().toString()
+        ,type_of_work_company.getText().toString()
+        ,3,false,spinner_kategory_company.getSelectedItem().toString(),
+                contacts_company.getText().toString()
+        ,address_company.getText().toString());
+        FirebaseDatabase.getInstance().getReference().child("companies").child(company.getName())
+                .setValue(company);
     }
 
     private void init(View view) {

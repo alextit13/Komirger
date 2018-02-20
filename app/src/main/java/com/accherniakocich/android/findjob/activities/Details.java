@@ -53,7 +53,7 @@ public class Details extends AppCompatActivity {
     private HorizontalScrollView HSV;
     private Ad ad;
     private TextView name_ad_details,cost_job_detail,text_detais,text_number_of_phone,date_detail,category_details,people_name,adress_detail;
-    private ImageView fab_delete, fab_edit, fab_favorit, image_content_details_1,image_content_details_2,image_content_details_3,image_content_details_4,image_content_details_5,
+    private ImageView /*fab_delete*/ fab_edit, fab_favorit, image_content_details_1,image_content_details_2,image_content_details_3,image_content_details_4,image_content_details_5,
     indicator_1,indicator_2,indicator_3,indicator_4,indicator_5;
     private User user;
     private FloatingActionButton fab_call,message_detail;
@@ -125,18 +125,18 @@ public class Details extends AppCompatActivity {
         });
 
 
-        fab_delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                delete();
-            }
-        });
+//        fab_delete.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                delete();
+//            }
+//        });
 
         final Intent intent = getIntent();
 
         int fromWhereIntent = intent.getIntExtra("fromWhereIntent",1);
         if (fromWhereIntent==1){
-            fab_delete.setVisibility(View.INVISIBLE);
+            //fab_delete.setVisibility(View.INVISIBLE);
             fab_edit.setVisibility(View.INVISIBLE);
         }else if (fromWhereIntent==2){
             fab_edit.setVisibility(View.VISIBLE);
