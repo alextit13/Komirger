@@ -38,7 +38,7 @@ public class TakeDataFromFirebase{
                 );
     }
 
-    public void getFromServerCompanise(){
+    public void getFromServerCompanise(String filter){
         listCompany = new ArrayList<>();
         FirebaseDatabase.getInstance().getReference().child("companies")
                 .addValueEventListener(
@@ -47,8 +47,9 @@ public class TakeDataFromFirebase{
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 for (DataSnapshot data : dataSnapshot.getChildren()){
                                     listCompany.add(data.getValue(Company.class));
+                                    sortList(listCompany,filter);
                                 }
-                                recieveDataWithCompanies(listCompany);
+
                             }
 
                             @Override
@@ -59,15 +60,31 @@ public class TakeDataFromFirebase{
                 );
     }
 
+    private void sortList(ArrayList<Company> L, String filter) {
+        if (filter.equals("")){
+            recieveDataWithCompanies(L);
+        }else{
+            ArrayList<Company>listSort = new ArrayList<>();
+            for (int i = 0;i<L.size();i++){
+                if (L.get(i).toString().contains(filter)){
+                    listSort.add(L.get(i));
+                }
+            }
+            recieveDataWithCompanies(listSort);
+        }
+    }
+
     @Subscribe
     private void recieveDataWithCompanies(ArrayList<Company> LC) {
-        if (LC!=null&&LC.size()!=0){
+        if (LC!=null&&LC.size()>0){
             BusStation.getBus().post(LC);
         }
     }
 
     @Subscribe
     private void recieveData(ArrayList<Ad> list) {
-        if (list!=null &&list.size()>0) BusStation.getBus().post(list);
+        if (list!=null &&list.size()>0){
+            BusStation.getBus().post(list);
+        }
     }
 }
