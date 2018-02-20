@@ -16,6 +16,28 @@
         android:hint="@string/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+    <EditText
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:id="@+id/et_about_me"
+        android:hint="@string/about_me"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TableRow
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="@string/my_locate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <CheckBox
+            android:id="@+id/my_locate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </TableRow>
     <TableRow
         android:layout_marginTop="40dp"
         android:gravity="center"

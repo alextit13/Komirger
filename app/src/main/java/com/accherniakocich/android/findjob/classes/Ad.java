@@ -22,6 +22,7 @@ public class Ad implements Serializable{
     private String city;
     private String categoty;
     private boolean premium;
+    private int activate;
 
     public Ad() {
 
@@ -49,6 +50,29 @@ public class Ad implements Serializable{
         this.premium = premium;
     }
 
+    public Ad(String nameAd, String nameJobAd, String textAd, String imagePathAd_1, String imagePathAd_2, String imagePathAd_3, String imagePathAd_4, String imagePathAd_5, int costAd, String peopleSourceAd, long dateAd, String type_money, User user, int numOfShowAd, String inFavoritUsers, boolean isCheck, String city, String categoty, boolean premium, int activate) {
+        this.nameAd = nameAd;
+        this.nameJobAd = nameJobAd;
+        this.textAd = textAd;
+        this.imagePathAd_1 = imagePathAd_1;
+        this.imagePathAd_2 = imagePathAd_2;
+        this.imagePathAd_3 = imagePathAd_3;
+        this.imagePathAd_4 = imagePathAd_4;
+        this.imagePathAd_5 = imagePathAd_5;
+        this.costAd = costAd;
+        this.peopleSourceAd = peopleSourceAd;
+        this.dateAd = dateAd;
+        this.type_money = type_money;
+        this.user = user;
+        this.numOfShowAd = numOfShowAd;
+        this.inFavoritUsers = inFavoritUsers;
+        this.isCheck = isCheck;
+        this.city = city;
+        this.categoty = categoty;
+        this.premium = premium;
+        this.activate = activate;
+    }
+
     public Ad(boolean premium, String categoty, String nameAd, String nameJobAd, String textAd, int costAd, String peopleSourceAd, long dateAd, String type_money, User user, int numOfShowAd, String inFavoritUsers, boolean isCheck, String city) {
         this.nameAd = nameAd;
         this.nameJobAd = nameJobAd;
@@ -64,6 +88,14 @@ public class Ad implements Serializable{
         this.city = city;
         this.categoty = categoty;
         this.premium = premium;
+    }
+
+    public int getActivate() {
+        return activate;
+    }
+
+    public void setActivate(int activate) {
+        this.activate = activate;
     }
 
     public boolean isPremium() {

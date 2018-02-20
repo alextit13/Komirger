@@ -114,4 +114,8 @@
     <string name="fruit">Фрукты</string>
     <string name="inventary">Инвентарь</string>
     <string name="inner">Другое</string>
+    <string name="my_not_active_ad">Неактивные</string>
+    <string name="my_locate">Показывать мое местоположение</string>
+    <string name="about_me">Обо мне</string>
+    <string name="all_companys">Все компании</string>
 </resources>

@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -19,12 +18,10 @@ import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.accherniakocich.android.findjob.R;
-import com.accherniakocich.android.findjob.activities.log_and_reg.MainActivity;
 import com.accherniakocich.android.findjob.adapters.BoxAdapter;
 import com.accherniakocich.android.findjob.classes.Ad;
 import com.accherniakocich.android.findjob.classes.User;
@@ -38,7 +35,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-
 import java.util.ArrayList;
 
 public class MainList extends AppCompatActivity
@@ -55,7 +51,6 @@ public class MainList extends AppCompatActivity
     private StorageReference mStorageRef;
     private ImageView navigation_home,navigation_licke,navigation_add,navigation_message,navigation_private_room,find_main_screen;
     private BoxAdapter adapter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -188,6 +183,8 @@ public class MainList extends AppCompatActivity
 
     private void downlodList(String category_download_list){
 
+
+
         reference.child("ads").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -268,149 +265,47 @@ public class MainList extends AppCompatActivity
         }
     }
 
+    public void mGoToCategory(String category){
+        Intent intent = new Intent(MainList.this,ActivityContainer.class);
+        intent.putExtra("category",category);
+        startActivity(intent);
+    }
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         switch (id){
-            case R.id.all_ads:
-                listAd.clear();
-                downlodList("ВСЕ КАТЕГОРИИ");
-                break;
-            case R.id.farm_1:
-                //
-                listAd.clear();
-                downlodList("Молоко");
-                break;
-            case R.id.farm_2:
-                //
-                listAd.clear();
-                downlodList("Яйца");
-                break;
-            case R.id.farm_3:
-                //
-                listAd.clear();
-                downlodList("Овощи");
-                break;
-            case R.id.farm_4:
-                //
-                listAd.clear();
-                downlodList("Фрукты");
-                break;
-            case R.id.farm_5:
-                //
-                listAd.clear();
-                downlodList("Инвентарь");
-                break;
-            case R.id.farm_6:
-                //
-                listAd.clear();
-                downlodList("Другое");
-                break;
-
-            case R.id.job:
-                //
-                listAd.clear();
-                downlodList("Работа");
-                break;
-            case R.id.houses:
-                //
-                listAd.clear();
-                downlodList("Недвижимость");
-                break;
-            case R.id.ladies_garderobe:
-                //
-                listAd.clear();
-                downlodList("Женский гардероб");
-                break;
-            case R.id.mens_garderobe:
-                //
-                listAd.clear();
-                downlodList("Мужской гардероб");
-                break;
-            case R.id.baby_garderobe:
-                //
-                listAd.clear();
-                downlodList("Детский гардероб");
-                break;
-            case R.id.baby_products:
-                //
-                listAd.clear();
-                downlodList("Детские товары");
-                break;
-            case R.id.handmade:
-                //
-                listAd.clear();
-                downlodList("Хендмейд");
-                break;
-            case R.id.auto_and_moto:
-                //
-                listAd.clear();
-                downlodList("Авто и мото");
-                break;
-            case R.id.phones_and_tablets:
-                //
-                listAd.clear();
-                downlodList("Телефоны и планшеты");
-                break;
-            case R.id.photo_and_videocameras:
-                //
-                listAd.clear();
-                downlodList("Фото и видеокамеры");
-                break;
-            case R.id.computers:
-                //
-                listAd.clear();
-                downlodList("Компьютеры");
-                break;
-            case R.id.electronics:
-                //
-                listAd.clear();
-                downlodList("Электроника и бытовая техника");
-                break;
-            case R.id.for_home_for_dacha:
-                //
-                listAd.clear();
-                downlodList("Для дома для дачи");
-                break;
-            case R.id.repair_and_building:
-                //
-                listAd.clear();
-                downlodList("Ремонт и строительство");
-                break;
-            case R.id.beauterfool:
-                //
-                listAd.clear();
-                downlodList("Красота и здоровье");
-                break;
-            case R.id.sport_and_relax:
-                //
-                listAd.clear();
-                downlodList("Спорт и отдых");
-                break;
-            case R.id.hobbies:
-                //
-                listAd.clear();
-                downlodList("Хобби и развлечения");
-                break;
-            case R.id.animals:
-                //
-                listAd.clear();
-                downlodList("Животные");
-                break;
-            case R.id.for_business:
-                //
-                listAd.clear();
-                downlodList("Для бизнеса");
-                break;
-            case R.id.another_category:
-                //
-                listAd.clear();
-                downlodList("Прочее");
-                break;
-            default:
-                break;
+            case R.id.all_ads:downlodList("ВСЕ КАТЕГОРИИ");break;
+            case R.id.all_company:mGoToCategory("Все компании");break;
+            case R.id.farm_1:mGoToCategory("Молоко");break;
+            case R.id.farm_2:mGoToCategory("Яйца");break;
+            case R.id.farm_3:mGoToCategory("Овощи");break;
+            case R.id.farm_4:mGoToCategory("Фрукты");break;
+            case R.id.farm_5:mGoToCategory("Инвентарь");break;
+            case R.id.farm_6:mGoToCategory("Другое");break;
+            case R.id.job:mGoToCategory("Работа");break;
+            case R.id.houses:mGoToCategory("Недвижимость");break;
+            case R.id.ladies_garderobe:mGoToCategory("Женский гардероб");break;
+            case R.id.mens_garderobe:mGoToCategory("Мужской гардероб");break;
+            case R.id.baby_garderobe:mGoToCategory("Детский гардероб");break;
+            case R.id.baby_products:mGoToCategory("Детские товары");break;
+            case R.id.handmade:mGoToCategory("Хендмейд");break;
+            case R.id.auto_and_moto:mGoToCategory("Авто и мото");break;
+            case R.id.phones_and_tablets:mGoToCategory("Телефоны и планшеты");break;
+            case R.id.photo_and_videocameras:mGoToCategory("Фото и видеокамеры");break;
+            case R.id.computers:mGoToCategory("Компьютеры");break;
+            case R.id.electronics:mGoToCategory("Электроника и бытовая техника");break;
+            case R.id.for_home_for_dacha:mGoToCategory("Для дома для дачи");break;
+            case R.id.repair_and_building:mGoToCategory("Ремонт и строительство");break;
+            case R.id.beauterfool:mGoToCategory("Красота и здоровье");break;
+            case R.id.sport_and_relax:mGoToCategory("Спорт и отдых");break;
+            case R.id.hobbies:mGoToCategory("Хобби и развлечения");break;
+            case R.id.animals:mGoToCategory("Животные");break;
+            case R.id.for_business:mGoToCategory("Для бизнеса");break;
+            case R.id.another_category:mGoToCategory("Прочее");break;
+            default:break;
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

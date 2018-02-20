@@ -7,17 +7,46 @@ public class User implements Serializable{
     private String nickName;
     private String name;
     private String image_path;
-
+    private String about_me;
+    private int rating;
+    private boolean my_locate;
 
     public User() {
 
     }
 
-    public User(String email, String nickName, String name, String image_path) {
+    public User(String email, String nickName, String name, String image_path, String about_me, int rating, boolean my_locate) {
         this.email = email;
         this.nickName = nickName;
         this.name = name;
         this.image_path = image_path;
+        this.about_me = about_me;
+        this.rating = rating;
+        this.my_locate = my_locate;
+    }
+
+    public boolean isMy_locate() {
+        return my_locate;
+    }
+
+    public void setMy_locate(boolean my_locate) {
+        this.my_locate = my_locate;
+    }
+
+    public String getAbout_me() {
+        return about_me;
+    }
+
+    public void setAbout_me(String about_me) {
+        this.about_me = about_me;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
     }
 
     public String getName() {

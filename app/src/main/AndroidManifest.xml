@@ -115,6 +115,11 @@
             android:name=".social_networks.vk.BuyPremium"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
+        <activity android:name=".activities.ActivityContainer"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".activities.MainList">
+        </activity>
     </application>
 
 </manifest>

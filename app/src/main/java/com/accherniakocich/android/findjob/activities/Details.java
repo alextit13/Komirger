@@ -109,9 +109,6 @@ public class Details extends AppCompatActivity {
         cost_job_detail = (TextView) findViewById(R.id.cost_job_detail);
         text_detais = (TextView) findViewById(R.id.text_detais);
         date_detail = (TextView)findViewById(R.id.date_detail);
-        /*name_add_generator_ad = (TextView)findViewById(R.id.name_add_generator_ad);*/
-
-        fab_delete = (ImageView) findViewById(R.id.fab_delete);
         fab_favorit = (ImageView) findViewById(R.id.fab_favorit);
 
 

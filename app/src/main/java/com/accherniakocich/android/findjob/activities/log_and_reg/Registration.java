@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.accherniakocich.android.findjob.R;
 import com.accherniakocich.android.findjob.activities.MainList;
 import com.accherniakocich.android.findjob.classes.User;
+import com.accherniakocich.android.findjob.classes.UserSingleton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -117,7 +118,9 @@ public class Registration extends AppCompatActivity {
                     Intent intent = new Intent(Registration.this,MainList.class);
                     String nickName = email.substring(0,email.indexOf("@",0));
                     User user = new User(mAuth.getCurrentUser().getEmail(),nickName,et_fio.getText().toString()
-                    ,"https://firebasestorage.googleapis.com/v0/b/findjob-51270.appspot.com/o/empty.png?alt=media&token=3d73aba3-5e79-4643-82dc-244c6ce326fb");
+                    ,"https://firebasestorage.googleapis.com/v0/b/findjob-51270.appspot.com/o/empty.png?alt=media&token=3d73aba3-5e79-4643-82dc-244c6ce326fb",
+                            "Обо мне",3,false);
+                    UserSingleton.setUser(user);
                     reference.child(nickName).setValue(user);
 
                     createSharedPreference(user);

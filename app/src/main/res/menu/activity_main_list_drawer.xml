@@ -6,6 +6,10 @@
         android:icon="@drawable/all_categoryes"
         android:title="@string/all_ads_list"/>
 
+    <item android:id="@+id/all_company"
+        android:icon="@drawable/all_company"
+        android:title="@string/all_companys"/>
+
     <item android:id="@+id/farm_1"
         android:icon="@drawable/milk"
         android:title="@string/milk"/>

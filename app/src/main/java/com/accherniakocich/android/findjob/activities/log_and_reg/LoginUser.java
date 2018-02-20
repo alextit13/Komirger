@@ -121,7 +121,7 @@ public class LoginUser extends AppCompatActivity {
                     Toast.makeText(LoginUser.this, "Вы успешно вошли!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginUser.this,MainList.class);
                     String nickName = email.substring(0,email.indexOf("@",0));
-                    user = new User(mAuth.getCurrentUser().getEmail(),nickName,"","");
+                    user = new User(mAuth.getCurrentUser().getEmail(),nickName,"","","Обо мне",3,false);
                     createSharedPreference(user);
                     intent.putExtra("user",user);
                     startActivity(intent);

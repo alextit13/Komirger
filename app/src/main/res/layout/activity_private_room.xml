@@ -15,6 +15,12 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+            <RatingBar
+                android:isIndicator="true"
+                android:id="@+id/rating_private_room"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="15dp"

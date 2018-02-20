@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/edit_profile_user"
-        app:showAsAction="always"
         android:title="@string/edit_menu"
         android:icon="@drawable/ic_edit_black_24dp">
-
     </item>
     <item
         android:id="@+id/my_ads"
-        app:showAsAction="always"
-        android:title="@string/edit_menu"
+        android:title="@string/my_ad"
+        android:icon="@drawable/my_ads">
+    </item>
+    <item
+        android:id="@+id/my_not_active_ads"
+        android:title="@string/my_not_active_ad"
         android:icon="@drawable/my_ads">
     </item>
 </menu>

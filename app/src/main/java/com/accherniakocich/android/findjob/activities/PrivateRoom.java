@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.media.Rating;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -18,15 +19,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.accherniakocich.android.findjob.R;
 import com.accherniakocich.android.findjob.activities.log_and_reg.MainActivity;
 import com.accherniakocich.android.findjob.classes.User;
 import com.accherniakocich.android.findjob.classes.square_otto.BusStation;
 import com.accherniakocich.android.findjob.edit_profile.EditProfile;
-import com.accherniakocich.android.findjob.fragments.DialogFragmentDeleteUser;
 import com.accherniakocich.android.findjob.social_networks.vk.BuyPremium;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -42,12 +42,14 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
-
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.UUID;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class PrivateRoom extends AppCompatActivity {
@@ -60,13 +62,15 @@ public class PrivateRoom extends AppCompatActivity {
     private String link;
     private Uri filePath;
     private TextView name_user_private_room,email_user_private_room,log_in_user_private_room;
-
     private Button message_to_developers_button,delete_user,buy_premium_account;
+
+    @BindView(R.id.rating_private_room)RatingBar rating_private_room;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_private_room);
+        ButterKnife.bind(this);
         init();
     }
 
@@ -95,15 +99,13 @@ public class PrivateRoom extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 try {
-                    link = dataSnapshot.getValue().toString(); // link on profile image
-                    //Log.d(MainActivity.LOG_TAG,"link = " + link);
+                    link = dataSnapshot.getValue().toString();
                     Picasso.with(PrivateRoom.this)
                             .load(link)
                             .into(profile_image);
                 }catch (Exception e){
                     // Log...
                 }
-
             }
 
             @Override
@@ -116,6 +118,10 @@ public class PrivateRoom extends AppCompatActivity {
         name_user_private_room.setText(user.getName());
         email_user_private_room.setText(user.getEmail());
         log_in_user_private_room.setText(user.getNickName());
+        Log.d("log","user rating = " + user.getRating());
+        if (user.getRating()!=0){
+            rating_private_room.setRating(user.getRating());
+        }
     }
 
     private void choseAndDownloadImage() {
@@ -204,6 +210,8 @@ public class PrivateRoom extends AppCompatActivity {
             intent.putExtra("user",user);
             startActivity(intent);
             return true;
+        }else if(id == R.id.my_not_active_ads){
+
         }
         return super.onOptionsItemSelected(item);
     }

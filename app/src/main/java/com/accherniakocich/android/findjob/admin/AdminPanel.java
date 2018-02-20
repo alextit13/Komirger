@@ -81,7 +81,7 @@ public class AdminPanel extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(AdminPanel.this, Details.class);
                 intent.putExtra("ad",list_ad.get(position));
-                intent.putExtra("user",new User("admin@admin.com","admin","admin",""));
+                intent.putExtra("user",new User("admin@admin.com","admin","admin","","",0,false));
                 intent.putExtra("fromWhereIntent",3);
                 startActivity(intent);
             }
