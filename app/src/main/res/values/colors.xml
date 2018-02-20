@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="main_color_program">#C10020</color>
+    <color name="color_nav_bar_my">#2b2b2b</color>
+
+    <color name="main_color_buttons">#0389dc</color>
+    <color name="main_color_buttons_64">#628dec</color>
+    <color name="main_color_labels">#5b7496</color>
+
+
+    <color name="blue">#215d99</color>
+    <color name="red">#99292A</color>
+    <color name="green">#678C32</color>
+
+</resources>

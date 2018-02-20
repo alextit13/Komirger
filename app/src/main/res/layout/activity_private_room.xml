@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    android:id="@+id/container_fragment"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.accherniakocich.android.findjob.activities.PrivateRoom">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_gravity="top|center"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/profile_image"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                app:civ_border_color="#FF000000"/>
+            <TextView
+                android:id="@+id/name_user_private_room"
+                android:fontFamily="sans-serif-condensed"
+                android:textSize="25sp"
+                android:textColor="#000000"
+                android:gravity="center"
+                tools:text="Елена Иванова"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/email_user_private_room"
+                android:layout_marginEnd="50dp"
+                android:gravity="end"
+                android:textStyle="italic"
+                tools:text="elena_ivanova@gmail.com"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/log_in_user_private_room"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/main_color_program"
+                tools:text="elena_ivanova"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <Button
+                android:onClick="onClick"
+                android:id="@+id/message_to_developers_button"
+                android:layout_marginTop="10dp"
+                android:background="#5da2f7"
+                android:textColor="#fff"
+                android:text="@string/message_to_developers"
+                android:layout_marginStart="70dp"
+                android:layout_marginEnd="70dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <Button
+                android:onClick="onClick"
+                android:id="@+id/delete_user"
+                android:layout_marginTop="10dp"
+                android:background="@color/red"
+                android:textColor="#fff"
+                android:text="@string/delete_account"
+                android:layout_marginStart="70dp"
+                android:layout_marginEnd="70dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <Button
+                android:onClick="onClick"
+                android:id="@+id/buy_premium_account"
+                android:layout_marginTop="10dp"
+                android:background="#5da2f7"
+                android:textColor="#fff"
+                android:text="@string/buy_premium"
+                android:layout_marginBottom="30dp"
+                android:layout_marginStart="70dp"
+                android:layout_marginEnd="70dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.accherniakocich.android.findjob">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <application
+        android:name=".social_networks.vk.VKInicialization"
+        android:allowBackup="true"
+        android:hardwareAccelerated="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:roundIcon="@mipmap/ic_launcher"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.accherniakocich.android.findjob"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <activity
+            android:name=".activities.log_and_reg.MainActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.log_and_reg.LoginUser"
+            android:noHistory="true"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activities.log_and_reg.Registration"
+            android:noHistory="true"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activities.MainList"
+            android:label="@string/app_name"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".activities.Details"
+            android:label="@string/title_activity_details"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activities.AddAd"
+            android:parentActivityName=".activities.MainList"
+            android:theme="@style/MyActionBar" />
+        <activity
+            android:name=".activities.MessageToDevelopers"
+            android:parentActivityName=".activities.MainList"
+            android:theme="@style/MyActionBar" />
+        <activity
+            android:name=".activities.MyAdds"
+            android:parentActivityName=".activities.MainList"
+            android:theme="@style/MyActionBar" />
+        <activity
+            android:name=".activities.ListUsers"
+            android:launchMode="singleTop"
+            android:parentActivityName=".activities.MainList"
+            android:theme="@style/MyActionBar" />
+        <activity
+            android:name=".activities.Dialog"
+            android:parentActivityName=".activities.ListUsers"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activities.PrivateRoom"
+            android:noHistory="true"
+            android:parentActivityName=".activities.MainList"
+            android:theme="@style/MyActionBar" />
+        <activity
+            android:name=".activities.Search"
+            android:parentActivityName=".activities.MainList"
+            android:theme="@style/MyActionBar" />
+        <activity
+            android:name=".activities.Favorit"
+            android:parentActivityName=".activities.ListUsers"
+            android:theme="@style/MyActionBar" />
+        <activity android:name=".admin.AdminPanel" />
+        <activity
+            android:name=".findResult.FindResults"
+            android:theme="@style/MyActionBar" />
+        <activity
+            android:name=".coupons.Coupons"
+            android:theme="@style/MyActionBar" />
+        <activity
+            android:name=".edit_profile.EditProfile"
+            android:theme="@style/Base.Theme.AppCompat.Light.Dialog" />
+        <activity
+            android:name=".viewer_images.ViewerImages"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name="com.vk.sdk.VKServiceActivity"
+            android:label="ServiceActivity"
+            android:theme="@style/VK.Transparent" />
+        <activity
+            android:name=".find.Find"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".social_networks.vk.BuyPremium"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        </activity>
+    </application>
+
+</manifest>

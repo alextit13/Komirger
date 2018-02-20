@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/message_container"
+    android:layout_margin="5dp"
+    android:layout_marginBottom="10dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    xmlns:tools="http://schemas.android.com/tools">
+    <LinearLayout
+        android:id="@+id/subparent"
+        android:padding="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:textSize="16sp"
+                android:id="@+id/dialog_name_user_from"
+                android:layout_margin="4dp"
+                android:textStyle="italic"
+                tools:text="Иван Иванов"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:textColor="#fff"
+                android:layout_gravity="center"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:id="@+id/dialog_date"
+                android:layout_margin="4dp"
+                android:textAlignment="viewEnd"
+                tools:text="20.07.2017"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                tools:ignore="RtlCompat" />
+        </TableRow>
+        <TextView
+            android:fontFamily="sans-serif-condensed"
+            android:textAlignment="viewStart"
+            android:textSize="16sp"
+            android:id="@+id/dialog_little_text_of_message"
+            android:layout_margin="4dp"
+            tools:text="Добрый день! Вакансия актуальна?"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:id="@+id/read_or_not_read_message"
+            android:layout_gravity="end|center"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+    </LinearLayout>
+</LinearLayout>

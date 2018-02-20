@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:background="@drawable/background_adapter">
+
+    <TextView
+        android:textSize="20sp"
+        android:singleLine="true"
+        android:maxLines="1"
+        android:layout_gravity="center"
+        android:id="@+id/tvText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:fontFamily="sans-serif-condensed"
+        android:textColor="#dfdfdf"
+        android:textStyle="bold"
+        android:typeface="serif"
+        tools:text="Перенести ветки" />
+    <TextView
+        android:textSize="20sp"
+        android:singleLine="true"
+        android:maxLines="1"
+        android:layout_gravity="center"
+        android:id="@+id/about_job_admin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:fontFamily="sans-serif-condensed"
+        android:textColor="#dfdfdf"
+        android:textStyle="bold"
+        android:typeface="serif"
+        tools:text="Перенести ветки" />
+    <ImageView
+        android:layout_gravity="center"
+        android:id="@+id/image_admin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TableRow
+        android:layout_marginStart="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textAllCaps="true"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:id="@+id/cost_job_main_list_red_admin"
+            tools:text="50"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textAllCaps="true"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:id="@+id/cost_job_main_list_red_dollar"
+            android:text="$"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </TableRow>
+    <TableRow
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginStart="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_marginEnd="30dp"
+            app:srcCompat="@drawable/ic_delete_black_24dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:id="@+id/image_admin_false"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+        <ImageView
+            android:layout_marginStart="30dp"
+            app:srcCompat="@drawable/add_ad"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:id="@+id/image_admin_ok"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+
+    </TableRow>
+</LinearLayout>

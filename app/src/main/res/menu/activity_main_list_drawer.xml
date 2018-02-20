@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/all_ads"
+        android:icon="@drawable/all_categoryes"
+        android:title="@string/all_ads_list"/>
+
+    <item android:id="@+id/farm_1"
+        android:icon="@drawable/milk"
+        android:title="@string/milk"/>
+
+    <item android:id="@+id/farm_2"
+        android:icon="@drawable/egg"
+        android:title="@string/eggs"/>
+
+    <item android:id="@+id/farm_3"
+        android:icon="@drawable/vegan"
+        android:title="@string/vegetables"/>
+
+    <item android:id="@+id/farm_4"
+        android:icon="@drawable/fruit"
+        android:title="@string/fruit"/>
+
+    <item android:id="@+id/farm_5"
+        android:icon="@drawable/inventary"
+        android:title="@string/inventary"/>
+
+    <item android:id="@+id/farm_6"
+        android:icon="@drawable/another"
+        android:title="@string/inner"/>
+
+    <item android:id="@+id/job"
+        android:icon="@drawable/job"
+        android:title="@string/job"/>
+
+    <item android:id="@+id/houses"
+        android:icon="@drawable/navigation_home"
+        android:title="@string/houses"/>
+
+    <item android:id="@+id/ladies_garderobe"
+        android:icon="@drawable/w_gard"
+        android:title="@string/ladies_garderobe"/>
+
+    <item android:id="@+id/mens_garderobe"
+        android:icon="@drawable/m_gard"
+        android:title="@string/mens_garderobe"/>
+
+    <item android:id="@+id/baby_garderobe"
+        android:icon="@drawable/baby"
+        android:title="@string/baby_garderobe"/>
+
+    <item android:id="@+id/baby_products"
+        android:icon="@drawable/baby_prod"
+        android:title="@string/baby_products"/>
+
+    <item android:id="@+id/handmade"
+        android:icon="@drawable/handmade"
+        android:title="@string/handmade"/>
+
+    <item android:id="@+id/auto_and_moto"
+        android:icon="@drawable/auto_moto"
+        android:title="@string/auto_and_moto"/>
+
+    <item android:id="@+id/phones_and_tablets"
+        android:icon="@drawable/mobile_tabl"
+        android:title="@string/phones_and_tablets"/>
+
+    <item android:id="@+id/photo_and_videocameras"
+        android:icon="@drawable/cameras"
+        android:title="@string/photo_and_videocameras"/>
+
+    <item android:id="@+id/computers"
+        android:icon="@drawable/computers"
+        android:title="@string/computers"/>
+
+    <item android:id="@+id/electronics"
+        android:icon="@drawable/home_prod"
+        android:title="@string/electronics"/>
+
+    <item android:id="@+id/for_home_for_dacha"
+        android:icon="@drawable/homes"
+        android:title="@string/for_home_for_dacha"/>
+
+    <item android:id="@+id/repair_and_building"
+        android:icon="@drawable/repairs"
+        android:title="@string/repair_and_building"/>
+
+    <item android:id="@+id/beauterfool"
+        android:icon="@drawable/healths"
+        android:title="@string/beauterfool"/>
+
+    <item android:id="@+id/sport_and_relax"
+        android:icon="@drawable/sports"
+        android:title="@string/sport_and_relax"/>
+
+    <item android:id="@+id/hobbies"
+        android:icon="@drawable/hobbies"
+        android:title="@string/hobbies"/>
+
+    <item android:id="@+id/animals"
+        android:icon="@drawable/animals"
+        android:title="@string/animals"/>
+
+    <item android:id="@+id/for_business"
+        android:icon="@drawable/business"
+        android:title="@string/for_business"/>
+
+    <item android:id="@+id/another_category"
+        android:icon="@drawable/others"
+        android:title="@string/another"/>
+</menu>

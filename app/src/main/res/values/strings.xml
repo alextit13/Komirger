@@ -1,0 +1,117 @@
+<resources>
+    <string name="app_name">Comirger</string>
+    <string name="font_name_fontawesome">fontawesome</string>
+    <string name="font_name_source_sans_pro">SourceSansPro</string>
+
+    <integer name="com_vk_sdk_AppId">6328701</integer>
+
+    <string name="sign_in_people">Войти</string>
+    <string name="registration_in_people">Регистрация</string>
+    <string name="sign_in_organization">Войти как организация</string>
+    <string name="registration_in_organization">Регистрация организации</string>
+    <string name="author">\@Виталий Мукменёв</string>
+    <string name="enter_email">Введите e-mail</string>
+    <string name="enter_password">Введите пароль</string>
+    <string name="sign_in">Войти</string>
+    <string name="cancel">Отмена</string>
+    <string name="title_activity_scrolling">ScrollingActivity</string>
+    <string name="large_text">
+        Требуется водитель международник
+
+        Владение категориями В, C, E, умение устранить мелкую неисправность автопоезда в рейсе
+        знание порядка оформления товарно-сопроводительных документов (МДП)
+
+    </string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_main_list">MainList</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_activity_details">Details</string>
+    <string name="money">1200 $ / в месяц</string>
+    <string name="main_text_nav_bar">Найди работу мечты!</string>
+    <string name="my_ad">Мои объявления</string>
+    <string name="chat">Чат</string>
+    <string name="sign_in_how_quest">Войти как гость</string>
+    <string name="registration">Registration</string>
+    <string name="add_ad">Подать объявление</string>
+    <string name="add_ad_text">Информация об объявлении</string>
+    <string name="add_information">Добавьте данные</string>
+    <string name="name">Ваше имя</string>
+    <string name="name_job">Название работы</string>
+    <string name="cost_job">Цена работы</string>
+    <string name="contacts">Телефон</string>
+    <string name="add_about_job">Описание работы</string>
+    <string name="photo_image">Фото работы</string>
+    <string name="send_message">Отправить</string>
+    <string name="message_to_developers">Сообщение разработчикам</string>
+    <string name="text_message_to_developers">Введите Ваше сообщение</string>
+    <string name="emptyView">Нет объявлений</string>
+    <string name="list_is_empty">Нет объявлений!</string>
+    <string name="komirger">Comirger</string>
+    <string name="log_in">Log-in</string>
+    <string name="private_room">Личный кабинет</string>
+    <string name="prioriry">Избранное</string>
+    <string name="settings">Скидки</string>
+    <string name="share">Поделиться</string>
+    <string name="write_to_developers">Написать разработчикам</string>
+    <string name="all_ads">Все объявления твоего города</string>
+    <string name="all_ads_list">Все объявления</string>
+    <string name="start_string_tel">+7</string>
+    <string name="string_location">Адрес</string>
+    <string name="check_category">Категория</string>
+    <string name="edit_menu">Редактировать</string>
+    <string name="delete_account">Удалить аккаунт</string>
+    <string name="buy_premium">Купить премиум</string>
+    <string name="category">Категория</string>
+    <string name="string_cost_from">Цена от:</string>
+    <string name="string_cost_to">До:</string>
+    <string name="ok">Поиск</string>
+    <string name="clean_all">Очистить все</string>
+    <string name="city">Город</string>
+    <string name="you_not_have_coupons">У Вас нет купонов</string>
+    <string name="enter_fio">ФИО</string>
+    <string name="save">Сохранить</string>
+    <string name="date">23 января</string>
+    <string name="banner_ad_unit_id">ca-app-pub-8152940176557798/6945787191</string>
+    <string name="buy_coupons">Получить скидку</string>
+    <string name="job">Работа</string>
+    <string name="houses">Недвижимость</string>
+    <string name="ladies_garderobe">Женский гардероб</string>
+    <string name="mens_garderobe">Мужской гардероб</string>
+    <string name="baby_garderobe">Детский гардероб</string>
+    <string name="baby_products">Детские товары</string>
+    <string name="handmade">Хендмейд</string>
+    <string name="auto_and_moto">Авто и мото</string>
+    <string name="phones_and_tablets">Телефоны и планшеты</string>
+    <string name="photo_and_videocameras">Фото и видеокамеры</string>
+    <string name="computers">Компьютеры</string>
+    <string name="electronics">Электроника и бытовая техника</string>
+    <string name="for_home_for_dacha">Для дома для дачи</string>
+    <string name="repair_and_building">Ремонт и строительство</string>
+    <string name="beauterfool">Красота и здоровье</string>
+    <string name="sport_and_relax">Спорт и отдых</string>
+    <string name="hobbies">Хобби и развлечения</string>
+    <string name="animals">Животные</string>
+    <string name="for_business">Для бизнеса</string>
+    <string name="another">Прочее</string>
+    <string name="all_category">Все категории</string>
+    <string name="search">Поиск...</string>
+    <string name="type_ad">Тип объявления</string>
+    <string name="buy">Купить</string>
+    <string name="sell">Продать</string>
+    <string name="premium">Премиум</string>
+    <string name="not_premium">Не премиум</string>
+    <string name="price">Цена</string>
+    <string name="only_ith_photo">Только с фото</string>
+    <string name="adress">Адрес</string>
+    <string name="phone_number">Номер телефона</string>
+    <string name="del">Удалить</string>
+    <string name="farm">Сельхозпродукция</string>
+    <string name="milk">Молоко</string>
+    <string name="eggs">Яйца</string>
+    <string name="vegetables">Овощи</string>
+    <string name="fruit">Фрукты</string>
+    <string name="inventary">Инвентарь</string>
+    <string name="inner">Другое</string>
+</resources>

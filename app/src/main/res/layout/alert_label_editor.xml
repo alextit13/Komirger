@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+    <ScrollView
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_marginTop="90dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_marginTop="40dp"
+                android:layout_margin="5dp"
+                android:textSize="18sp"
+                android:textColor="#9f7979"
+                android:gravity="center"
+                android:id="@+id/name_user"
+                tools:text="Тут какой-то текст"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_margin="5dp"
+                android:textSize="18sp"
+                android:textColor="#799f7a"
+                android:gravity="center"
+                android:id="@+id/name_ad"
+                tools:text="Тут какой-то текст"
+                android:text="@string/save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_margin="5dp"
+                android:textSize="18sp"
+                android:textColor="#79839f"
+                android:gravity="center"
+                android:id="@+id/ad_date"
+                tools:text="Тут какой-то текст"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_margin="5dp"
+                android:textSize="18sp"
+                android:textColor="#9f7989"
+                android:gravity="center"
+                android:id="@+id/about"
+                tools:text="Тут какой-то текст"
+                android:text="@string/save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_margin="5dp"
+                android:textSize="18sp"
+                android:textColor="#747051"
+                android:gravity="center"
+                android:id="@+id/price"
+                tools:text="Тут какой-то текст"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_margin="5dp"
+                android:textSize="18sp"
+                android:textColor="#799a9f"
+                android:gravity="center"
+                android:id="@+id/number_phone"
+                tools:text="Тут какой-то текст"
+                android:text="@string/save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_margin="5dp"
+                android:textSize="18sp"
+                android:textColor="#83719c"
+                android:gravity="center"
+                android:id="@+id/email"
+                tools:text="Тут какой-то текст"
+                android:text="@string/save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_margin="5dp"
+                android:textSize="18sp"
+                android:textColor="#9f7a79"
+                android:gravity="center"
+                android:id="@+id/textAd"
+                tools:text="Тут какой-то текст"
+                android:text="@string/save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:id="@+id/image_ad"
+                android:layout_width="200dp"
+                android:layout_height="200dp" />
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>

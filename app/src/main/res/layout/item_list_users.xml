@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="horizontal"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:background="@android:drawable/dialog_holo_light_frame"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:id="@+id/profile_image_list_users"
+        android:layout_width="70dp"
+        android:layout_height="70dp"/>
+    <TextView
+        android:paddingStart="10dp"
+        tools:text="Чернякович Алексей Сергеевич"
+        android:layout_margin="5dp"
+        android:textColor="#181818"
+        android:textSize="20sp"
+        android:layout_gravity="center"
+        android:id="@+id/list_users_nick_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="RtlSymmetry" />
+</LinearLayout>
