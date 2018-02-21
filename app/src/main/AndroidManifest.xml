@@ -84,10 +84,6 @@
             android:parentActivityName=".activities.MainList"
             android:theme="@style/MyActionBar" />
         <activity
-            android:name=".activities.Search"
-            android:parentActivityName=".activities.MainList"
-            android:theme="@style/MyActionBar" />
-        <activity
             android:name=".activities.Favorit"
             android:parentActivityName=".activities.ListUsers"
             android:theme="@style/MyActionBar" />

@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Komirger.iml" filepath="$PROJECT_DIR$/Komirger.iml" />
+      <module fileurl="file://D:\disk_C\ANDROID\ANDROIN_PROJECTS\Kommirger\Komirger.iml" filepath="D:\disk_C\ANDROID\ANDROIN_PROJECTS\Kommirger\Komirger.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Kommirger.iml" filepath="$PROJECT_DIR$/.idea/Kommirger.iml" />
       <module fileurl="file://D:\disk_C\ANDROID\ANDROIN_PROJECTS\Kommirger\Kommirger-master.iml" filepath="D:\disk_C\ANDROID\ANDROIN_PROJECTS\Kommirger\Kommirger-master.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

@@ -1,5 +1,7 @@
 package com.accherniakocich.android.findjob.classes;
 
+import android.util.Log;
+
 import com.accherniakocich.android.findjob.classes.square_otto.BusStation;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -76,9 +78,15 @@ public class TakeDataFromFirebase{
 
     @Subscribe
     private void recieveDataWithCompanies(ArrayList<Company> LC) {
-        if (LC!=null&&LC.size()>0){
+        //Log.d("log_1","1");
+        BusStation.getBus().post(LC);
+        /*if (LC!=null&&LC.size()>0){
+            Log.d("log_1","2");
             BusStation.getBus().post(LC);
-        }
+        }else{
+            Log.d("log_1","3");
+            BusStation.getBus().post(null);
+        }*/
     }
 
     @Subscribe
