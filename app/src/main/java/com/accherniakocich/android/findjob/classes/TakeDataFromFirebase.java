@@ -1,7 +1,4 @@
 package com.accherniakocich.android.findjob.classes;
-
-import android.util.Log;
-
 import com.accherniakocich.android.findjob.classes.square_otto.BusStation;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -9,13 +6,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.otto.Subscribe;
 import java.util.ArrayList;
-
 public class TakeDataFromFirebase{
-
     private String tag;
     private ArrayList<Ad>list;
     private ArrayList<Company>listCompany;
-
     public void getFromServer(String t) {
         tag=t;
         list = new ArrayList<>();
@@ -39,7 +33,6 @@ public class TakeDataFromFirebase{
                         }
                 );
     }
-
     public void getFromServerCompanise(String filter){
         listCompany = new ArrayList<>();
         FirebaseDatabase.getInstance().getReference().child("companies")
@@ -51,7 +44,6 @@ public class TakeDataFromFirebase{
                                     listCompany.add(data.getValue(Company.class));
                                     sortList(listCompany,filter);
                                 }
-
                             }
 
                             @Override
@@ -61,7 +53,6 @@ public class TakeDataFromFirebase{
                         }
                 );
     }
-
     private void sortList(ArrayList<Company> L, String filter) {
         if (filter.equals("")){
             recieveDataWithCompanies(L);
@@ -75,20 +66,10 @@ public class TakeDataFromFirebase{
             recieveDataWithCompanies(listSort);
         }
     }
-
     @Subscribe
     private void recieveDataWithCompanies(ArrayList<Company> LC) {
-        //Log.d("log_1","1");
         BusStation.getBus().post(LC);
-        /*if (LC!=null&&LC.size()>0){
-            Log.d("log_1","2");
-            BusStation.getBus().post(LC);
-        }else{
-            Log.d("log_1","3");
-            BusStation.getBus().post(null);
-        }*/
     }
-
     @Subscribe
     private void recieveData(ArrayList<Ad> list) {
         if (list!=null &&list.size()>0){

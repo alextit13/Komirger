@@ -10,6 +10,7 @@ import android.widget.ListView;
 import com.accherniakocich.android.findjob.R;
 import com.accherniakocich.android.findjob.adapters.ListUserAdapter;
 import com.accherniakocich.android.findjob.classes.User;
+import com.accherniakocich.android.findjob.classes.maps_location.LocationService;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

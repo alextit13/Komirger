@@ -12,7 +12,6 @@ public class User implements Serializable{
     private boolean my_locate;
 
     public User() {
-
     }
 
     public User(String email, String nickName, String name, String image_path, String about_me, int rating, boolean my_locate) {

@@ -1,11 +1,14 @@
 package com.accherniakocich.android.findjob.activities;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -25,6 +28,7 @@ import com.accherniakocich.android.findjob.R;
 import com.accherniakocich.android.findjob.adapters.BoxAdapter;
 import com.accherniakocich.android.findjob.classes.Ad;
 import com.accherniakocich.android.findjob.classes.User;
+import com.accherniakocich.android.findjob.classes.maps_location.LocationService;
 import com.accherniakocich.android.findjob.find.Find;
 import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.auth.FirebaseAuth;
@@ -71,7 +75,7 @@ public class MainList extends AppCompatActivity
 
     private void init() {
 
-        mGettindCoordinates();
+
 
         find_main_screen = (ImageView)findViewById(R.id.find_main_screen);
         find_main_screen.setOnClickListener(new View.OnClickListener() {
@@ -107,7 +111,6 @@ public class MainList extends AppCompatActivity
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //Log.d(MainActivity.LOG_TAG,mAuth.getCurrentUser().getEmail());
                 Intent intent = new Intent(MainList.this,Details.class);
                 intent.putExtra("ad",listAd.get(position));
                 intent.putExtra("user",user);
@@ -116,9 +119,6 @@ public class MainList extends AppCompatActivity
             }
         });
 
-    }
-
-    private void mGettindCoordinates() {
 
     }
 

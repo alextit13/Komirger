@@ -108,7 +108,6 @@ public class LoginUser extends AppCompatActivity {
     }
 
     private void sign_in_admin() {
-        // входит админ
         Intent intent = new Intent(LoginUser.this, AdminPanel.class);
         startActivity(intent);
     }

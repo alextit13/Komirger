@@ -28,8 +28,6 @@ import butterknife.BindView;
 public class FragmentAllCompanys extends Fragment{
     private Context mContext;
     private View view;
-    private ArrayList<Company>listCompany;
-    private FloatingActionButton find_companies;
     private LinearLayout mConstraintLayout;
     private CompaniesAdapter mAdapter;
     @BindView(R.id.list_category)ListView mListCategory;
@@ -63,26 +61,19 @@ public class FragmentAllCompanys extends Fragment{
         mGetListCompany("");
         return view;
     }
-
     private void mGetListCompany(String filter) {
         TakeDataFromFirebase mTakeDataFromServer = new TakeDataFromFirebase();
         mTakeDataFromServer.getFromServerCompanise(filter);
     }
     @Subscribe
     public void mGettingListWithCompanies(ArrayList<Company>LC){
-        Log.d("log_1","4");
         if (LC==null||LC.size()==0){
-            // если пришел нулевой список
-            Log.d("log_1","5 adapter = " + LC.size());
             mListCategory.setAdapter(null);
         }else{
-            Log.d("log_1","6");
             mAdapter = new CompaniesAdapter(mContext,LC);
             mListCategory.setAdapter(mAdapter);
         }
     }
-
-
     void onClickFloatingActionButton(){
         AlertDialog.Builder dialog = new AlertDialog.Builder(mContext);
         dialog.setTitle("Поиск");
@@ -99,12 +90,8 @@ public class FragmentAllCompanys extends Fragment{
                 });
         dialog.create().show();
     }
-
     private void find(String s) {
-        Log.d("log_1","click_1");
         mGetListCompany(s);
-        Log.d("log_1","click_2");
-
         mAdapter.notifyDataSetChanged();
     }
 }
