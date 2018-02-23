@@ -1,10 +1,12 @@
 package com.accherniakocich.android.findjob.fragments.find_fragments;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,12 +16,26 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.FrameLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
+
 import com.accherniakocich.android.findjob.R;
+import com.accherniakocich.android.findjob.classes.Ad;
+import com.accherniakocich.android.findjob.classes.FindQuestionParameters;
 import com.accherniakocich.android.findjob.classes.firebase.TakeDataForFind;
 import com.accherniakocich.android.findjob.classes.square_otto.BusStation;
 import com.accherniakocich.android.findjob.classes.square_otto.Event;
+import com.accherniakocich.android.findjob.enums.EnumCitiesRUSSIA;
+import com.accherniakocich.android.findjob.enums.EnumForCategories;
+import com.accherniakocich.android.findjob.enums.GENERATE_LISTS_CLASS;
+import com.accherniakocich.android.findjob.find.FindLogic;
+import com.accherniakocich.android.findjob.interfaces.ReciveFindResultData;
+import com.crystal.crystalrangeseekbar.interfaces.OnRangeSeekbarChangeListener;
 import com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar;
 import com.squareup.otto.Subscribe;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -34,7 +50,13 @@ public class FragmentFind extends Fragment{
     @BindView(R.id.checkBox_only_with_photo)CheckBox checkBox_only_with_photo;
     @BindView(R.id.spinner_category_find)Spinner spinner_category_find;
     @BindView(R.id.spinner_city_find)Spinner spinner_city_find;
+    @BindView(R.id.price_from)TextView price_from;
+    @BindView(R.id.price_to)TextView price_to;
+
     private int swich = 0;
+    private GENERATE_LISTS_CLASS _GLT;
+
+    private ReciveFindResultData _mRecieveInterface;
 
     @Nullable
     @Override
@@ -42,10 +64,41 @@ public class FragmentFind extends Fragment{
         View view = inflater.inflate(R.layout.fragment_find,container,false);
         ButterKnife.bind(this, view);
         BusStation.getBus().register(this);
+        setPrice();
         TakeDataForFind data = new TakeDataForFind();
+        _GLT = new GENERATE_LISTS_CLASS();
         data.initialization();
+        completeCategories();
+        completeCities();
         return view;
     }
+
+    private void setPrice() {
+        rangeSeekBar.setOnRangeSeekbarChangeListener(new OnRangeSeekbarChangeListener() {
+            @Override
+            public void valueChanged(Number minValue, Number maxValue) {
+                price_from.setText(minValue.intValue()+"");
+                price_to.setText(maxValue.intValue()+"");
+                if(maxValue.intValue()>=9999){
+                    price_to.setText("~");
+                }
+            }
+        });
+    }
+
+    private void completeCategories() {
+        ArrayAdapter mAdapterCategories = new ArrayAdapter(context,android.R.layout.simple_list_item_1,
+                _GLT.getListCategories(Arrays.asList(EnumForCategories.values()),"ВСЕ КАТЕГОРИИ"));
+        spinner_category_find.setAdapter(mAdapterCategories);
+    }
+
+    private void completeCities() {
+        ArrayAdapter mAdapterCities = new ArrayAdapter (context,android.R.layout.simple_spinner_item,
+                _GLT.getListCitiesRussia(Arrays.asList(EnumCitiesRUSSIA.values()),"ВСЕ ГОРОДА"));
+        spinner_city_find.setAdapter(mAdapterCities);
+        _GLT = null;
+    }
+
     @Subscribe
     public void mOnCompleteAutocompleteEtitText(Event event){
         ArrayAdapter mAdapter = new ArrayAdapter(context,android.R.layout.simple_list_item_1,event.getProduct());
@@ -104,7 +157,54 @@ public class FragmentFind extends Fragment{
     @OnClick(R.id.button_find) public void find(Button mButtonFind){
         // TODO тут передаем уже отсортированный результат в виде листа с Объявлениями
         // TODO(Ad) в родительское активити и потом с активити передаем в другой фрагмент - FragmentResult
-
+        getFindLogic();
+    }
+    @Subscribe
+    public void getSortListAds(ArrayList<Ad>list){
+        _mRecieveInterface.getListAds(list);
     }
 
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            _mRecieveInterface = (ReciveFindResultData) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString() + " must implement onSomeEventListener");
+        }
+    }
+
+    private void getFindLogic() {
+        boolean premium = false;
+        boolean photo = false;
+        if (swich==1){
+            premium = true;
+        }else if (swich==2){
+            premium = false;
+        }else if (swich==0){
+            premium=false;
+        }
+        if (checkBox_only_with_photo.isChecked()){
+            photo = true;
+        }
+
+        int price_to_int = 0;
+        if (price_to.getText().toString().equals("~")){
+            price_to_int = 2147483646;
+        }else{
+            price_to_int = Integer.parseInt(price_to.getText().toString());
+        }
+        FindQuestionParameters _m_FqP = new FindQuestionParameters(
+                edit_text_find.getText().toString()
+                ,premium
+                ,Integer.parseInt(price_from.getText().toString())
+                ,price_to_int
+                ,photo
+                ,spinner_category_find.getSelectedItem().toString()
+                ,spinner_city_find.getSelectedItem().toString()
+        );
+
+        FindLogic _mFindLogic = new FindLogic();
+        _mFindLogic.toFindQuestionParameters(_m_FqP,context);
+    }
 }

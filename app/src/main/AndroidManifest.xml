@@ -124,7 +124,7 @@
             android:label="ServiceActivity"
             android:theme="@style/VK.Transparent" />
         <activity
-            android:name=".find.Find"
+            android:name=".activities.Find"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".social_networks.vk.BuyPremium"

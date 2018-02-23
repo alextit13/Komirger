@@ -96,13 +96,13 @@
     <string name="for_business">Для бизнеса</string>
     <string name="another">Прочее</string>
     <string name="all_category">Все категории</string>
-    <string name="search">Поиск...</string>
+    <string name="search">Поиск</string>
     <string name="type_ad">Тип объявления</string>
     <string name="buy">Купить</string>
     <string name="sell">Продать</string>
     <string name="premium">Премиум</string>
     <string name="not_premium">Не премиум</string>
-    <string name="price">Цена</string>
+    <string name="price">Цена,$</string>
     <string name="only_ith_photo">Только с фото</string>
     <string name="adress">Адрес</string>
     <string name="phone_number">Номер телефона</string>
@@ -126,4 +126,6 @@
     <string name="contacts_company">Контакты</string>
     <string name="find_companies_name">Поиск</string>
     <string name="enter_word">Введите запрос</string>
+    <string name="price_from">Цена от:</string>
+    <string name="price_to">до:</string>
 </resources>

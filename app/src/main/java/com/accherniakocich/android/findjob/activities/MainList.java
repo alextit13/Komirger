@@ -25,7 +25,6 @@ import com.accherniakocich.android.findjob.R;
 import com.accherniakocich.android.findjob.adapters.BoxAdapter;
 import com.accherniakocich.android.findjob.classes.Ad;
 import com.accherniakocich.android.findjob.classes.User;
-import com.accherniakocich.android.findjob.find.Find;
 import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;

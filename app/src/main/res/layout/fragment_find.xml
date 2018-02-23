@@ -70,14 +70,55 @@
                 android:layout_height="wrap_content" />
 
             <TableRow
+                android:layout_below="@id/text_view_price"
+                android:id="@+id/prices"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textSize="18sp"
+                    android:gravity="end"
+                    android:layout_weight="1"
+                    android:text="@string/price_from"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:textSize="25sp"
+                    android:textColor="@color/blue"
+                    android:id="@+id/price_from"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    tools:text="70"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:textSize="18sp"
+                    android:text="@string/price_to"
+                    android:gravity="end"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:textSize="25sp"
+                    android:textColor="@color/blue"
+                    android:id="@+id/price_to"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    tools:text="70"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </TableRow>
+
+            <TableRow
                 android:gravity="center"
                 android:id="@+id/TR_2"
-                android:layout_below="@id/text_view_price"
+                android:layout_below="@id/prices"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             </TableRow>
 
             <com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar
+                app:min_value="0"
+                app:max_value="10000"
                 app:bar_color="@color/red"
                 app:bar_highlight_color="@color/green"
                 app:left_thumb_color="@color/blue"
