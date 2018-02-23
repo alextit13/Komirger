@@ -1,0 +1,166 @@
+<FrameLayout
+    android:id="@+id/frame_layout_find"
+    android:background="#eaeaea"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <AutoCompleteTextView
+                android:layout_margin="5dp"
+                android:id="@+id/edit_text_find"
+                android:hint="@string/search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_marginTop="15dp"
+                android:textSize="17sp"
+                android:textColor="#000"
+                android:gravity="center"
+                android:layout_below="@id/edit_text_find"
+                android:id="@+id/text_view_type"
+                android:text="@string/type_ad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TableRow
+                android:id="@+id/TR_1"
+                android:layout_below="@id/text_view_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Button
+                    android:layout_margin="2dp"
+                    android:textColor="#fff"
+                    android:background="@color/blue"
+                    android:layout_weight="1"
+                    android:text="@string/premium"
+                    android:id="@+id/premium"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"/>
+                <Button
+                    android:layout_margin="2dp"
+                    android:textColor="#fff"
+                    android:background="@color/blue"
+                    android:layout_weight="1"
+                    android:text="@string/not_premium"
+                    android:id="@+id/not_premium"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"/>
+            </TableRow>
+
+            <TextView
+                android:gravity="center"
+                android:textColor="#000"
+                android:textSize="17sp"
+                android:layout_marginTop="15dp"
+                android:layout_below="@id/TR_1"
+                android:id="@+id/text_view_price"
+                android:text="@string/price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TableRow
+                android:gravity="center"
+                android:id="@+id/TR_2"
+                android:layout_below="@id/text_view_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </TableRow>
+
+            <com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar
+                app:bar_color="@color/red"
+                app:bar_highlight_color="@color/green"
+                app:left_thumb_color="@color/blue"
+                app:right_thumb_color="@color/blue"
+                android:id="@+id/rangeSeekBar"
+                android:layout_below="@id/TR_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <TableRow
+                android:gravity="center"
+                android:id="@+id/TR_3"
+                android:layout_below="@id/rangeSeekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <CheckBox
+                    android:id="@+id/checkBox_only_with_photo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:gravity="center"
+                    android:textColor="#000"
+                    android:textSize="17sp"
+                    android:text="@string/only_ith_photo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </TableRow>
+
+            <TextView
+                android:layout_marginTop="15dp"
+                android:textColor="#000"
+                android:textSize="17sp"
+                android:gravity="center"
+                android:text="@string/category"
+                android:layout_below="@id/TR_3"
+                android:id="@+id/category_find"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <Spinner
+                style="@style/Widget.AppCompat.Spinner.Underlined"
+                android:spinnerMode="dialog"
+                android:background="@color/blue"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/category_find"
+                android:id="@+id/spinner_category_find"
+                android:layout_width="300dp"
+                android:layout_height="50dp">
+            </Spinner>
+
+            <TextView
+                android:layout_marginTop="15dp"
+                android:textColor="#000"
+                android:textSize="17sp"
+                android:gravity="center"
+                android:text="@string/city"
+                android:layout_below="@id/spinner_category_find"
+                android:id="@+id/city_for_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <Spinner
+                style="@style/Widget.AppCompat.Spinner.Underlined"
+                android:spinnerMode="dialog"
+                android:layout_marginBottom="40dp"
+                android:background="@color/blue"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/city_for_spinner"
+                android:id="@+id/spinner_city_find"
+                android:layout_width="300dp"
+                android:layout_height="50dp">
+            </Spinner>
+
+            <Button
+                android:layout_below="@+id/spinner_city_find"
+                android:textColor="#fff"
+                android:text="@string/search"
+                android:id="@+id/button_find"
+                android:layout_margin="2dp"
+                android:background="@color/green"
+                android:layout_width="match_parent"
+                android:layout_height="50dp" />
+
+        </RelativeLayout>
+    </ScrollView>
+</FrameLayout>

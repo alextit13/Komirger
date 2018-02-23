@@ -1,17 +1,19 @@
 package com.accherniakocich.android.findjob.classes.square_otto;
 
-public class Event {
-    String product;
+import java.util.ArrayList;
 
-    public Event(String product) {
+public class Event {
+    ArrayList<String> product;
+
+    public Event(ArrayList<String> product) {
         this.product = product;
     }
 
-    public String getProduct() {
+    public ArrayList<String> getProduct() {
         return product;
     }
 
-    public void setProduct(String product) {
+    public void setProduct(ArrayList<String> product) {
         this.product = product;
     }
 }
