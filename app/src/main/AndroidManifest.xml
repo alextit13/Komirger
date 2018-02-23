@@ -108,7 +108,7 @@
             android:theme="@style/MyActionBar" />
         <activity android:name=".admin.AdminPanel" />
         <activity
-            android:name=".findResult.FindResults"
+            android:name=".find.FindResults"
             android:theme="@style/MyActionBar" />
         <activity
             android:name=".coupons.Coupons"
@@ -137,6 +137,7 @@
         <activity android:name=".activities.log_and_reg.ActivityContainerReg"></activity>
         <activity
             android:name=".edit_profile.EditProfile$Locate"></activity>
+        <service android:name=".tests.TestService"/>
     </application>
 
 </manifest>

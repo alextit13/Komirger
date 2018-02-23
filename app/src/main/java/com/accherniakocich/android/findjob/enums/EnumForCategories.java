@@ -1,6 +1,6 @@
 package com.accherniakocich.android.findjob.enums;
 
-public enum  EnumForAdapter{
+public enum EnumForCategories {
     СЛУЖБЫ,
     АВТОСЕРВИС,
     АВТОТОВАРЫ,

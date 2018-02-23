@@ -14,17 +14,14 @@ import android.widget.Spinner;
 
 import com.accherniakocich.android.findjob.R;
 import com.accherniakocich.android.findjob.classes.Company;
-import com.accherniakocich.android.findjob.classes.EnumForAdapter;
+import com.accherniakocich.android.findjob.enums.EnumForCategories;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
-import java.util.EnumSet;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class RegistrationFragments extends Fragment {
     private EditText name_company,about_company,date_of_start_company,type_of_work_company,contacts_company,address_company;
@@ -47,7 +44,7 @@ public class RegistrationFragments extends Fragment {
     }
 
     private void completeSpinner() {
-        List<EnumForAdapter> somethingList = Arrays.asList(EnumForAdapter.values());
+        List<EnumForCategories> somethingList = Arrays.asList(EnumForCategories.values());
 
         ArrayList<String>list = new ArrayList<>();
         for (int i = 0; i<somethingList.size();i++){

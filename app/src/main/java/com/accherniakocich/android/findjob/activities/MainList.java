@@ -1,14 +1,11 @@
 package com.accherniakocich.android.findjob.activities;
 
-import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -28,7 +25,6 @@ import com.accherniakocich.android.findjob.R;
 import com.accherniakocich.android.findjob.adapters.BoxAdapter;
 import com.accherniakocich.android.findjob.classes.Ad;
 import com.accherniakocich.android.findjob.classes.User;
-import com.accherniakocich.android.findjob.classes.maps_location.LocationService;
 import com.accherniakocich.android.findjob.find.Find;
 import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.auth.FirebaseAuth;
@@ -69,7 +65,6 @@ public class MainList extends AppCompatActivity
         toggle.syncState();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
         init();
     }
 
@@ -82,6 +77,7 @@ public class MainList extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainList.this,Find.class);
+                intent.putExtra("list",listAd);
                 intent.putExtra("user",user);
                 startActivity(intent);
             }
@@ -118,8 +114,6 @@ public class MainList extends AppCompatActivity
                 startActivity(intent);
             }
         });
-
-
     }
 
     private void initDrawer() {

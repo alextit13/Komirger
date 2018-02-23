@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <EditText
+            <AutoCompleteTextView
                 android:layout_margin="5dp"
                 android:id="@+id/edit_text_find"
                 android:hint="@string/search"
@@ -138,6 +138,8 @@
                 android:layout_height="wrap_content" />
 
             <Spinner
+                style="@style/Widget.AppCompat.Spinner.Underlined"
+                android:spinnerMode="dialog"
                 android:background="@color/blue"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@id/category_find"
@@ -158,6 +160,8 @@
                 android:layout_height="wrap_content" />
 
             <Spinner
+                style="@style/Widget.AppCompat.Spinner.Underlined"
+                android:spinnerMode="dialog"
                 android:layout_marginBottom="40dp"
                 android:background="@color/blue"
                 android:layout_centerHorizontal="true"
