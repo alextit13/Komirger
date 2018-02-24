@@ -3,14 +3,19 @@ package com.accherniakocich.android.findjob.admin;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
+import com.accherniakocich.android.findjob.admin.all_user.AllUsers;
 import com.accherniakocich.android.findjob.classes.Ad;
 import com.accherniakocich.android.findjob.activities.Details;
 import com.accherniakocich.android.findjob.R;
+import com.accherniakocich.android.findjob.classes.Admin;
 import com.accherniakocich.android.findjob.classes.User;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -19,6 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class AdminPanel extends AppCompatActivity {
 
@@ -32,6 +38,31 @@ public class AdminPanel extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_panel);
         init();
+        createSharedAdmin();
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_admin,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.refresh_main_list:
+                toAllUsers();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void toAllUsers() {
+        startActivity(new Intent(AdminPanel.this, AllUsers.class));
+    }
+
+    private void createSharedAdmin() {
+        SaveAdmin mSaveAdmin = new SaveAdmin();
+        mSaveAdmin.saveAdmin(this,new Admin("admin@admin.com","admin",new Date().getTime()+""));
     }
 
     private void init() {

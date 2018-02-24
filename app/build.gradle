@@ -76,7 +76,10 @@ dependencies {
     // butterknife
     compile 'com.jakewharton:butterknife:8.6.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
+    // ggole map location dep'ses
     implementation 'com.google.android.gms:play-services-maps:11.8.0'
     implementation 'com.google.android.gms:play-services-location:11.8.0'
+    // custom seek bar
+    compile 'com.github.guilhe:seekbar-ranged-view:1.0.1'
 }
 apply plugin: 'com.google.gms.google-services'

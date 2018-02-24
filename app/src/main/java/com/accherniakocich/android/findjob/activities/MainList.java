@@ -1,14 +1,11 @@
 package com.accherniakocich.android.findjob.activities;
 
-import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -28,7 +25,6 @@ import com.accherniakocich.android.findjob.R;
 import com.accherniakocich.android.findjob.adapters.BoxAdapter;
 import com.accherniakocich.android.findjob.classes.Ad;
 import com.accherniakocich.android.findjob.classes.User;
-import com.accherniakocich.android.findjob.classes.maps_location.LocationService;
 import com.accherniakocich.android.findjob.find.Find;
 import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.auth.FirebaseAuth;
@@ -41,13 +37,11 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 
-public class MainList extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener{
+public class MainList extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private ProgressBar pr_b;
     private GridView list;
     private ArrayList <Ad> listAd;
-    private TextView text_view_name;
     private FirebaseAuth mAuth;
     private User user;
     private FirebaseDatabase database;
@@ -74,9 +68,6 @@ public class MainList extends AppCompatActivity
     }
 
     private void init() {
-
-
-
         find_main_screen = (ImageView)findViewById(R.id.find_main_screen);
         find_main_screen.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,24 +80,17 @@ public class MainList extends AppCompatActivity
         initDrawer();
         MobileAds.initialize(getApplicationContext(),"ca-app-pub-8152940176557798~4343674587");
         mAuth = FirebaseAuth.getInstance();
-
-
         Intent intent = getIntent();
         user = (User) intent.getSerializableExtra("user");// если тут пришел null то мы вошли как гость
-
         mStorageRef = FirebaseStorage.getInstance().getReference();
-
         database = FirebaseDatabase.getInstance();
         reference = database.getReference();
         listAd = new ArrayList<>();
-
         list = (GridView)findViewById(R.id.list);
         list.setNumColumns(1);
         list.setVerticalSpacing(10);
         list.setHorizontalSpacing(10);
-
         pr_b = (ProgressBar)findViewById(R.id.pr_b);
-
         downlodList("ВСЕ КАТЕГОРИИ");
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -118,8 +102,6 @@ public class MainList extends AppCompatActivity
                 startActivity(intent);
             }
         });
-
-
     }
 
     private void initDrawer() {
@@ -129,7 +111,6 @@ public class MainList extends AppCompatActivity
         navigation_message = (ImageView)findViewById(R.id.navigation_message);
         navigation_private_room = (ImageView)findViewById(R.id.navigation_private_room);
         navigation_home.setBackgroundColor(Color.parseColor("#FFBABABA"));
-
         navigation_licke.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -149,7 +130,6 @@ public class MainList extends AppCompatActivity
                 if (user==null){
                     Toast.makeText(getApplicationContext(), "Гости не могут подать объявление! Зарегистрируйтесь", Toast.LENGTH_SHORT).show();
                 }else{
-                    //add ad
                     Intent intent = new Intent(MainList.this,AddAd.class);
                     intent.putExtra("user",user);
                     startActivity(intent);
@@ -182,15 +162,10 @@ public class MainList extends AppCompatActivity
     }
 
     private void downlodList(String category_download_list){
-
-
-
         reference.child("ads").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 listAd.clear();
-
-
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
                     if (postSnapshot.getValue(Ad.class).isCheck()){
                         if (category_download_list.equals("ВСЕ КАТЕГОРИИ")){

@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <EditText
+            <AutoCompleteTextView
                 android:layout_margin="5dp"
                 android:id="@+id/edit_text_find"
                 android:hint="@string/search"
@@ -97,15 +97,19 @@
                     android:layout_height="wrap_content" />
             </TableRow>
 
-            <org.florescu.android.rangeseekbar.RangeSeekBar
+            <com.github.guilhe.rangeseekbar.SeekBarRangedView
                 android:layout_below="@id/TR_2"
                 android:id="@+id/rangeSeekBar"
-                app:absoluteMaxValue="0"
-                app:absoluteMinValue="100000"
-                app:textAboveThumbsColor="@color/green"
-                app:valuesAboveThumbs="true"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                app:currentMin="10"
+                app:min="0"
+                app:max="5000"
+                app:backgroundColor="#C0C0C0"
+                app:progressColor="@color/green"
+                app:backgroundHeight="10dp"
+                app:progressHeight="12dp"
+                app:rounded="true"/>
 
             <TableRow
                 android:gravity="center"
@@ -138,6 +142,7 @@
                 android:layout_height="wrap_content" />
 
             <Spinner
+                android:spinnerMode="dialog"
                 android:background="@color/blue"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@id/category_find"
@@ -158,6 +163,7 @@
                 android:layout_height="wrap_content" />
 
             <Spinner
+                android:spinnerMode="dialog"
                 android:layout_marginBottom="40dp"
                 android:background="@color/blue"
                 android:layout_centerHorizontal="true"

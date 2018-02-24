@@ -1,5 +1,6 @@
 package com.accherniakocich.android.findjob.activities;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Rect;
@@ -47,7 +48,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class Details extends AppCompatActivity {
+public class Details extends Activity {
 
     //private AppBarLayout app_bar;
     private HorizontalScrollView HSV;
@@ -99,9 +100,6 @@ public class Details extends AppCompatActivity {
                 }
             }
         });
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
 
         category_details = (TextView)findViewById(R.id.category_details);
         name_ad_details = (TextView)findViewById(R.id.name_ad_details);
@@ -123,15 +121,6 @@ public class Details extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
-//        fab_delete.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                delete();
-//            }
-//        });
-
         final Intent intent = getIntent();
 
         int fromWhereIntent = intent.getIntExtra("fromWhereIntent",1);
@@ -155,7 +144,6 @@ public class Details extends AppCompatActivity {
         }else{
             people_name.setText(user.getNickName());
         }
-
 
         if (admin!=null){
 

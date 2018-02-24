@@ -10,6 +10,8 @@ import android.view.View;
 
 import com.accherniakocich.android.findjob.R;
 import com.accherniakocich.android.findjob.activities.MainList;
+import com.accherniakocich.android.findjob.admin.AdminPanel;
+import com.accherniakocich.android.findjob.classes.Admin;
 import com.accherniakocich.android.findjob.classes.User;
 import com.accherniakocich.android.findjob.fragments.RegistrationFragments;
 import com.google.firebase.database.FirebaseDatabase;
@@ -73,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void checkSharedPreference() {
         try {
+            Admin admin = null;
             // открываем поток для чтения
             BufferedReader br = new BufferedReader(new InputStreamReader(
                     openFileInput("FILENAME")));
@@ -80,12 +83,15 @@ public class MainActivity extends AppCompatActivity {
             // читаем содержимое
             while ((str = br.readLine()) != null) {
                 Log.d(LOG_TAG, str);
+                if (str.contains("admin@admin.com")){
+                    signAdmin();
+                    break;
+                }
                 Gson gson = new Gson();
                 user = gson.fromJson(str, User.class);
             }
 
             if (user!=null){
-                Log.d(MainActivity.LOG_TAG,"user = " + user);
                 Intent intent = new Intent(MainActivity.this,MainList.class);
                 intent.putExtra("user",user);
                 startActivity(intent);
@@ -95,6 +101,12 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void signAdmin() {
+        Intent intent = new Intent(MainActivity.this, AdminPanel.class);
+        startActivity(intent);
+        finish();
     }
 
     public void onClick(View view) {

@@ -96,7 +96,7 @@
     <string name="for_business">Для бизнеса</string>
     <string name="another">Прочее</string>
     <string name="all_category">Все категории</string>
-    <string name="search">Поиск...</string>
+    <string name="search">Поиск</string>
     <string name="type_ad">Тип объявления</string>
     <string name="buy">Купить</string>
     <string name="sell">Продать</string>
@@ -126,4 +126,5 @@
     <string name="contacts_company">Контакты</string>
     <string name="find_companies_name">Поиск</string>
     <string name="enter_word">Введите запрос</string>
+    <string name="all_user">Пользователи</string>
 </resources>

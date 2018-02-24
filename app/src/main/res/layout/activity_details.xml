@@ -219,31 +219,13 @@
                 android:id="@+id/text_detais"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/text_margin"
+                android:layout_marginBottom="70dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="10dp"
                 android:textColor="#000000"
                 android:textAlignment="viewStart"
                 android:textSize="20sp"/>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="100dp">
-                <android.support.design.widget.FloatingActionButton
-                    android:backgroundTint="@color/red"
-                    android:id="@+id/fab_call"
-                    app:srcCompat="@drawable/phone"
-                    android:layout_centerVertical="true"
-                    android:layout_margin="10dp"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp" />
-                <android.support.design.widget.FloatingActionButton
-                    android:backgroundTint="@color/red"
-                    android:id="@+id/message_detail"
-                    app:srcCompat="@drawable/post"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_margin="10dp"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp" />
-            </RelativeLayout>
         </LinearLayout>
     </ScrollView>
     <ImageView
@@ -291,6 +273,24 @@
             android:layout_width="10dp"
             android:layout_height="10dp"/>
     </TableRow>
-
+    <android.support.design.widget.FloatingActionButton
+        android:alpha="0.5"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/fab_call"
+        app:srcCompat="@drawable/phone"
+        android:layout_centerVertical="true"
+        android:layout_margin="10dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp" />
+    <android.support.design.widget.FloatingActionButton
+        android:alpha="0.5"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/message_detail"
+        app:srcCompat="@drawable/post"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="10dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp" />
 </RelativeLayout>
 

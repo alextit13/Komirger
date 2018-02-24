@@ -13,6 +13,7 @@ import com.accherniakocich.android.findjob.adapters.BoxAdapter;
 import com.accherniakocich.android.findjob.activities.Details;
 import com.accherniakocich.android.findjob.R;
 import com.accherniakocich.android.findjob.classes.User;
+import com.accherniakocich.android.findjob.find.converter.JSON_Converter;
 
 import java.util.ArrayList;
 
@@ -31,12 +32,15 @@ public class FindResults extends AppCompatActivity {
 
         list_with_find_result = (GridView) findViewById(R.id.list_with_find_result);
         Intent intent = getIntent();
-        list = (ArrayList<Ad>) intent.getSerializableExtra("results");
+
+        JSON_Converter converter = new JSON_Converter();
+        list = converter.convertToAdList(intent.getStringExtra("list"));
+
+
+
         BoxAdapter adapter = new BoxAdapter(this,list);
         if (list.size()!=0){
             list_with_find_result.setAdapter(adapter);
-        }else{
-            Toast.makeText(this, "Ничего не найдено", Toast.LENGTH_SHORT).show();
         }
         list_with_find_result.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

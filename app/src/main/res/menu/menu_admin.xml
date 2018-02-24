@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/refresh_main_list"
+        android:icon="@drawable/ic_refresh_black_24dp"
+        android:title="@string/all_user">
+    </item>
+    <item
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title="@string/app_name"
+        android:id="@+id/search_item_main_list">
+    </item>
+</menu>
