@@ -128,4 +128,6 @@
     <string name="enter_word">Введите запрос</string>
     <string name="price_from">Цена от:</string>
     <string name="price_to">до:</string>
+    <string name="add_review">Напишите отзыв</string>
+    <string name="review">Оставьте отзы о сервисе Комиргер</string>
 </resources>

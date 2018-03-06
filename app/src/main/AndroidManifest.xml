@@ -135,9 +135,12 @@
         <activity android:name=".activities.log_and_reg.ActivityContainerReg" />
         <activity android:name=".edit_profile.EditProfile$Locate" />
 
-        <service android:name=".tests.TestService" />
 
-        <activity android:name=".admin.AllUsersAdmin"></activity>
+        <activity android:name=".admin.AllUsersAdmin" />
+        <activity android:name=".activities.review.RewiewActivity"
+            android:theme="@style/Base.Theme.AppCompat.Dialog">
+
+        </activity>
     </application>
 
 </manifest>

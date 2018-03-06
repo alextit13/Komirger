@@ -48,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void checkIsDelete() {
-
         Intent intent = getIntent();
         String delete = null;
         delete = intent.getStringExtra("delete_account");

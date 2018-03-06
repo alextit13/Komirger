@@ -1,6 +1,8 @@
 package com.accherniakocich.android.findjob.activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,6 +14,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.accherniakocich.android.findjob.R;
+import com.accherniakocich.android.findjob.activities.review.RewiewActivity;
 import com.accherniakocich.android.findjob.adapters.BoxAdapter;
 import com.accherniakocich.android.findjob.classes.Ad;
 import com.accherniakocich.android.findjob.classes.User;
@@ -38,7 +41,6 @@ public class MyAdds extends AppCompatActivity {
         setContentView(R.layout.activity_my_adds);
         init();
     }
-
     private void init() {
         TextView tve = (TextView)findViewById(R.id.empty_view_text);
         tve.setVisibility(View.INVISIBLE);
@@ -102,6 +104,28 @@ public class MyAdds extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        longClick();
+    }
+
+    private void longClick() {
+        list_view_my_adds.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MyAdds.this);
+                builder.setMessage("ПРОДАНО?");
+                builder.setTitle("Вы продали товар/услугу?");
+                builder.setPositiveButton("ДА", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(MyAdds.this,RewiewActivity.class);
+                        intent.putExtra("add",list.get(position));
+                        startActivity(intent);
+                    }
+                })
+                .show();
+                return true;
+            }
+        });
     }
 
     @Override
@@ -109,7 +133,6 @@ public class MyAdds extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_adds,menu);
         return super.onCreateOptionsMenu(menu);
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
