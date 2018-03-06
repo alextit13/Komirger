@@ -116,7 +116,7 @@ public class Registration extends AppCompatActivity {
                     String nickName = email.substring(0,email.indexOf("@",0));
                     User user = new User(mAuth.getCurrentUser().getEmail(),nickName,et_fio.getText().toString()
                     ,"https://firebasestorage.googleapis.com/v0/b/findjob-51270.appspot.com/o/empty.png?alt=media&token=3d73aba3-5e79-4643-82dc-244c6ce326fb",
-                            "Обо мне",3,false);
+                            "Обо мне",3,false,1);
                     UserSingleton.setUser(user);
                     reference.child(nickName).setValue(user);
 

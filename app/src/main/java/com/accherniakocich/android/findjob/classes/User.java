@@ -10,11 +10,12 @@ public class User implements Serializable{
     private String about_me;
     private int rating;
     private boolean my_locate;
+    private int blocked;
 
     public User() {
     }
 
-    public User(String email, String nickName, String name, String image_path, String about_me, int rating, boolean my_locate) {
+    public User(String email, String nickName, String name, String image_path, String about_me, int rating, boolean my_locate, int blocked) {
         this.email = email;
         this.nickName = nickName;
         this.name = name;
@@ -22,6 +23,15 @@ public class User implements Serializable{
         this.about_me = about_me;
         this.rating = rating;
         this.my_locate = my_locate;
+        this.blocked = blocked;
+    }
+
+    public int getBlocked() {
+        return blocked;
+    }
+
+    public void setBlocked(int blocked) {
+        this.blocked = blocked;
     }
 
     public boolean isMy_locate() {
@@ -78,5 +88,19 @@ public class User implements Serializable{
 
     public void setNickName(String nickName) {
         this.nickName = nickName;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "email='" + email + '\'' +
+                ", nickName='" + nickName + '\'' +
+                ", name='" + name + '\'' +
+                ", image_path='" + image_path + '\'' +
+                ", about_me='" + about_me + '\'' +
+                ", rating=" + rating +
+                ", my_locate=" + my_locate +
+                ", blocked=" + blocked +
+                '}';
     }
 }

@@ -20,6 +20,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
 import java.io.BufferedWriter;
@@ -120,15 +124,35 @@ public class LoginUser extends AppCompatActivity {
                     Toast.makeText(LoginUser.this, "Вы успешно вошли!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginUser.this,MainList.class);
                     String nickName = email.substring(0,email.indexOf("@",0));
-                    user = new User(mAuth.getCurrentUser().getEmail(),nickName,"","","Обо мне",3,false);
+                    user = new User(mAuth.getCurrentUser().getEmail(),nickName,"","","Обо мне",3,false,1);
                     createSharedPreference(user);
                     intent.putExtra("user",user);
-                    startActivity(intent);
+                    checkBlocked(intent);
                 }else{
                     Toast.makeText(LoginUser.this, "Ошибка входа", Toast.LENGTH_SHORT).show();
                     container_frame_log_in.setAlpha(1f);
                     progress_bar.setVisibility(View.INVISIBLE);
                 }
+            }
+        });
+    }
+
+    private void checkBlocked(Intent intent) {
+        FirebaseDatabase.getInstance().getReference().child("users").child(user.getNickName()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.getValue(User.class).getBlocked()==1){
+                    container_frame_log_in.setAlpha(1f);
+                    progress_bar.setVisibility(View.INVISIBLE);
+                    startActivity(intent);
+                }else if(dataSnapshot.getValue(User.class).getBlocked()==2){
+                    Toast.makeText(LoginUser.this, "Вы заблокированы", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
             }
         });
     }

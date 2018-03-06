@@ -7,12 +7,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.accherniakocich.android.findjob.R;
 import com.accherniakocich.android.findjob.activities.MainList;
 import com.accherniakocich.android.findjob.classes.User;
 import com.accherniakocich.android.findjob.fragments.RegistrationFragments;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -22,16 +27,21 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity {
 
     public static final String LOG_TAG = "MyLogs";
     private User user;
+    @BindView(R.id.main_screen_progress_bar)ProgressBar main_screen_progress_bar;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
         checkIsDelete();
         checkSharedPreference();
@@ -85,10 +95,10 @@ public class MainActivity extends AppCompatActivity {
             }
 
             if (user!=null){
-                Log.d(MainActivity.LOG_TAG,"user = " + user);
+
                 Intent intent = new Intent(MainActivity.this,MainList.class);
                 intent.putExtra("user",user);
-                startActivity(intent);
+                checkBlocked(intent);
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -118,6 +128,26 @@ public class MainActivity extends AppCompatActivity {
             default:
                 break;
         }
+    }
+
+    private void checkBlocked(Intent intent) {
+        FirebaseDatabase.getInstance().getReference().child("users").child(user.getNickName()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.getValue(User.class).getBlocked()==1){
+                    startActivity(intent);
+                    main_screen_progress_bar.setVisibility(View.INVISIBLE);
+                }else if(dataSnapshot.getValue(User.class).getBlocked()==2){
+                    Toast.makeText(MainActivity.this, "Вы заблокированы", Toast.LENGTH_SHORT).show();
+                    main_screen_progress_bar.setVisibility(View.INVISIBLE);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void registration_yur() {

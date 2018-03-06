@@ -64,24 +64,11 @@ public class Dialog extends AppCompatActivity {
         reference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                //Log.d(MainActivity.LOG_TAG,"item = " + dataSnapshot.getValue());
                 if (dataSnapshot.getValue().toString().contains(user_I.getNickName())
                         &&dataSnapshot.getValue().toString().contains(user_You.getNickName())){
-                    /*Log.d(MainActivity.LOG_TAG,"user to = " + dataSnapshot.getValue(Message.class).getName_user_to());
-                    Log.d(MainActivity.LOG_TAG,"user I = " + user_I.getNickName());
 
-                    Log.d(MainActivity.LOG_TAG,"user I 2 = " + user_I.getNickName());
-                    Log.d(MainActivity.LOG_TAG,"user I 2 = " + user_You.getNickName());
-                    */
                     list.add(dataSnapshot.getValue(Message.class));
-                    /*for (int i = 0; i<list.size();i++){
-                        if (list.get(i).getName_user_to().equals(user_I.getNickName())){
-                            //Log.d(MainActivity.LOG_TAG,"yes = " + user_I.getNickName());
-                            reference.child(list.get(i).getDate_message())
-                                    .child("readOrNot")
-                                    .setValue(true);
-                        }
-                    }*/
+
                     sortArray(list);
                 }
             }

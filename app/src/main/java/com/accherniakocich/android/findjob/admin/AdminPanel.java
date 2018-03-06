@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
@@ -26,6 +27,7 @@ public class AdminPanel extends AppCompatActivity {
     private ArrayList <Ad> list_ad;
     private DatabaseReference reference;
     private ProgressBar progress_bar_admin;
+    private ImageView admin_all_users;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,7 @@ public class AdminPanel extends AppCompatActivity {
     }
 
     private void init() {
+        admin_all_users = (ImageView)findViewById(R.id.admin_all_users);
         progress_bar_admin = (ProgressBar)findViewById(R.id.progress_bar_admin);
         admin_list = (ListView)findViewById(R.id.admin_list);
         list_ad = new ArrayList<>();
@@ -68,6 +71,16 @@ public class AdminPanel extends AppCompatActivity {
 
                     }
                 });
+                clicker();
+    }
+
+    private void clicker() {
+        admin_all_users.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AdminPanel.this,AllUsersAdmin.class));
+            }
+        });
     }
 
     private void adapter() {
@@ -81,7 +94,7 @@ public class AdminPanel extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(AdminPanel.this, Details.class);
                 intent.putExtra("ad",list_ad.get(position));
-                intent.putExtra("user",new User("admin@admin.com","admin","admin","","",0,false));
+                intent.putExtra("user",new User("admin@admin.com","admin","admin","","",0,false,1));
                 intent.putExtra("fromWhereIntent",3);
                 startActivity(intent);
             }
