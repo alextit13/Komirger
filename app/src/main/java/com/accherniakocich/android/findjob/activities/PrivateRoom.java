@@ -53,9 +53,7 @@ import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class PrivateRoom extends AppCompatActivity {
-
     private FrameLayout container_fragment;
-
     public static final int PICK_IMAGE_REQUEST = 71;
     private CircleImageView profile_image;
     private User user;
@@ -63,9 +61,7 @@ public class PrivateRoom extends AppCompatActivity {
     private Uri filePath;
     private TextView name_user_private_room,email_user_private_room,log_in_user_private_room;
     private Button message_to_developers_button,delete_user,buy_premium_account;
-
     @BindView(R.id.rating_private_room)RatingBar rating_private_room;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -211,7 +207,9 @@ public class PrivateRoom extends AppCompatActivity {
             startActivity(intent);
             return true;
         }else if(id == R.id.my_not_active_ads){
-
+            Intent intent = new Intent(PrivateRoom.this,OnModerate.class);
+            intent.putExtra("user",user);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }

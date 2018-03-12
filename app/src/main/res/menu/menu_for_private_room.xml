@@ -7,12 +7,17 @@
     </item>
     <item
         android:id="@+id/my_ads"
-        android:title="@string/my_ad"
+        android:title="@string/active_ads"
         android:icon="@drawable/my_ads">
     </item>
     <item
         android:id="@+id/my_not_active_ads"
-        android:title="@string/my_not_active_ad"
+        android:title="@string/on_moderate"
+        android:icon="@drawable/my_ads">
+    </item>
+    <item
+        android:id="@+id/dislike"
+        android:title="@string/dislike"
         android:icon="@drawable/my_ads">
     </item>
 </menu>

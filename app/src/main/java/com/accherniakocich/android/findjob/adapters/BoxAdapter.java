@@ -60,7 +60,6 @@ public class BoxAdapter extends BaseAdapter {
     @Override
 
     public int getViewTypeCount() {
-
         return getCount();
     }
 

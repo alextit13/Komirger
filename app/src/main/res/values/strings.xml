@@ -130,4 +130,7 @@
     <string name="price_to">до:</string>
     <string name="add_review">Напишите отзыв</string>
     <string name="review">Оставьте отзы о сервисе Комиргер</string>
+    <string name="active_ads">Активные объявления</string>
+    <string name="on_moderate">На модерации</string>
+    <string name="dislike">Отклоненные</string>
 </resources>

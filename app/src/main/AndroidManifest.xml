@@ -134,12 +134,13 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".activities.log_and_reg.ActivityContainerReg" />
         <activity android:name=".edit_profile.EditProfile$Locate" />
-
-
         <activity android:name=".admin.AllUsersAdmin" />
-        <activity android:name=".activities.review.RewiewActivity"
+        <activity
+            android:name=".activities.review.RewiewActivity"
             android:theme="@style/Base.Theme.AppCompat.Dialog">
-
+        </activity>
+        <activity android:name=".activities.OnModerate"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
     </application>
 
