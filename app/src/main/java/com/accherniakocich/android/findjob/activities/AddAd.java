@@ -27,6 +27,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
+
 import com.accherniakocich.android.findjob.R;
 import com.accherniakocich.android.findjob.activities.log_and_reg.MainActivity;
 import com.accherniakocich.android.findjob.classes.Ad;
@@ -41,6 +42,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
@@ -55,26 +57,25 @@ public class AddAd extends AppCompatActivity {
     public static final int PICK_IMAGE_REQUEST_AD = 72;
     private User user;
     private StorageReference storageRef;
-    private ImageView image_ad_1,image_ad_2,image_ad_3,image_ad_4,image_ad_5;
-    private EditText edit_text_name_ad,edit_text_name_job_ad,edit_text_cost_job,edit_text_contacts_ad,edit_text_about_job_ad,city
-            ,consistance_auto,marka_auto,model_auto,type_of_body,colot,region,category,year_production_car,how_much_completed_road
-            ,type_of_engine,value_engine,transmission;
-    private CheckBox cb_obmen,rassrochka;
-    private Spinner spinner_type_money,spinner_category,spinner_city;
-    private Button button_cancel_ad,button_add_ad;
+    private ImageView image_ad_1, image_ad_2, image_ad_3, image_ad_4, image_ad_5;
+    private EditText edit_text_name_ad, edit_text_name_job_ad, edit_text_cost_job, edit_text_contacts_ad, edit_text_about_job_ad, city, consistance_auto, marka_auto, model_auto, type_of_body, colot, region, category, year_production_car, how_much_completed_road, type_of_engine, value_engine, transmission;
+    private CheckBox cb_obmen, rassrochka;
+    private Spinner spinner_type_money, spinner_category, spinner_city;
+    private Button button_cancel_ad, button_add_ad;
     private ProgressBar progress_bar_ad;
     private FrameLayout container_ad_frame_layout;
     private FirebaseDatabase database;
     private DatabaseReference reference;
-    private Bitmap photo_1,photo_2,photo_3,photo_4,photo_5;
-    private Ad ad,adFromEditDetail;
-    private Uri photoURI_1,photoURI_2,photoURI_3,photoURI_4,photoURI_5,downloadUrl;
-    private String mCurrentPhotoPath,urlPathPhoto_1,urlPathPhoto_2,urlPathPhoto_3,urlPathPhoto_4,urlPathPhoto_5;
+    private Bitmap photo_1, photo_2, photo_3, photo_4, photo_5;
+    private Ad ad, adFromEditDetail;
+    private Uri photoURI_1, photoURI_2, photoURI_3, photoURI_4, photoURI_5, downloadUrl;
+    private String mCurrentPhotoPath, urlPathPhoto_1, urlPathPhoto_2, urlPathPhoto_3, urlPathPhoto_4, urlPathPhoto_5;
     private int RETURNED_PHOTO = 0;
     private int iterator = 0;
     int iterator_sucsess = 0;
     private GENERATE_LISTS_CLASS _GLK;
     private LinearLayout car_container;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,85 +84,92 @@ public class AddAd extends AppCompatActivity {
         StrictMode.setVmPolicy(builder.build());
         init();
     }
+
     private void init() {
-        consistance_auto = (EditText)findViewById(R.id.consistance_auto);
-        marka_auto = (EditText)findViewById(R.id.marka_auto);
-        model_auto = (EditText)findViewById(R.id.model_auto);
-        type_of_body = (EditText)findViewById(R.id.type_of_body);
-        colot = (EditText)findViewById(R.id.colot);
-        region = (EditText)findViewById(R.id.region);
-        category = (EditText)findViewById(R.id.category);
-        year_production_car = (EditText)findViewById(R.id.year_production_car);
-        how_much_completed_road = (EditText)findViewById(R.id.how_much_completed_road);
-        type_of_engine = (EditText)findViewById(R.id.type_of_engine);
-        value_engine = (EditText)findViewById(R.id.value_engine);
-        transmission = (EditText)findViewById(R.id.transmission);
+        consistance_auto = (EditText) findViewById(R.id.consistance_auto);
+        marka_auto = (EditText) findViewById(R.id.marka_auto);
+        model_auto = (EditText) findViewById(R.id.model_auto);
+        type_of_body = (EditText) findViewById(R.id.type_of_body);
+        colot = (EditText) findViewById(R.id.colot);
+        region = (EditText) findViewById(R.id.region);
+        category = (EditText) findViewById(R.id.category);
+        year_production_car = (EditText) findViewById(R.id.year_production_car);
+        how_much_completed_road = (EditText) findViewById(R.id.how_much_completed_road);
+        type_of_engine = (EditText) findViewById(R.id.type_of_engine);
+        value_engine = (EditText) findViewById(R.id.value_engine);
+        transmission = (EditText) findViewById(R.id.transmission);
 
-        cb_obmen = (CheckBox)findViewById(R.id.cb_obmen);
-        rassrochka = (CheckBox)findViewById(R.id.rassrochka);
+        cb_obmen = (CheckBox) findViewById(R.id.cb_obmen);
+        rassrochka = (CheckBox) findViewById(R.id.rassrochka);
 
 
-        car_container = (LinearLayout)findViewById(R.id.car_container);
-        image_ad_1 = (ImageView)findViewById(R.id.imageAd_1);
-        image_ad_2 = (ImageView)findViewById(R.id.imageAd_2);
-        image_ad_3 = (ImageView)findViewById(R.id.imageAd_3);
-        image_ad_4 = (ImageView)findViewById(R.id.imageAd_4);
-        image_ad_5 = (ImageView)findViewById(R.id.imageAd_5);
-        spinner_category = (Spinner)findViewById(R.id.spinner_category);
+        car_container = (LinearLayout) findViewById(R.id.car_container);
+        image_ad_1 = (ImageView) findViewById(R.id.imageAd_1);
+        image_ad_2 = (ImageView) findViewById(R.id.imageAd_2);
+        image_ad_3 = (ImageView) findViewById(R.id.imageAd_3);
+        image_ad_4 = (ImageView) findViewById(R.id.imageAd_4);
+        image_ad_5 = (ImageView) findViewById(R.id.imageAd_5);
+        spinner_category = (Spinner) findViewById(R.id.spinner_category);
         completeSpinnerCategory();
-        spinner_city = (Spinner)findViewById(R.id.spinner_city);
+        spinner_city = (Spinner) findViewById(R.id.spinner_city);
         completeSpinnerCity();
         database = FirebaseDatabase.getInstance();
         reference = database.getReference();
         Intent intent = getIntent();
         user = (User) intent.getSerializableExtra("user");
         storageRef = FirebaseStorage.getInstance().getReference();
-        city = (EditText)findViewById(R.id.city);
-        edit_text_name_ad = (EditText)findViewById(R.id.name_ad);
-        edit_text_name_job_ad = (EditText)findViewById(R.id.name_job_ad);
-        edit_text_cost_job = (EditText)findViewById(R.id.cost_job);
-        edit_text_contacts_ad = (EditText)findViewById(R.id.contacts_ad);
-        edit_text_about_job_ad = (EditText)findViewById(R.id.about_job);
-        spinner_type_money = (Spinner)findViewById(R.id.spinner_add_ad);
+        city = (EditText) findViewById(R.id.city);
+        edit_text_name_ad = (EditText) findViewById(R.id.name_ad);
+        edit_text_name_job_ad = (EditText) findViewById(R.id.name_job_ad);
+        edit_text_cost_job = (EditText) findViewById(R.id.cost_job);
+        edit_text_contacts_ad = (EditText) findViewById(R.id.contacts_ad);
+        edit_text_about_job_ad = (EditText) findViewById(R.id.about_job);
+        spinner_type_money = (Spinner) findViewById(R.id.spinner_add_ad);
         spinner_type_money.setAdapter(generateAdapter(generateListForSpnner()));
-        button_cancel_ad = (Button)findViewById(R.id.cancel_button_ad);
-        button_add_ad = (Button)findViewById(R.id.add_ad_button);
-        container_ad_frame_layout = (FrameLayout)findViewById(R.id.container_ad_frame_layout);
-        progress_bar_ad = (ProgressBar)findViewById(R.id.progress_bar_ad);
+        button_cancel_ad = (Button) findViewById(R.id.cancel_button_ad);
+        button_add_ad = (Button) findViewById(R.id.add_ad_button);
+        container_ad_frame_layout = (FrameLayout) findViewById(R.id.container_ad_frame_layout);
+        progress_bar_ad = (ProgressBar) findViewById(R.id.progress_bar_ad);
         progress_bar_ad.setVisibility(View.INVISIBLE);
         int request = 0;
         try {
-           request = intent.getIntExtra("request",0);
-        }catch (Exception e){
-            Log.d(MainActivity.LOG_TAG,"Exception");
+            request = intent.getIntExtra("request", 0);
+        } catch (Exception e) {
+            Log.d(MainActivity.LOG_TAG, "Exception");
         }
-        if (request!=0){
+        if (request != 0) {
             adFromEditDetail = (Ad) intent.getSerializableExtra("ad");
             User userFromEditDetail = (User) intent.getSerializableExtra("user");
             edit_text_name_ad.setText(userFromEditDetail.getNickName());
             edit_text_name_job_ad.setText(adFromEditDetail.getNameJobAd());
-            edit_text_cost_job.setText(adFromEditDetail.getCostAd()+"");
+            edit_text_cost_job.setText(adFromEditDetail.getCostAd() + "");
             edit_text_about_job_ad.setText(adFromEditDetail.getTextAd());
-            edit_text_contacts_ad.setText(adFromEditDetail.getPeopleSourceAd()+"");
+            edit_text_contacts_ad.setText(adFromEditDetail.getPeopleSourceAd() + "");
         }
     }
+
     private void completeSpinnerCity() {
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,
-                _GLK.getListCitiesRussia(Arrays.asList(EnumCitiesRUSSIA.values()),"ВСЕ ГОРОДА"));
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,
+                _GLK.getListCitiesRussia(Arrays.asList(EnumCitiesRUSSIA.values()), "ВСЕ ГОРОДА"));
         spinner_city.setAdapter(adapter);
     }
+
     private void completeSpinnerCategory() {
         _GLK = new GENERATE_LISTS_CLASS();
-        ArrayAdapter<String>adapter = new ArrayAdapter<String>(getApplicationContext()
-        ,android.R.layout.simple_spinner_item,_GLK.getListCategories(Arrays.asList(EnumForCategories.values()),"ВСЕ КАТЕГОРИИ"));
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext()
+                , android.R.layout.simple_spinner_item, _GLK.getListCategories(Arrays.asList(EnumForCategories.values()), "ВСЕ КАТЕГОРИИ"));
         spinner_category.setAdapter(adapter);
         spinner_category.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (!parent.getItemAtPosition(position).toString().equals("АВТО")){
-                    car_container.setVisibility(View.GONE);
-                }else{
+                if (parent.getItemAtPosition(position).toString().equals("АВТО")) {
                     car_container.setVisibility(View.VISIBLE);
+                    setTextsAuto();
+                } else if (parent.getItemAtPosition(position).toString().equals("НЕДВИЖИМОСТЬ")) {
+                    car_container.setVisibility(View.VISIBLE);
+                    setTexts();
+                } else {
+                    car_container.setVisibility(View.GONE);
                 }
             }
 
@@ -171,13 +179,45 @@ public class AddAd extends AppCompatActivity {
             }
         });
     }
-    private ArrayList<String> generateListForSpnner(){
-        ArrayList<String>list = new ArrayList<>();
+
+    private void setTextsAuto() {
+        consistance_auto.setHint("Состояние авто");
+        marka_auto.setHint("Марка авто");
+        model_auto.setHint("Модель авто");
+        type_of_body.setHint("Тип кузова");
+        colot.setHint("Цвет");
+        region.setHint("Регион");
+        category.setHint("Категория");
+        year_production_car.setHint("Год выпуска");
+        how_much_completed_road.setHint("Пробег");
+        type_of_engine.setHint("Тип двигателя");
+        value_engine.setHint("Объем");
+        transmission.setHint("Тип трансмиссии");
+    }
+
+    private void setTexts() {
+        consistance_auto.setHint("Количство комнат");
+        marka_auto.setHint("Общая площадь");
+        model_auto.setHint("Площадь кухни");
+        type_of_body.setHint("Этаж и этажность дома");
+        colot.setHint("Балкон");
+        region.setHint("Санузлы");
+        category.setHint("Ремонт");
+        year_production_car.setHint("Имеется ли лифт");
+        how_much_completed_road.setHint("Тип дома");
+        type_of_engine.setHint("Инфраструктура");
+        value_engine.setHint("Год постройки");
+        transmission.setHint("Вода/гад/канализация");
+    }
+
+    private ArrayList<String> generateListForSpnner() {
+        ArrayList<String> list = new ArrayList<>();
         list.add("$");
         list.add("\u20BD ");
         list.add("€");
         return list;
     }
+
     public void onClickAd(View view) {
         switch (view.getId()) {
             case R.id.imageAd_1:
@@ -309,7 +349,7 @@ public class AddAd extends AppCompatActivity {
                         !edit_text_cost_job.getText().toString().equals("") &&
                         !edit_text_contacts_ad.getText().toString().equals("") &&
                         !edit_text_about_job_ad.getText().toString().equals("") &&
-                        photo_1!=null||photo_2!=null||photo_3!=null||photo_4!=null||photo_5!=null) {
+                        photo_1 != null || photo_2 != null || photo_3 != null || photo_4 != null || photo_5 != null) {
                     progress_bar_ad.setVisibility(View.VISIBLE);
                     container_ad_frame_layout.setAlpha(0.3f);
                     button_add_ad.setClickable(false);
@@ -320,13 +360,13 @@ public class AddAd extends AppCompatActivity {
                             , edit_text_contacts_ad.getText().toString()
                             , edit_text_about_job_ad.getText().toString()
                             , spinner_type_money.getSelectedItem().toString()
-                    ,spinner_city.getSelectedItem().toString());
-                }else if(!edit_text_name_ad.getText().toString().equals("") &&
+                            , spinner_city.getSelectedItem().toString());
+                } else if (!edit_text_name_ad.getText().toString().equals("") &&
                         !edit_text_name_job_ad.getText().toString().equals("") &&
                         !edit_text_cost_job.getText().toString().equals("") &&
                         !edit_text_contacts_ad.getText().toString().equals("") &&
                         !edit_text_about_job_ad.getText().toString().equals("") &&
-                        photo_1==null&&photo_2==null&&photo_3==null&&photo_4==null&&photo_5==null){
+                        photo_1 == null && photo_2 == null && photo_3 == null && photo_4 == null && photo_5 == null) {
                     add_ad_withoutPhoto(edit_text_name_ad.getText().toString()
                             , edit_text_name_job_ad.getText().toString()
                             , Integer.parseInt(edit_text_cost_job.getText().toString())
@@ -334,7 +374,7 @@ public class AddAd extends AppCompatActivity {
                             , edit_text_about_job_ad.getText().toString()
                             , spinner_type_money.getSelectedItem().toString(),
                             "https://firebasestorage.googleapis.com/v0/b/findjob-51270.appspot.com/o/empty.png?alt=media&token=3d73aba3-5e79-4643-82dc-244c6ce326fb"
-                            ,spinner_city.getSelectedItem().toString());
+                            , spinner_city.getSelectedItem().toString());
                 } else {
                     Snackbar.make(view, "Заполните все поля и сделайте фото", BaseTransientBottomBar.LENGTH_LONG).show();
                 }
@@ -343,33 +383,30 @@ public class AddAd extends AppCompatActivity {
                 break;
         }
     }
+
     private void takePhotoFromGallery() {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST_AD);
     }
-    private ArrayAdapter<String> generateAdapter(ArrayList<String> list){
-        ArrayAdapter <String>adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,list);
+
+    private ArrayAdapter<String> generateAdapter(ArrayList<String> list) {
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
         return adapter;
     }
+
     private void add_ad(String name_people, String name_job, int cost_job, String contacts, String about_job, String type_money, String city) {
         urlPathPhoto_1 = "";
         urlPathPhoto_2 = "";
         urlPathPhoto_3 = "";
         urlPathPhoto_4 = "";
         urlPathPhoto_5 = "";
-        if (!spinner_category.getSelectedItem().toString().equals("АВТО")){
-            if (adFromEditDetail!=null){
-                ad = new Ad(false,spinner_category.getSelectedItem().toString(),name_people,name_job,about_job,urlPathPhoto_1,urlPathPhoto_2,urlPathPhoto_3,urlPathPhoto_4,urlPathPhoto_5,cost_job,contacts,adFromEditDetail.getDateAd(),type_money,user,0,"",false,city);
-            }else{
-                ad = new Ad(false, spinner_category.getSelectedItem().toString(),name_people,name_job,about_job,cost_job,contacts,new Date().getTime(),type_money,user,0,"",false,city);
-            }
-        }else{
-            String about = "Состояние авто: " + consistance_auto.getText().toString()+ "\n" +
+        if (spinner_category.getSelectedItem().toString().equals("АВТО")) {
+            String about = "Состояние авто: " + consistance_auto.getText().toString() + "\n" +
                     "Марка авто: " + marka_auto.getText().toString() + "\n" +
                     "Модель авто: " + model_auto.getText().toString() + "\n" +
-                    "Тип кузова: " + type_of_body.getText().toString() + "\n"+
+                    "Тип кузова: " + type_of_body.getText().toString() + "\n" +
                     "Цвет: " + colot.getText().toString() + "\n" +
                     "Регион: " + region.getText().toString() + "\n" +
                     "Категория: " + category.getText().toString() + "\n" +
@@ -378,42 +415,104 @@ public class AddAd extends AppCompatActivity {
                     "Тип двигателя: " + type_of_engine.getText().toString() + "\n" +
                     "Объем: " + value_engine.getText().toString() + "\n" +
                     "Тип трансмиссии: " + transmission.getText().toString();
-            if (adFromEditDetail!=null){
-                ad = new Ad(false,spinner_category.getSelectedItem().toString(),name_people,name_job,about,urlPathPhoto_1,urlPathPhoto_2,urlPathPhoto_3,urlPathPhoto_4,urlPathPhoto_5,cost_job,contacts,adFromEditDetail.getDateAd(),type_money,user,0,"",false,city);
-            }else{
-                ad = new Ad(false, spinner_category.getSelectedItem().toString(),name_people,name_job,about,cost_job,contacts,new Date().getTime(),type_money,user,0,"",false,city);
+            if (adFromEditDetail != null) {
+                ad = new Ad(false, spinner_category.getSelectedItem().toString(), name_people, name_job, about, urlPathPhoto_1, urlPathPhoto_2, urlPathPhoto_3, urlPathPhoto_4, urlPathPhoto_5, cost_job, contacts, adFromEditDetail.getDateAd(), type_money, user, 0, "", false, city);
+            } else {
+                ad = new Ad(false, spinner_category.getSelectedItem().toString(), name_people, name_job, about, cost_job, contacts, new Date().getTime(), type_money, user, 0, "", false, city);
+            }
+        } else if (spinner_category.getSelectedItem().toString().equals("НЕДВИЖИМОСТЬ")) {
+            String about = "Количство комнат: " + consistance_auto.getText().toString() + "\n" +
+                    "Общая площадь: " + marka_auto.getText().toString() + "\n" +
+                    "Площадь кухни: " + model_auto.getText().toString() + "\n" +
+                    "Этаж и этажность дома: " + type_of_body.getText().toString() + "\n" +
+                    "Балкон: " + colot.getText().toString() + "\n" +
+                    "Санузлы: " + region.getText().toString() + "\n" +
+                    "Ремонт: " + category.getText().toString() + "\n" +
+                    "Имеется ли лифт: " + year_production_car.getText().toString() + "\n" +
+                    "Тип дома: " + how_much_completed_road.getText().toString() + "\n" +
+                    "Инфраструктура: " + type_of_engine.getText().toString() + "\n" +
+                    "Год постройки: " + value_engine.getText().toString() + "\n" +
+                    "Вода/гад/канализация: " + transmission.getText().toString();
+            if (adFromEditDetail != null) {
+                ad = new Ad(false, spinner_category.getSelectedItem().toString(), name_people, name_job, about, urlPathPhoto_1, urlPathPhoto_2, urlPathPhoto_3, urlPathPhoto_4, urlPathPhoto_5, cost_job, contacts, adFromEditDetail.getDateAd(), type_money, user, 0, "", false, city);
+            } else {
+                ad = new Ad(false, spinner_category.getSelectedItem().toString(), name_people, name_job, about, cost_job, contacts, new Date().getTime(), type_money, user, 0, "", false, city);
+            }
+        } else if (!spinner_category.getSelectedItem().toString().equals("НЕДВИЖИМОСТЬ") || !spinner_category.getSelectedItem().toString().equals("АВТО")){
+            if (adFromEditDetail != null) {
+                ad = new Ad(false, spinner_category.getSelectedItem().toString(), name_people, name_job, about_job, urlPathPhoto_1, urlPathPhoto_2, urlPathPhoto_3, urlPathPhoto_4, urlPathPhoto_5, cost_job, contacts, adFromEditDetail.getDateAd(), type_money, user, 0, "", false, city);
+            } else {
+                ad = new Ad(false, spinner_category.getSelectedItem().toString(), name_people, name_job, about_job, cost_job, contacts, new Date().getTime(), type_money, user, 0, "", false, city);
             }
         }
-
-
         uploadPhoto(photo_1);
         uploadPhoto(photo_2);
         uploadPhoto(photo_3);
         uploadPhoto(photo_4);
         uploadPhoto(photo_5);
-
         ad.setCity(spinner_city.getSelectedItem().toString());
     }
 
-    private void add_ad_withoutPhoto(String name_people, String name_job, int cost_job,
-                        String contacts, String about_job, String type_money,String url
-    ,String city) {
+    private void add_ad_withoutPhoto(String name_people, String name_job, int cost_job, String contacts, String about_job, String type_money, String url, String city) {
         urlPathPhoto_1 = "";
         urlPathPhoto_2 = "";
         urlPathPhoto_3 = "";
         urlPathPhoto_4 = "";
         urlPathPhoto_5 = "";
-        if (adFromEditDetail!=null){
-            ad = new Ad(false, spinner_category.getSelectedItem().toString(),name_people,name_job,about_job, urlPathPhoto_1,urlPathPhoto_2,urlPathPhoto_3,urlPathPhoto_4,urlPathPhoto_5, cost_job,contacts,adFromEditDetail.getDateAd(),type_money,user,0,"",false,city);
-        }else{
-            ad = new Ad(false, spinner_category.getSelectedItem().toString(),name_people,name_job,about_job, cost_job,contacts,new Date().getTime(),type_money,user,0,"",false,city);
+        if (spinner_category.getSelectedItem().toString().equals("АВТО")) {
+            String about = "Состояние авто: " + consistance_auto.getText().toString() + "\n" +
+                    "Марка авто: " + marka_auto.getText().toString() + "\n" +
+                    "Модель авто: " + model_auto.getText().toString() + "\n" +
+                    "Тип кузова: " + type_of_body.getText().toString() + "\n" +
+                    "Цвет: " + colot.getText().toString() + "\n" +
+                    "Регион: " + region.getText().toString() + "\n" +
+                    "Категория: " + category.getText().toString() + "\n" +
+                    "Год выпуска: " + year_production_car.getText().toString() + "\n" +
+                    "Пробег: " + how_much_completed_road.getText().toString() + "\n" +
+                    "Тип двигателя: " + type_of_engine.getText().toString() + "\n" +
+                    "Объем: " + value_engine.getText().toString() + "\n" +
+                    "Тип трансмиссии: " + transmission.getText().toString();
+            if (adFromEditDetail != null) {
+                ad = new Ad(false, spinner_category.getSelectedItem().toString(), name_people, name_job, about, urlPathPhoto_1, urlPathPhoto_2, urlPathPhoto_3, urlPathPhoto_4, urlPathPhoto_5, cost_job, contacts, adFromEditDetail.getDateAd(), type_money, user, 0, "", false, city);
+            } else {
+                ad = new Ad(false, spinner_category.getSelectedItem().toString(), name_people, name_job, about, cost_job, contacts, new Date().getTime(), type_money, user, 0, "", false, city);
+            }
+        } else if (spinner_category.getSelectedItem().toString().equals("НЕДВИЖИМОСТЬ")) {
+            String about = "Количство комнат: " + consistance_auto.getText().toString() + "\n" +
+                    "Общая площадь: " + marka_auto.getText().toString() + "\n" +
+                    "Площадь кухни: " + model_auto.getText().toString() + "\n" +
+                    "Этаж и этажность дома: " + type_of_body.getText().toString() + "\n" +
+                    "Балкон: " + colot.getText().toString() + "\n" +
+                    "Санузлы: " + region.getText().toString() + "\n" +
+                    "Ремонт: " + category.getText().toString() + "\n" +
+                    "Имеется ли лифт: " + year_production_car.getText().toString() + "\n" +
+                    "Тип дома: " + how_much_completed_road.getText().toString() + "\n" +
+                    "Инфраструктура: " + type_of_engine.getText().toString() + "\n" +
+                    "Год постройки: " + value_engine.getText().toString() + "\n" +
+                    "Вода/гад/канализация: " + transmission.getText().toString();
+            if (adFromEditDetail != null) {
+                ad = new Ad(false, spinner_category.getSelectedItem().toString(), name_people, name_job, about, urlPathPhoto_1, urlPathPhoto_2, urlPathPhoto_3, urlPathPhoto_4, urlPathPhoto_5, cost_job, contacts, adFromEditDetail.getDateAd(), type_money, user, 0, "", false, city);
+            } else {
+                ad = new Ad(false, spinner_category.getSelectedItem().toString(), name_people, name_job, about, cost_job, contacts, new Date().getTime(), type_money, user, 0, "", false, city);
+            }
+        } else if (!spinner_category.getSelectedItem().toString().equals("НЕДВИЖИМОСТЬ") || !spinner_category.getSelectedItem().toString().equals("АВТО")){
+            if (adFromEditDetail != null) {
+                ad = new Ad(false, spinner_category.getSelectedItem().toString(), name_people, name_job, about_job, urlPathPhoto_1, urlPathPhoto_2, urlPathPhoto_3, urlPathPhoto_4, urlPathPhoto_5, cost_job, contacts, adFromEditDetail.getDateAd(), type_money, user, 0, "", false, city);
+            } else {
+                ad = new Ad(false, spinner_category.getSelectedItem().toString(), name_people, name_job, about_job, cost_job, contacts, new Date().getTime(), type_money, user, 0, "", false, city);
+            }
         }
+        /*if (adFromEditDetail != null) {
+            ad = new Ad(false, spinner_category.getSelectedItem().toString(), name_people, name_job, about_job, urlPathPhoto_1, urlPathPhoto_2, urlPathPhoto_3, urlPathPhoto_4, urlPathPhoto_5, cost_job, contacts, adFromEditDetail.getDateAd(), type_money, user, 0, "", false, city);
+        } else {
+            ad = new Ad(false, spinner_category.getSelectedItem().toString(), name_people, name_job, about_job, cost_job, contacts, new Date().getTime(), type_money, user, 0, "", false, city);
+        }*/
         ad.setImagePathAd_1(url);
         ad.setImagePathAd_2(url);
         ad.setImagePathAd_3(url);
         ad.setImagePathAd_4(url);
         ad.setImagePathAd_5(url);
-        reference.child("ads").child(ad.getDateAd()+"").setValue(ad);
+        reference.child("ads").child(ad.getDateAd() + "").setValue(ad);
         finish();
     }
 
@@ -424,23 +523,23 @@ public class AddAd extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 Toast.makeText(this, "Image saved", Toast.LENGTH_LONG).show();
                 try {
-                    if (RETURNED_PHOTO==1){
+                    if (RETURNED_PHOTO == 1) {
                         photo_1 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI_1); // тут мы получаем полноценное изображение
                         image_ad_1.setImageBitmap(photo_1);
                     }
-                    if (RETURNED_PHOTO==2){
+                    if (RETURNED_PHOTO == 2) {
                         photo_2 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI_2); // тут мы получаем полноценное изображение
                         image_ad_2.setImageBitmap(photo_2);
                     }
-                    if (RETURNED_PHOTO==3){
+                    if (RETURNED_PHOTO == 3) {
                         photo_3 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI_3); // тут мы получаем полноценное изображение
                         image_ad_3.setImageBitmap(photo_3);
                     }
-                    if (RETURNED_PHOTO==4){
+                    if (RETURNED_PHOTO == 4) {
                         photo_4 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI_4); // тут мы получаем полноценное изображение
                         image_ad_4.setImageBitmap(photo_4);
                     }
-                    if (RETURNED_PHOTO==5){
+                    if (RETURNED_PHOTO == 5) {
                         photo_5 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI_5); // тут мы получаем полноценное изображение
                         image_ad_5.setImageBitmap(photo_5);
                     }
@@ -451,32 +550,30 @@ public class AddAd extends AppCompatActivity {
                 if (resultCode == RESULT_CANCELED) {
                 }
             }
-        }else if (requestCode == PICK_IMAGE_REQUEST_AD){
+        } else if (requestCode == PICK_IMAGE_REQUEST_AD) {
             filePath = data.getData();
             try {
-                if (RETURNED_PHOTO==1){
+                if (RETURNED_PHOTO == 1) {
                     photo_1 = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
                     image_ad_1.setImageBitmap(photo_1);
                 }
-                if (RETURNED_PHOTO==2){
+                if (RETURNED_PHOTO == 2) {
                     photo_2 = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
                     image_ad_2.setImageBitmap(photo_2);
                 }
-                if (RETURNED_PHOTO==3){
+                if (RETURNED_PHOTO == 3) {
                     photo_3 = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
                     image_ad_3.setImageBitmap(photo_3);
                 }
-                if (RETURNED_PHOTO==4){
+                if (RETURNED_PHOTO == 4) {
                     photo_4 = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
                     image_ad_4.setImageBitmap(photo_4);
                 }
-                if (RETURNED_PHOTO==5){
+                if (RETURNED_PHOTO == 5) {
                     photo_5 = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
                     image_ad_5.setImageBitmap(photo_5);
                 }
-            }
-            catch (IOException e)
-            {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
@@ -484,13 +581,13 @@ public class AddAd extends AppCompatActivity {
 
     private void uploadPhoto(Bitmap bitmap) {
         iterator++;
-        String namePhoto = user.getNickName()+"_"+ad.getNameAd()+"_"+ad.getNameJobAd()+new Date().getTime()+".jpg"; // уникальное имя фото
+        String namePhoto = user.getNickName() + "_" + ad.getNameAd() + "_" + ad.getNameJobAd() + new Date().getTime() + ".jpg"; // уникальное имя фото
         StorageReference mountainsRef = storageRef.child(namePhoto);
 
         //Log.d(MainActivity.LOG_TAG,"iterator = " + iterator);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        if (bitmap!=null){
-            Log.d(MainActivity.LOG_TAG,"bitmap!=null");
+        if (bitmap != null) {
+            Log.d(MainActivity.LOG_TAG, "bitmap!=null");
             bitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos);
             byte[] data = baos.toByteArray();
             UploadTask uploadTask = mountainsRef.putBytes(data);
@@ -505,34 +602,34 @@ public class AddAd extends AppCompatActivity {
 
                     iterator_sucsess++;
                     // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
-                    downloadUrl=null;
+                    downloadUrl = null;
                     downloadUrl = taskSnapshot.getDownloadUrl();
                     Uri u = taskSnapshot.getDownloadUrl();
-                    Log.d(MainActivity.LOG_TAG,"bitmap = " + u);
+                    Log.d(MainActivity.LOG_TAG, "bitmap = " + u);
 
-                    if (iterator_sucsess==1){
-                        ad.setImagePathAd_1(u+"");
-                        FirebaseDatabase.getInstance().getReference().child("ads").child(ad.getDateAd()+"").child("imagePathAd_1")
+                    if (iterator_sucsess == 1) {
+                        ad.setImagePathAd_1(u + "");
+                        FirebaseDatabase.getInstance().getReference().child("ads").child(ad.getDateAd() + "").child("imagePathAd_1")
                                 .setValue(ad.getImagePathAd_1());
                     }
-                    if (iterator_sucsess==2){
-                        ad.setImagePathAd_2(u+"");
-                        FirebaseDatabase.getInstance().getReference().child("ads").child(ad.getDateAd()+"").child("imagePathAd_2")
+                    if (iterator_sucsess == 2) {
+                        ad.setImagePathAd_2(u + "");
+                        FirebaseDatabase.getInstance().getReference().child("ads").child(ad.getDateAd() + "").child("imagePathAd_2")
                                 .setValue(ad.getImagePathAd_2());
                     }
-                    if (iterator_sucsess==3){
-                        ad.setImagePathAd_3(u+"");
-                        FirebaseDatabase.getInstance().getReference().child("ads").child(ad.getDateAd()+"").child("imagePathAd_3")
+                    if (iterator_sucsess == 3) {
+                        ad.setImagePathAd_3(u + "");
+                        FirebaseDatabase.getInstance().getReference().child("ads").child(ad.getDateAd() + "").child("imagePathAd_3")
                                 .setValue(ad.getImagePathAd_3());
                     }
-                    if (iterator_sucsess==4){
-                        ad.setImagePathAd_4(u+"");
-                        FirebaseDatabase.getInstance().getReference().child("ads").child(ad.getDateAd()+"").child("imagePathAd_4")
+                    if (iterator_sucsess == 4) {
+                        ad.setImagePathAd_4(u + "");
+                        FirebaseDatabase.getInstance().getReference().child("ads").child(ad.getDateAd() + "").child("imagePathAd_4")
                                 .setValue(ad.getImagePathAd_4());
                     }
-                    if (iterator_sucsess==5){
-                        ad.setImagePathAd_5(u+"");
-                        FirebaseDatabase.getInstance().getReference().child("ads").child(ad.getDateAd()+"").child("imagePathAd_5")
+                    if (iterator_sucsess == 5) {
+                        ad.setImagePathAd_5(u + "");
+                        FirebaseDatabase.getInstance().getReference().child("ads").child(ad.getDateAd() + "").child("imagePathAd_5")
                                 .setValue(ad.getImagePathAd_5());
                     }
 
@@ -543,26 +640,26 @@ public class AddAd extends AppCompatActivity {
                     //finish();
                 }
             });
-        }else{
-            Log.d(MainActivity.LOG_TAG,"bitmap==null");
-            if (iterator==1){
+        } else {
+            Log.d(MainActivity.LOG_TAG, "bitmap==null");
+            if (iterator == 1) {
                 ad.setImagePathAd_1("https://firebasestorage.googleapis.com/v0/b/findjob-51270.appspot.com/o/empty.png?alt=media&token=3d73aba3-5e79-4643-82dc-244c6ce326fb");
             }
-            if (iterator==2){
+            if (iterator == 2) {
                 ad.setImagePathAd_2("https://firebasestorage.googleapis.com/v0/b/findjob-51270.appspot.com/o/empty.png?alt=media&token=3d73aba3-5e79-4643-82dc-244c6ce326fb");
             }
-            if (iterator==3){
+            if (iterator == 3) {
                 ad.setImagePathAd_3("https://firebasestorage.googleapis.com/v0/b/findjob-51270.appspot.com/o/empty.png?alt=media&token=3d73aba3-5e79-4643-82dc-244c6ce326fb");
             }
-            if (iterator==4){
+            if (iterator == 4) {
                 ad.setImagePathAd_4("https://firebasestorage.googleapis.com/v0/b/findjob-51270.appspot.com/o/empty.png?alt=media&token=3d73aba3-5e79-4643-82dc-244c6ce326fb");
             }
-            if (iterator==5){
+            if (iterator == 5) {
                 ad.setImagePathAd_5("https://firebasestorage.googleapis.com/v0/b/findjob-51270.appspot.com/o/empty.png?alt=media&token=3d73aba3-5e79-4643-82dc-244c6ce326fb");
             }
         }
-        if (iterator==5){
-            reference.child("ads").child(ad.getDateAd()+"").setValue(ad);
+        if (iterator == 5) {
+            reference.child("ads").child(ad.getDateAd() + "").setValue(ad);
             finish();
         }
 
@@ -570,7 +667,7 @@ public class AddAd extends AppCompatActivity {
 
     private File createImageFile() throws IOException {
         // Create an image file name
-        Log.d(MainActivity.LOG_TAG,"go");
+        Log.d(MainActivity.LOG_TAG, "go");
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
@@ -600,31 +697,31 @@ public class AddAd extends AppCompatActivity {
             }
             // Continue only if the File was successfully created
             if (photoFile != null) {
-                if (RETURNED_PHOTO==1){
+                if (RETURNED_PHOTO == 1) {
                     photoURI_1 = FileProvider.getUriForFile(this, "com.accherniakocich.android.findjob", photoFile);
                     /*Log.d(MainActivity.LOG_TAG,"photoFile = "+photoFile);*/
                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI_1);
                     startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
                 }
-                if (RETURNED_PHOTO==2){
+                if (RETURNED_PHOTO == 2) {
                     photoURI_2 = FileProvider.getUriForFile(this, "com.accherniakocich.android.findjob", photoFile);
                     /*Log.d(MainActivity.LOG_TAG,"photoFile = "+photoFile);*/
                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI_2);
                     startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
                 }
-                if (RETURNED_PHOTO==3){
+                if (RETURNED_PHOTO == 3) {
                     photoURI_3 = FileProvider.getUriForFile(this, "com.accherniakocich.android.findjob", photoFile);
                     /*Log.d(MainActivity.LOG_TAG,"photoFile = "+photoFile);*/
                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI_3);
                     startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
                 }
-                if (RETURNED_PHOTO==4){
+                if (RETURNED_PHOTO == 4) {
                     photoURI_4 = FileProvider.getUriForFile(this, "com.accherniakocich.android.findjob", photoFile);
                     /*Log.d(MainActivity.LOG_TAG,"photoFile = "+photoFile);*/
                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI_4);
                     startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
                 }
-                if (RETURNED_PHOTO==5){
+                if (RETURNED_PHOTO == 5) {
                     photoURI_5 = FileProvider.getUriForFile(this, "com.accherniakocich.android.findjob", photoFile);
                     /*Log.d(MainActivity.LOG_TAG,"photoFile = "+photoFile);*/
                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI_5);
