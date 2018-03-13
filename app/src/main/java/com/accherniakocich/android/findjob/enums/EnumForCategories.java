@@ -1,7 +1,7 @@
 package com.accherniakocich.android.findjob.enums;
 
 public enum EnumForCategories {
-    СЛУЖБЫ,
+    АВТО,
     АВТОСЕРВИС,
     АВТОТОВАРЫ,
     ВЛАСТЬ,
@@ -34,6 +34,7 @@ public enum EnumForCategories {
     ОДЕЖДА,
     ОБУВЬ,
     ОХРАНА,
+    СЛУЖБЫ,
     БЕЗОПАСНОСТЬ,
     НАПИТКИ,
     РЕКЛАМА,

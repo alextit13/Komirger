@@ -252,7 +252,7 @@ public class Ad implements Serializable{
 
     @Override
     public String toString() {
-        return "Ad{" +
+        return "RealmDatabase{" +
                 "nameAd='" + nameAd + '\'' +
                 ", nameJobAd='" + nameJobAd + '\'' +
                 ", textAd='" + textAd + '\'' +

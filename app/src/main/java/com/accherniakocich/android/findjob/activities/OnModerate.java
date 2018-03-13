@@ -31,7 +31,6 @@ public class OnModerate extends AppCompatActivity implements GettingAllAdsListen
         GET_ALL_LIST _G = new GET_ALL_LIST(OnModerate.this,user);
         _G.uploadList();
     }
-
     @Override
     public void takeData(ArrayList<Ad> list) {
         if (list!=null&&list.size()!=0){

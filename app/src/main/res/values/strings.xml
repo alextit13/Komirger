@@ -133,4 +133,17 @@
     <string name="active_ads">Активные объявления</string>
     <string name="on_moderate">На модерации</string>
     <string name="dislike">Отклоненные</string>
+    <string name="consistance_auto">Состояние авто</string>
+    <string name="marka_auto">Марка авто</string>
+    <string name="model_auto">Модель авто</string>
+    <string name="type_of_body">Тип кузова</string>
+    <string name="colot">Цвет</string>
+    <string name="region">Регион</string>
+    <string name="year_production_car">Год выпуска</string>
+    <string name="how_much_completed_road">Пробег</string>
+    <string name="type_of_engine">Тип двигателя</string>
+    <string name="value_engine">Объем</string>
+    <string name="transmission">Трансмиссия</string>
+    <string name="is_returned">Возможен обмен</string>
+    <string name="is_rented">Возможна ли рассрочка</string>
 </resources>

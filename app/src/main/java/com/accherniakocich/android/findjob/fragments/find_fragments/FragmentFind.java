@@ -156,7 +156,7 @@ public class FragmentFind extends Fragment{
 
     @OnClick(R.id.button_find) public void find(Button mButtonFind){
         // TODO тут передаем уже отсортированный результат в виде листа с Объявлениями
-        // TODO(Ad) в родительское активити и потом с активити передаем в другой фрагмент - FragmentResult
+        // TODO(RealmDatabase) в родительское активити и потом с активити передаем в другой фрагмент - FragmentResult
         getFindLogic();
     }
     @Subscribe

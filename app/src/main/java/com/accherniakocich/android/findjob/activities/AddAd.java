@@ -16,19 +16,24 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import com.accherniakocich.android.findjob.R;
 import com.accherniakocich.android.findjob.activities.log_and_reg.MainActivity;
 import com.accherniakocich.android.findjob.classes.Ad;
 import com.accherniakocich.android.findjob.classes.User;
+import com.accherniakocich.android.findjob.enums.EnumCitiesRUSSIA;
+import com.accherniakocich.android.findjob.enums.EnumForCategories;
+import com.accherniakocich.android.findjob.enums.GENERATE_LISTS_CLASS;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
@@ -41,92 +46,82 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
 public class AddAd extends AppCompatActivity {
 
-    static final int REQUEST_IMAGE_CAPTURE = 1;
     static final int REQUEST_TAKE_PHOTO = 500;
-
     public static final int PICK_IMAGE_REQUEST_AD = 72;
-
     private User user;
-    private static final int CAMERA_REQUEST = 1888;
     private StorageReference storageRef;
     private ImageView image_ad_1,image_ad_2,image_ad_3,image_ad_4,image_ad_5;
-    private EditText edit_text_name_ad,edit_text_name_job_ad,edit_text_cost_job,edit_text_contacts_ad,edit_text_about_job_ad,city;
-    private Spinner spinner_type_money;
+    private EditText edit_text_name_ad,edit_text_name_job_ad,edit_text_cost_job,edit_text_contacts_ad,edit_text_about_job_ad,city
+            ,consistance_auto,marka_auto,model_auto,type_of_body,colot,region,category,year_production_car,how_much_completed_road
+            ,type_of_engine,value_engine,transmission;
+    private CheckBox cb_obmen,rassrochka;
+    private Spinner spinner_type_money,spinner_category,spinner_city;
     private Button button_cancel_ad,button_add_ad;
     private ProgressBar progress_bar_ad;
     private FrameLayout container_ad_frame_layout;
     private FirebaseDatabase database;
     private DatabaseReference reference;
-    private Bitmap photo_1;
-    private Bitmap photo_2;
-    private Bitmap photo_3;
-    private Bitmap photo_4;
-    private Bitmap photo_5;
-    private Ad ad;
-    private Uri photoURI_1;
-    private Uri photoURI_2;
-    private Uri photoURI_3;
-    private Uri photoURI_4;
-    private Uri photoURI_5;
-    private String mCurrentPhotoPath;
-    private String urlPathPhoto_1;
-    private String urlPathPhoto_2;
-    private String urlPathPhoto_3;
-    private String urlPathPhoto_4;
-    private String urlPathPhoto_5;
-    private Ad adFromEditDetail;
+    private Bitmap photo_1,photo_2,photo_3,photo_4,photo_5;
+    private Ad ad,adFromEditDetail;
+    private Uri photoURI_1,photoURI_2,photoURI_3,photoURI_4,photoURI_5,downloadUrl;
+    private String mCurrentPhotoPath,urlPathPhoto_1,urlPathPhoto_2,urlPathPhoto_3,urlPathPhoto_4,urlPathPhoto_5;
     private int RETURNED_PHOTO = 0;
-    private Spinner spinner_category,spinner_city;
     private int iterator = 0;
-    private Uri downloadUrl;
     int iterator_sucsess = 0;
-    private ArrayList<String>cities;
-
+    private GENERATE_LISTS_CLASS _GLK;
+    private LinearLayout car_container;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_ad);
-
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
-
         init();
     }
-
     private void init() {
+        consistance_auto = (EditText)findViewById(R.id.consistance_auto);
+        marka_auto = (EditText)findViewById(R.id.marka_auto);
+        model_auto = (EditText)findViewById(R.id.model_auto);
+        type_of_body = (EditText)findViewById(R.id.type_of_body);
+        colot = (EditText)findViewById(R.id.colot);
+        region = (EditText)findViewById(R.id.region);
+        category = (EditText)findViewById(R.id.category);
+        year_production_car = (EditText)findViewById(R.id.year_production_car);
+        how_much_completed_road = (EditText)findViewById(R.id.how_much_completed_road);
+        type_of_engine = (EditText)findViewById(R.id.type_of_engine);
+        value_engine = (EditText)findViewById(R.id.value_engine);
+        transmission = (EditText)findViewById(R.id.transmission);
+
+        cb_obmen = (CheckBox)findViewById(R.id.cb_obmen);
+        rassrochka = (CheckBox)findViewById(R.id.rassrochka);
+
+
+        car_container = (LinearLayout)findViewById(R.id.car_container);
         image_ad_1 = (ImageView)findViewById(R.id.imageAd_1);
         image_ad_2 = (ImageView)findViewById(R.id.imageAd_2);
         image_ad_3 = (ImageView)findViewById(R.id.imageAd_3);
         image_ad_4 = (ImageView)findViewById(R.id.imageAd_4);
         image_ad_5 = (ImageView)findViewById(R.id.imageAd_5);
-
-
         spinner_category = (Spinner)findViewById(R.id.spinner_category);
         completeSpinnerCategory();
-
         spinner_city = (Spinner)findViewById(R.id.spinner_city);
         completeSpinnerCity();
-
         database = FirebaseDatabase.getInstance();
         reference = database.getReference();
-
         Intent intent = getIntent();
         user = (User) intent.getSerializableExtra("user");
-
         storageRef = FirebaseStorage.getInstance().getReference();
-
-
         city = (EditText)findViewById(R.id.city);
         edit_text_name_ad = (EditText)findViewById(R.id.name_ad);
         edit_text_name_job_ad = (EditText)findViewById(R.id.name_job_ad);
         edit_text_cost_job = (EditText)findViewById(R.id.cost_job);
         edit_text_contacts_ad = (EditText)findViewById(R.id.contacts_ad);
         edit_text_about_job_ad = (EditText)findViewById(R.id.about_job);
-        //image_ad = (ImageView)findViewById(R.id.imageAd);
         spinner_type_money = (Spinner)findViewById(R.id.spinner_add_ad);
         spinner_type_money.setAdapter(generateAdapter(generateListForSpnner()));
         button_cancel_ad = (Button)findViewById(R.id.cancel_button_ad);
@@ -134,8 +129,6 @@ public class AddAd extends AppCompatActivity {
         container_ad_frame_layout = (FrameLayout)findViewById(R.id.container_ad_frame_layout);
         progress_bar_ad = (ProgressBar)findViewById(R.id.progress_bar_ad);
         progress_bar_ad.setVisibility(View.INVISIBLE);
-
-        //Log.d(MainActivity.LOG_TAG,"photo = "+photo.toString());
         int request = 0;
         try {
            request = intent.getIntExtra("request",0);
@@ -145,7 +138,6 @@ public class AddAd extends AppCompatActivity {
         if (request!=0){
             adFromEditDetail = (Ad) intent.getSerializableExtra("ad");
             User userFromEditDetail = (User) intent.getSerializableExtra("user");
-
             edit_text_name_ad.setText(userFromEditDetail.getNickName());
             edit_text_name_job_ad.setText(adFromEditDetail.getNameJobAd());
             edit_text_cost_job.setText(adFromEditDetail.getCostAd()+"");
@@ -153,39 +145,32 @@ public class AddAd extends AppCompatActivity {
             edit_text_contacts_ad.setText(adFromEditDetail.getPeopleSourceAd()+"");
         }
     }
-
     private void completeSpinnerCity() {
-        ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item,completeArrayList());
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,
+                _GLK.getListCitiesRussia(Arrays.asList(EnumCitiesRUSSIA.values()),"ВСЕ ГОРОДА"));
         spinner_city.setAdapter(adapter);
     }
-
     private void completeSpinnerCategory() {
-        ArrayList<String>categorys = new ArrayList<>(20);
-        categorys.add("Работа");
-        categorys.add("Недвижимость");
-        categorys.add("Женский гардероб");
-        categorys.add("Мужской гардероб");
-        categorys.add("Детски гардероб");
-        categorys.add("Детские товары");
-        categorys.add("Хендмейд");
-        categorys.add("Авто и мото");
-        categorys.add("Телефоны и планшеты");
-        categorys.add("Фото и видеокамеры");
-        categorys.add("Компьютеры");
-        categorys.add("Электроника и бытовая техника");
-        categorys.add("Для дома для дачи");
-        categorys.add("Ремонт и строительство");
-        categorys.add("Красота и здоровье");
-        categorys.add("Спорт и отдых");
-        categorys.add("Хобби и развлечения");
-        categorys.add("Животные");
-        categorys.add("Для бизнеса");
-        categorys.add("Прочее");
+        _GLK = new GENERATE_LISTS_CLASS();
         ArrayAdapter<String>adapter = new ArrayAdapter<String>(getApplicationContext()
-        ,android.R.layout.simple_spinner_item,categorys);
+        ,android.R.layout.simple_spinner_item,_GLK.getListCategories(Arrays.asList(EnumForCategories.values()),"ВСЕ КАТЕГОРИИ"));
         spinner_category.setAdapter(adapter);
-    }
+        spinner_category.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (!parent.getItemAtPosition(position).toString().equals("АВТО")){
+                    car_container.setVisibility(View.GONE);
+                }else{
+                    car_container.setVisibility(View.VISIBLE);
+                }
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
     private ArrayList<String> generateListForSpnner(){
         ArrayList<String>list = new ArrayList<>();
         list.add("$");
@@ -193,7 +178,6 @@ public class AddAd extends AppCompatActivity {
         list.add("€");
         return list;
     }
-
     public void onClickAd(View view) {
         switch (view.getId()) {
             case R.id.imageAd_1:
@@ -359,33 +343,48 @@ public class AddAd extends AppCompatActivity {
                 break;
         }
     }
-
     private void takePhotoFromGallery() {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST_AD);
     }
-
     private ArrayAdapter<String> generateAdapter(ArrayList<String> list){
         ArrayAdapter <String>adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,list);
         return adapter;
     }
-
-    private void add_ad(String name_people, String name_job, int cost_job,
-                        String contacts, String about_job, String type_money, String city) {
+    private void add_ad(String name_people, String name_job, int cost_job, String contacts, String about_job, String type_money, String city) {
         urlPathPhoto_1 = "";
         urlPathPhoto_2 = "";
         urlPathPhoto_3 = "";
         urlPathPhoto_4 = "";
         urlPathPhoto_5 = "";
-
-        Log.d(MainActivity.LOG_TAG,"adFromEditDetail = " + adFromEditDetail);
-        if (adFromEditDetail!=null){
-            ad = new Ad(false,spinner_category.getSelectedItem().toString(),name_people,name_job,about_job,urlPathPhoto_1,urlPathPhoto_2,urlPathPhoto_3,urlPathPhoto_4,urlPathPhoto_5,cost_job,contacts,adFromEditDetail.getDateAd(),type_money,user,0,"",false,city);
+        if (!spinner_category.getSelectedItem().toString().equals("АВТО")){
+            if (adFromEditDetail!=null){
+                ad = new Ad(false,spinner_category.getSelectedItem().toString(),name_people,name_job,about_job,urlPathPhoto_1,urlPathPhoto_2,urlPathPhoto_3,urlPathPhoto_4,urlPathPhoto_5,cost_job,contacts,adFromEditDetail.getDateAd(),type_money,user,0,"",false,city);
+            }else{
+                ad = new Ad(false, spinner_category.getSelectedItem().toString(),name_people,name_job,about_job,cost_job,contacts,new Date().getTime(),type_money,user,0,"",false,city);
+            }
         }else{
-            ad = new Ad(false, spinner_category.getSelectedItem().toString(),name_people,name_job,about_job,cost_job,contacts,new Date().getTime(),type_money,user,0,"",false,city);
+            String about = "Состояние авто: " + consistance_auto.getText().toString()+ "\n" +
+                    "Марка авто: " + marka_auto.getText().toString() + "\n" +
+                    "Модель авто: " + model_auto.getText().toString() + "\n" +
+                    "Тип кузова: " + type_of_body.getText().toString() + "\n"+
+                    "Цвет: " + colot.getText().toString() + "\n" +
+                    "Регион: " + region.getText().toString() + "\n" +
+                    "Категория: " + category.getText().toString() + "\n" +
+                    "Год выпуска: " + year_production_car.getText().toString() + "\n" +
+                    "Пробег: " + how_much_completed_road.getText().toString() + "\n" +
+                    "Тип двигателя: " + type_of_engine.getText().toString() + "\n" +
+                    "Объем: " + value_engine.getText().toString() + "\n" +
+                    "Тип трансмиссии: " + transmission.getText().toString();
+            if (adFromEditDetail!=null){
+                ad = new Ad(false,spinner_category.getSelectedItem().toString(),name_people,name_job,about,urlPathPhoto_1,urlPathPhoto_2,urlPathPhoto_3,urlPathPhoto_4,urlPathPhoto_5,cost_job,contacts,adFromEditDetail.getDateAd(),type_money,user,0,"",false,city);
+            }else{
+                ad = new Ad(false, spinner_category.getSelectedItem().toString(),name_people,name_job,about,cost_job,contacts,new Date().getTime(),type_money,user,0,"",false,city);
+            }
         }
+
 
         uploadPhoto(photo_1);
         uploadPhoto(photo_2);
@@ -394,7 +393,6 @@ public class AddAd extends AppCompatActivity {
         uploadPhoto(photo_5);
 
         ad.setCity(spinner_city.getSelectedItem().toString());
-
     }
 
     private void add_ad_withoutPhoto(String name_people, String name_job, int cost_job,
@@ -405,23 +403,18 @@ public class AddAd extends AppCompatActivity {
         urlPathPhoto_3 = "";
         urlPathPhoto_4 = "";
         urlPathPhoto_5 = "";
-        //Log.d(MainActivity.LOG_TAG,"adFromEditDetail = " + adFromEditDetail);
-
         if (adFromEditDetail!=null){
             ad = new Ad(false, spinner_category.getSelectedItem().toString(),name_people,name_job,about_job, urlPathPhoto_1,urlPathPhoto_2,urlPathPhoto_3,urlPathPhoto_4,urlPathPhoto_5, cost_job,contacts,adFromEditDetail.getDateAd(),type_money,user,0,"",false,city);
         }else{
             ad = new Ad(false, spinner_category.getSelectedItem().toString(),name_people,name_job,about_job, cost_job,contacts,new Date().getTime(),type_money,user,0,"",false,city);
         }
-
         ad.setImagePathAd_1(url);
         ad.setImagePathAd_2(url);
         ad.setImagePathAd_3(url);
         ad.setImagePathAd_4(url);
         ad.setImagePathAd_5(url);
-        //reference.child("ads").child(nameChild+"").setValue(ad);
         reference.child("ads").child(ad.getDateAd()+"").setValue(ad);
         finish();
-
     }
 
     @Override
@@ -429,9 +422,7 @@ public class AddAd extends AppCompatActivity {
         Uri filePath = null;
         if (requestCode == REQUEST_TAKE_PHOTO) {
             if (resultCode == RESULT_OK) {
-                // Image captured and saved to fileUri specified in the Intent
                 Toast.makeText(this, "Image saved", Toast.LENGTH_LONG).show();
-
                 try {
                     if (RETURNED_PHOTO==1){
                         photo_1 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI_1); // тут мы получаем полноценное изображение
@@ -453,14 +444,11 @@ public class AddAd extends AppCompatActivity {
                         photo_5 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI_5); // тут мы получаем полноценное изображение
                         image_ad_5.setImageBitmap(photo_5);
                     }
-                    //Log.d(MainActivity.LOG_TAG,"photo image = "+bitmap.getWidth());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             } else {
                 if (resultCode == RESULT_CANCELED) {
-                    // User cancelled the image capture
-                    // So need to Delete the path from DB
                 }
             }
         }else if (requestCode == PICK_IMAGE_REQUEST_AD){
@@ -486,15 +474,12 @@ public class AddAd extends AppCompatActivity {
                     photo_5 = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
                     image_ad_5.setImageBitmap(photo_5);
                 }
-
-                //uploadPhoto(bitmap);
             }
             catch (IOException e)
             {
                 e.printStackTrace();
             }
         }
-
     }
 
     private void uploadPhoto(Bitmap bitmap) {
@@ -647,338 +632,5 @@ public class AddAd extends AppCompatActivity {
                 }
             }
         }
-    }
-
-
-
-
-
-
-
-    private ArrayList<String> completeArrayList() {
-        cities = new ArrayList<>();
-        cities.add("Абакан");
-        cities.add("Азов");
-        cities.add("Александров");
-        cities.add("Алексин");
-        cities.add("Альметьевск");
-        cities.add("Анапа");
-        cities.add("Ангарск");
-        cities.add("Анжеро-Судженск");
-        cities.add("Апатиты");
-        cities.add("Арзамас");
-        cities.add("Армавир");
-        cities.add("Арсеньев");
-        cities.add("Артем");
-        cities.add("Архангельск");
-        cities.add("Асбест");
-        cities.add("Астрахань");
-        cities.add("Ачинск");
-        cities.add("Балаково");
-        cities.add("Балахна");
-        cities.add("Балашиха");
-        cities.add("Балашов");
-        cities.add("Барнаул");
-        cities.add("Батайск");
-        cities.add("Белгород");
-        cities.add("Белебей");
-        cities.add("Белово");
-        cities.add("Белогорск (Амурская область)");
-        cities.add("Белорецк");
-        cities.add("Белореченск");
-        cities.add("Бердск");
-        cities.add("Березники");
-        cities.add("Березовский (Свердловская область)");
-        cities.add("Бийск");
-        cities.add("Биробиджан");
-        cities.add("Благовещенск (Амурская область)");
-        cities.add("Бор");
-        cities.add("Борисоглебск");
-        cities.add("Боровичи");
-        cities.add("Братск");
-        cities.add("Брянск");
-        cities.add("Бугульма");
-        cities.add("Буденновск");
-        cities.add("Бузулук");
-        cities.add("Буйнакск");
-        cities.add("Великие Луки");
-        cities.add("Великий Новгород");
-        cities.add("Верхняя Пышма");
-        cities.add("Видное");
-        cities.add("Владивосток");
-        cities.add("Владикавказ");
-        cities.add("Владимир");
-        cities.add("Волгоград");
-        cities.add("Волгодонск");
-        cities.add("Волжск");
-        cities.add("Волжский");
-        cities.add("Вологда");
-        cities.add("Вольск");
-        cities.add("Воркута");
-        cities.add("Воронеж");
-        cities.add("Воскресенск");
-        cities.add("Воткинск");
-        cities.add("Всеволожск");
-        cities.add("Выборг");
-        cities.add("Выкса");
-        cities.add("Вязьма");
-        cities.add("Гатчина");
-        cities.add("Геленджик");
-        cities.add("Георгиевск");
-        cities.add("Глазов");
-        cities.add("Горно-Алтайск");
-        cities.add("Грозный");
-        cities.add("Губкин");
-        cities.add("Гудермес");
-        cities.add("Гуково");
-        cities.add("Гусь-Хрустальный");
-        cities.add("Дербент");
-        cities.add("Дзержинск");
-        cities.add("Димитровград");
-        cities.add("Дмитров");
-        cities.add("Долгопрудный");
-        cities.add("Домодедово");
-        cities.add("Донской");
-        cities.add("Дубна");
-        cities.add("Евпатория");
-        cities.add("Егорьевск");
-        cities.add("Ейск");
-        cities.add("Екатеринбург");
-        cities.add("Елабуга");
-        cities.add("Елец");
-        cities.add("Ессентуки");
-        cities.add("Железногорск (Красноярский край)");
-        cities.add("Железногорск (Курская область)");
-        cities.add("Жигулевск");
-        cities.add("Жуковский");
-        cities.add("Заречный");
-        cities.add("Зеленогорск");
-        cities.add("Зеленодольск");
-        cities.add("Златоуст");
-        cities.add("Иваново");
-        cities.add("Ивантеевка");
-        cities.add("Ижевск");
-        cities.add("Избербаш");
-        cities.add("Иркутск");
-        cities.add("Искитим");
-        cities.add("Ишим");
-        cities.add("Ишимбай");
-        cities.add("Йошкар-Ола");
-        cities.add("Казань");
-        cities.add("Калининград");
-        cities.add("Калуга");
-        cities.add("Каменск-Уральский");
-        cities.add("Каменск-Шахтинский");
-        cities.add("Камышин");
-        cities.add("Канск");
-        cities.add("Каспийск");
-        cities.add("Кемерово");
-        cities.add("Керчь");
-        cities.add("Кинешма");
-        cities.add("Кириши");
-        cities.add("Киров (Кировская область)");
-        cities.add("Кирово-Чепецк");
-        cities.add("Киселевск");
-        cities.add("Кисловодск");
-        cities.add("Клин");
-        cities.add("Клинцы");
-        cities.add("Ковров");
-        cities.add("Когалым");
-        cities.add("Коломна");
-        cities.add("Комсомольск-на-Амуре");
-        cities.add("Копейск");
-        cities.add("Королев");
-        cities.add("Кострома");
-        cities.add("Котлас");
-        cities.add("Красногорск");
-        cities.add("Краснодар");
-        cities.add("Краснокаменск");
-        cities.add("Краснокамск");
-        cities.add("Краснотурьинск");
-        cities.add("Красноярск");
-        cities.add("Кропоткин");
-        cities.add("Крымск");
-        cities.add("Кстово");
-        cities.add("Кузнецк");
-        cities.add("Кумертау");
-        cities.add("Кунгур");
-        cities.add("Курган");
-        cities.add("Курск");
-        cities.add("Кызыл");
-        cities.add("Лабинск");
-        cities.add("Лениногорск");
-        cities.add("Ленинск-Кузнецкий");
-        cities.add("Лесосибирск");
-        cities.add("Липецк");
-        cities.add("Лиски");
-        cities.add("Лобня");
-        cities.add("Лысьва");
-        cities.add("Лыткарино");
-        cities.add("Люберцы");
-        cities.add("Магадан");
-        cities.add("Магнитогорск");
-        cities.add("Майкоп");
-        cities.add("Махачкала");
-        cities.add("Междуреченск");
-        cities.add("Мелеуз");
-        cities.add("Миасс");
-        cities.add("Минеральные Воды");
-        cities.add("Минусинск");
-        cities.add("Михайловка");
-        cities.add("Михайловск (Ставропольский край)");
-        cities.add("Мичуринск");
-        cities.add("Москва");
-        cities.add("Мурманск");
-        cities.add("Муром");
-        cities.add("Мытищи");
-        cities.add("Набережные Челны");
-        cities.add("Назарово");
-        cities.add("Назрань");
-        cities.add("Нальчик");
-        cities.add("Наро-Фоминск");
-        cities.add("Находка");
-        cities.add("Невинномысск");
-        cities.add("Нерюнгри");
-        cities.add("Нефтекамск");
-        cities.add("Нефтеюганск");
-        cities.add("Нижневартовск");
-        cities.add("Нижнекамск");
-        cities.add("Нижний Новгород");
-        cities.add("Нижний Тагил");
-        cities.add("Новоалтайск");
-        cities.add("Новокузнецк");
-        cities.add("Новокуйбышевск");
-        cities.add("Новомосковск");
-        cities.add("Новороссийск");
-        cities.add("Новосибирск");
-        cities.add("Новотроицк");
-        cities.add("Новоуральск");
-        cities.add("Новочебоксарск");
-        cities.add("Новочеркасск");
-        cities.add("Новошахтинск");
-        cities.add("Новый Уренгой");
-        cities.add("Ногинск");
-        cities.add("Норильск");
-        cities.add("Ноябрьск");
-        cities.add("Нягань");
-        cities.add("Обнинск");
-        cities.add("Одинцово");
-        cities.add("Озерск (Челябинская область)");
-        cities.add("Октябрьский");
-        cities.add("Омск");
-        cities.add("Орел");
-        cities.add("Оренбург");
-        cities.add("Орехово-Зуево");
-        cities.add("Орск");
-        cities.add("Павлово");
-        cities.add("Павловский Посад");
-        cities.add("Пенза");
-        cities.add("Первоуральск");
-        cities.add("Пермь");
-        cities.add("Петрозаводск");
-        cities.add("Петропавловск-Камчатский");
-        cities.add("Подольск");
-        cities.add("Полевской");
-        cities.add("Прокопьевск");
-        cities.add("Прохладный");
-        cities.add("Псков");
-        cities.add("Пушкино");
-        cities.add("Пятигорск");
-        cities.add("Раменское");
-        cities.add("Ревда");
-        cities.add("Реутов");
-        cities.add("Ржев");
-        cities.add("Рославль");
-        cities.add("Россошь");
-        cities.add("Ростов-на-Дону");
-        cities.add("Рубцовск");
-        cities.add("Рыбинск");
-        cities.add("Рязань");
-        cities.add("Салават");
-        cities.add("Сальск");
-        cities.add("Самара");
-        cities.add("Санкт-Петербург");
-        cities.add("Саранск");
-        cities.add("Сарапул");
-        cities.add("Саратов");
-        cities.add("Саров");
-        cities.add("Свободный");
-        cities.add("Севастополь");
-        cities.add("Северодвинск");
-        cities.add("Северск");
-        cities.add("Сергиев Посад");
-        cities.add("Серов");
-        cities.add("Серпухов");
-        cities.add("Сертолово");
-        cities.add("Сибай");
-        cities.add("Симферополь");
-        cities.add("Славянск-на-Кубани");
-        cities.add("Смоленск");
-        cities.add("Соликамск");
-        cities.add("Солнечногорск");
-        cities.add("Сосновый Бор");
-        cities.add("Сочи");
-        cities.add("Ставрополь");
-        cities.add("Старый Оскол");
-        cities.add("Стерлитамак");
-        cities.add("Ступино");
-        cities.add("Сургут");
-        cities.add("Сызрань");
-        cities.add("Сыктывкар");
-        cities.add("Таганрог");
-        cities.add("Тамбов");
-        cities.add("Тверь");
-        cities.add("Тимашевск");
-        cities.add("Тихвин");
-        cities.add("Тихорецк");
-        cities.add("Тобольск");
-        cities.add("Тольятти");
-        cities.add("Томск");
-        cities.add("Троицк");
-        cities.add("Туапсе");
-        cities.add("Туймазы");
-        cities.add("Тула");
-        cities.add("Тюмень");
-        cities.add("Узловая");
-        cities.add("Улан-Удэ");
-        cities.add("Ульяновск");
-        cities.add("Урус-Мартан");
-        cities.add("Усолье-Сибирское");
-        cities.add("Уссурийск");
-        cities.add("Усть-Илимск");
-        cities.add("Уфа");
-        cities.add("Ухта");
-        cities.add("Феодосия");
-        cities.add("Фрязино");
-        cities.add("Хабаровск");
-        cities.add("Ханты-Мансийск");
-        cities.add("Хасавюрт");
-        cities.add("Химки");
-        cities.add("Чайковский");
-        cities.add("Чапаевск");
-        cities.add("Чебоксары");
-        cities.add("Челябинск");
-        cities.add("Черемхово");
-        cities.add("Череповец");
-        cities.add("Черкесск");
-        cities.add("Черногорск");
-        cities.add("Чехов");
-        cities.add("Чистополь");
-        cities.add("Чита");
-        cities.add("Шадринск");
-        cities.add("Шали");
-        cities.add("Шахты");
-        cities.add("Шуя");
-        cities.add("Щекино");
-        cities.add("Щелково");
-        cities.add("Электросталь");
-        cities.add("Элиста");
-        cities.add("Энгельс");
-        cities.add("Южно-Сахалинск");
-        cities.add("Юрга");
-        cities.add("Якутск");
-        cities.add("Ялта");
-        cities.add("Ярославль");
-        return cities;
     }
 }

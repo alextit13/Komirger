@@ -20,7 +20,6 @@ public class GET_ALL_LIST {
         this.activity = activity;
         this.user = user;
     }
-
     public void uploadList(){
         FirebaseDatabase.getInstance().getReference().child("ads")
                 .addValueEventListener(
