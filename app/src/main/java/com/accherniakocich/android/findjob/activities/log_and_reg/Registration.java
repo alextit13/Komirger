@@ -7,7 +7,9 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -43,6 +45,7 @@ public class Registration extends AppCompatActivity {
     private EditText et_password;
     private EditText et_fio;
     private ImageView info_registration;
+    private View viewLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)  {
@@ -126,6 +129,10 @@ public class Registration extends AppCompatActivity {
                     startActivity(intent);
                 }else{
                     //break(
+
+                    toastCustomError();
+
+
                     progress_bar_registration.setVisibility(View.INVISIBLE);
                     container_frame_registration.setAlpha(1f);
                     container_frame_registration.setClickable(true);
@@ -133,6 +140,15 @@ public class Registration extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void toastCustomError() {
+        viewLayout = getLayoutInflater().inflate(R.layout.custom_toast,(ViewGroup)findViewById(R.id.custom_layout));
+
+        Toast toast = Toast.makeText(this,"",Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.CENTER,0,0);
+        toast.setView(viewLayout);
+        toast.show();
     }
 
     private void createSharedPreference(User user) {

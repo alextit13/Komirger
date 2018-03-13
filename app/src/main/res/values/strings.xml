@@ -149,4 +149,5 @@
     <string name="size">Размер</string>
     <string name="color">Цвет</string>
     <string name="material">Материал</string>
+    <string name="error_registration">Вы неправильно ввели \n данные для регистрации</string>
 </resources>
