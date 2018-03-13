@@ -146,4 +146,7 @@
     <string name="transmission">Трансмиссия</string>
     <string name="is_returned">Возможен обмен</string>
     <string name="is_rented">Возможна ли рассрочка</string>
+    <string name="size">Размер</string>
+    <string name="color">Цвет</string>
+    <string name="material">Материал</string>
 </resources>

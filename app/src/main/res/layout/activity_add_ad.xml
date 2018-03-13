@@ -77,6 +77,39 @@
                 android:hint="@string/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+
+
+
+            <EditText
+                android:id="@+id/size"
+                android:fontFamily="sans-serif-condensed"
+                android:layout_marginStart="80dp"
+                android:layout_marginEnd="80dp"
+                android:layout_marginBottom="10dp"
+                android:hint="@string/size"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/color"
+                android:fontFamily="sans-serif-condensed"
+                android:layout_marginStart="80dp"
+                android:layout_marginEnd="80dp"
+                android:layout_marginBottom="10dp"
+                android:hint="@string/color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/material"
+                android:fontFamily="sans-serif-condensed"
+                android:layout_marginStart="80dp"
+                android:layout_marginEnd="80dp"
+                android:layout_marginBottom="10dp"
+                android:hint="@string/material"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+
             <EditText
                 android:id="@+id/name_job_ad"
                 android:fontFamily="sans-serif-condensed"

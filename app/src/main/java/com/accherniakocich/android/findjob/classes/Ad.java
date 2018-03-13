@@ -23,9 +23,61 @@ public class Ad implements Serializable{
     private String categoty;
     private boolean premium;
     private int activate;
+    private String color;
+    private String size;
+    private String material;
 
     public Ad() {
+    }
 
+    public Ad(String nameAd, String nameJobAd, String textAd, String imagePathAd_1, String imagePathAd_2, String imagePathAd_3, String imagePathAd_4, String imagePathAd_5, int costAd, String peopleSourceAd, long dateAd, String type_money, User user, int numOfShowAd, String inFavoritUsers, boolean isCheck, String city, String categoty, boolean premium, int activate, String color, String size, String material) {
+        this.nameAd = nameAd;
+        this.nameJobAd = nameJobAd;
+        this.textAd = textAd;
+        this.imagePathAd_1 = imagePathAd_1;
+        this.imagePathAd_2 = imagePathAd_2;
+        this.imagePathAd_3 = imagePathAd_3;
+        this.imagePathAd_4 = imagePathAd_4;
+        this.imagePathAd_5 = imagePathAd_5;
+        this.costAd = costAd;
+        this.peopleSourceAd = peopleSourceAd;
+        this.dateAd = dateAd;
+        this.type_money = type_money;
+        this.user = user;
+        this.numOfShowAd = numOfShowAd;
+        this.inFavoritUsers = inFavoritUsers;
+        this.isCheck = isCheck;
+        this.city = city;
+        this.categoty = categoty;
+        this.premium = premium;
+        this.activate = activate;
+        this.color = color;
+        this.size = size;
+        this.material = material;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public String getMaterial() {
+        return material;
+    }
+
+    public void setMaterial(String material) {
+        this.material = material;
     }
 
     public Ad(boolean premium, String categoty, String nameAd, String nameJobAd, String textAd, String imagePathAd_1, String imagePathAd_2, String imagePathAd_3, String imagePathAd_4, String imagePathAd_5, int costAd, String peopleSourceAd, long dateAd, String type_money, User user, int numOfShowAd, String inFavoritUsers, boolean isCheck, String city) {

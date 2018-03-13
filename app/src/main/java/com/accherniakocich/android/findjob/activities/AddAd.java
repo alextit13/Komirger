@@ -58,7 +58,10 @@ public class AddAd extends AppCompatActivity {
     private User user;
     private StorageReference storageRef;
     private ImageView image_ad_1, image_ad_2, image_ad_3, image_ad_4, image_ad_5;
-    private EditText edit_text_name_ad, edit_text_name_job_ad, edit_text_cost_job, edit_text_contacts_ad, edit_text_about_job_ad, city, consistance_auto, marka_auto, model_auto, type_of_body, colot, region, category, year_production_car, how_much_completed_road, type_of_engine, value_engine, transmission;
+    private EditText edit_text_name_ad, edit_text_name_job_ad, edit_text_cost_job, edit_text_contacts_ad,
+            edit_text_about_job_ad, city, consistance_auto, marka_auto, model_auto, type_of_body, colot,
+            region, category, year_production_car, how_much_completed_road, type_of_engine, value_engine, transmission
+            ,size,color,material;
     private CheckBox cb_obmen, rassrochka;
     private Spinner spinner_type_money, spinner_category, spinner_city;
     private Button button_cancel_ad, button_add_ad;
@@ -84,8 +87,10 @@ public class AddAd extends AppCompatActivity {
         StrictMode.setVmPolicy(builder.build());
         init();
     }
-
     private void init() {
+        size = (EditText) findViewById(R.id.size);
+        color = (EditText) findViewById(R.id.color);
+        material = (EditText) findViewById(R.id.material);
         consistance_auto = (EditText) findViewById(R.id.consistance_auto);
         marka_auto = (EditText) findViewById(R.id.marka_auto);
         model_auto = (EditText) findViewById(R.id.model_auto);
@@ -147,13 +152,11 @@ public class AddAd extends AppCompatActivity {
             edit_text_contacts_ad.setText(adFromEditDetail.getPeopleSourceAd() + "");
         }
     }
-
     private void completeSpinnerCity() {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,
                 _GLK.getListCitiesRussia(Arrays.asList(EnumCitiesRUSSIA.values()), "ВСЕ ГОРОДА"));
         spinner_city.setAdapter(adapter);
     }
-
     private void completeSpinnerCategory() {
         _GLK = new GENERATE_LISTS_CLASS();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext()
@@ -179,7 +182,6 @@ public class AddAd extends AppCompatActivity {
             }
         });
     }
-
     private void setTextsAuto() {
         consistance_auto.setHint("Состояние авто");
         marka_auto.setHint("Марка авто");
@@ -194,7 +196,6 @@ public class AddAd extends AppCompatActivity {
         value_engine.setHint("Объем");
         transmission.setHint("Тип трансмиссии");
     }
-
     private void setTexts() {
         consistance_auto.setHint("Количство комнат");
         marka_auto.setHint("Общая площадь");
@@ -209,7 +210,6 @@ public class AddAd extends AppCompatActivity {
         value_engine.setHint("Год постройки");
         transmission.setHint("Вода/гад/канализация");
     }
-
     private ArrayList<String> generateListForSpnner() {
         ArrayList<String> list = new ArrayList<>();
         list.add("$");
@@ -217,7 +217,6 @@ public class AddAd extends AppCompatActivity {
         list.add("€");
         return list;
     }
-
     public void onClickAd(View view) {
         switch (view.getId()) {
             case R.id.imageAd_1:
@@ -383,19 +382,16 @@ public class AddAd extends AppCompatActivity {
                 break;
         }
     }
-
     private void takePhotoFromGallery() {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST_AD);
     }
-
     private ArrayAdapter<String> generateAdapter(ArrayList<String> list) {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
         return adapter;
     }
-
     private void add_ad(String name_people, String name_job, int cost_job, String contacts, String about_job, String type_money, String city) {
         urlPathPhoto_1 = "";
         urlPathPhoto_2 = "";
@@ -414,12 +410,15 @@ public class AddAd extends AppCompatActivity {
                     "Пробег: " + how_much_completed_road.getText().toString() + "\n" +
                     "Тип двигателя: " + type_of_engine.getText().toString() + "\n" +
                     "Объем: " + value_engine.getText().toString() + "\n" +
-                    "Тип трансмиссии: " + transmission.getText().toString();
-            if (adFromEditDetail != null) {
+                    "Тип трансмиссии: " + transmission.getText().toString() + "\n" +
+                    "Размер: " +size.getText().toString()+ "\n" +
+                    "Цвет:" +color.getText().toString()+ "\n" +
+                    "Материал: " +material.getText().toString()+ "\n";
+            /*if (adFromEditDetail != null) {
                 ad = new Ad(false, spinner_category.getSelectedItem().toString(), name_people, name_job, about, urlPathPhoto_1, urlPathPhoto_2, urlPathPhoto_3, urlPathPhoto_4, urlPathPhoto_5, cost_job, contacts, adFromEditDetail.getDateAd(), type_money, user, 0, "", false, city);
             } else {
                 ad = new Ad(false, spinner_category.getSelectedItem().toString(), name_people, name_job, about, cost_job, contacts, new Date().getTime(), type_money, user, 0, "", false, city);
-            }
+            }*/
         } else if (spinner_category.getSelectedItem().toString().equals("НЕДВИЖИМОСТЬ")) {
             String about = "Количство комнат: " + consistance_auto.getText().toString() + "\n" +
                     "Общая площадь: " + marka_auto.getText().toString() + "\n" +
@@ -432,12 +431,15 @@ public class AddAd extends AppCompatActivity {
                     "Тип дома: " + how_much_completed_road.getText().toString() + "\n" +
                     "Инфраструктура: " + type_of_engine.getText().toString() + "\n" +
                     "Год постройки: " + value_engine.getText().toString() + "\n" +
-                    "Вода/гад/канализация: " + transmission.getText().toString();
-            if (adFromEditDetail != null) {
+                    "Вода/гад/канализация: " + transmission.getText().toString()+
+                    "Размер: " +size.getText().toString()+ "\n" +
+                    "Цвет:" +color.getText().toString()+ "\n" +
+                    "Материал: " +material.getText().toString()+ "\n";
+            /*if (adFromEditDetail != null) {
                 ad = new Ad(false, spinner_category.getSelectedItem().toString(), name_people, name_job, about, urlPathPhoto_1, urlPathPhoto_2, urlPathPhoto_3, urlPathPhoto_4, urlPathPhoto_5, cost_job, contacts, adFromEditDetail.getDateAd(), type_money, user, 0, "", false, city);
             } else {
                 ad = new Ad(false, spinner_category.getSelectedItem().toString(), name_people, name_job, about, cost_job, contacts, new Date().getTime(), type_money, user, 0, "", false, city);
-            }
+            }*/
         } else if (!spinner_category.getSelectedItem().toString().equals("НЕДВИЖИМОСТЬ") || !spinner_category.getSelectedItem().toString().equals("АВТО")){
             if (adFromEditDetail != null) {
                 ad = new Ad(false, spinner_category.getSelectedItem().toString(), name_people, name_job, about_job, urlPathPhoto_1, urlPathPhoto_2, urlPathPhoto_3, urlPathPhoto_4, urlPathPhoto_5, cost_job, contacts, adFromEditDetail.getDateAd(), type_money, user, 0, "", false, city);
@@ -471,7 +473,10 @@ public class AddAd extends AppCompatActivity {
                     "Пробег: " + how_much_completed_road.getText().toString() + "\n" +
                     "Тип двигателя: " + type_of_engine.getText().toString() + "\n" +
                     "Объем: " + value_engine.getText().toString() + "\n" +
-                    "Тип трансмиссии: " + transmission.getText().toString();
+                    "Тип трансмиссии: " + transmission.getText().toString()+
+                    "Размер: " +size.getText().toString()+ "\n" +
+                    "Цвет:" +color.getText().toString()+ "\n" +
+                    "Материал: " +material.getText().toString()+ "\n";
             if (adFromEditDetail != null) {
                 ad = new Ad(false, spinner_category.getSelectedItem().toString(), name_people, name_job, about, urlPathPhoto_1, urlPathPhoto_2, urlPathPhoto_3, urlPathPhoto_4, urlPathPhoto_5, cost_job, contacts, adFromEditDetail.getDateAd(), type_money, user, 0, "", false, city);
             } else {
@@ -489,7 +494,10 @@ public class AddAd extends AppCompatActivity {
                     "Тип дома: " + how_much_completed_road.getText().toString() + "\n" +
                     "Инфраструктура: " + type_of_engine.getText().toString() + "\n" +
                     "Год постройки: " + value_engine.getText().toString() + "\n" +
-                    "Вода/гад/канализация: " + transmission.getText().toString();
+                    "Вода/гад/канализация: " + transmission.getText().toString() +
+                    "Размер: " +size.getText().toString()+ "\n" +
+                    "Цвет:" +color.getText().toString()+ "\n" +
+                    "Материал: " +material.getText().toString()+ "\n";
             if (adFromEditDetail != null) {
                 ad = new Ad(false, spinner_category.getSelectedItem().toString(), name_people, name_job, about, urlPathPhoto_1, urlPathPhoto_2, urlPathPhoto_3, urlPathPhoto_4, urlPathPhoto_5, cost_job, contacts, adFromEditDetail.getDateAd(), type_money, user, 0, "", false, city);
             } else {
@@ -502,11 +510,16 @@ public class AddAd extends AppCompatActivity {
                 ad = new Ad(false, spinner_category.getSelectedItem().toString(), name_people, name_job, about_job, cost_job, contacts, new Date().getTime(), type_money, user, 0, "", false, city);
             }
         }
-        /*if (adFromEditDetail != null) {
-            ad = new Ad(false, spinner_category.getSelectedItem().toString(), name_people, name_job, about_job, urlPathPhoto_1, urlPathPhoto_2, urlPathPhoto_3, urlPathPhoto_4, urlPathPhoto_5, cost_job, contacts, adFromEditDetail.getDateAd(), type_money, user, 0, "", false, city);
+        String about =
+                "Размер: " +size.getText().toString()+ "\n" +
+                "Цвет:" +color.getText().toString()+ "\n" +
+                "Материал: " +material.getText().toString()+ "\n";
+        if (adFromEditDetail != null) {
+
+            ad = new Ad(false, spinner_category.getSelectedItem().toString(), name_people, name_job, about, urlPathPhoto_1, urlPathPhoto_2, urlPathPhoto_3, urlPathPhoto_4, urlPathPhoto_5, cost_job, contacts, adFromEditDetail.getDateAd(), type_money, user, 0, "", false, city);
         } else {
-            ad = new Ad(false, spinner_category.getSelectedItem().toString(), name_people, name_job, about_job, cost_job, contacts, new Date().getTime(), type_money, user, 0, "", false, city);
-        }*/
+            ad = new Ad(false, spinner_category.getSelectedItem().toString(), name_people, name_job, about, cost_job, contacts, new Date().getTime(), type_money, user, 0, "", false, city);
+        }
         ad.setImagePathAd_1(url);
         ad.setImagePathAd_2(url);
         ad.setImagePathAd_3(url);
