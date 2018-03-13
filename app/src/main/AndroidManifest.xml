@@ -137,11 +137,24 @@
         <activity android:name=".admin.AllUsersAdmin" />
         <activity
             android:name=".activities.review.RewiewActivity"
-            android:theme="@style/Base.Theme.AppCompat.Dialog"></activity>
+            android:theme="@style/Base.Theme.AppCompat.Dialog">
+        </activity>
         <activity
             android:name=".activities.OnModerate"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
-        <activity android:name=".activities.AddDataToBuildsAds"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        </activity>
+        <service
+            android:name=".notifications.Notifications">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
+        <service
+            android:name=".notifications.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

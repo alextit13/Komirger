@@ -14,6 +14,7 @@ import com.accherniakocich.android.findjob.R;
 import com.accherniakocich.android.findjob.activities.MainList;
 import com.accherniakocich.android.findjob.classes.User;
 import com.accherniakocich.android.findjob.fragments.RegistrationFragments;
+import com.accherniakocich.android.findjob.notifications.Notifications;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -48,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void checkIsDelete() {
+        Notifications mNotifies = new Notifications();
+        mNotifies.onTokenRefresh();
         Intent intent = getIntent();
         String delete = null;
         delete = intent.getStringExtra("delete_account");
