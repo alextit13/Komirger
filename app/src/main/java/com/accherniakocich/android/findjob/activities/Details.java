@@ -150,10 +150,12 @@ public class Details extends AppCompatActivity {
                     .into(circle_image_view_people);
         }
 
-        if (!user.getName().equals("")){
-            people_name.setText(user.getName());
-        }else{
-            people_name.setText(user.getNickName());
+        if (user!=null){
+            if (!user.getName().equals("")){
+                people_name.setText(user.getName());
+            }else{
+                people_name.setText(user.getNickName());
+            }
         }
 
 
@@ -230,11 +232,6 @@ public class Details extends AppCompatActivity {
         isUser(user);
 
         uploadImages();
-
-
-
-
-
         if (user==null||user.getNickName().equals(ad.getUser().getNickName())){
             message_detail.setVisibility(View.INVISIBLE);
         }

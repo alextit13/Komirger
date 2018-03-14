@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.accherniakocich.android.findjob.R;
 import com.accherniakocich.android.findjob.classes.Ad;
 import com.accherniakocich.android.findjob.classes.FindQuestionParameters;
+import com.accherniakocich.android.findjob.classes.User;
 import com.accherniakocich.android.findjob.classes.firebase.TakeDataForFind;
 import com.accherniakocich.android.findjob.classes.square_otto.BusStation;
 import com.accherniakocich.android.findjob.classes.square_otto.Event;
@@ -56,6 +57,8 @@ public class FragmentFind extends Fragment{
     private int swich = 0;
     private GENERATE_LISTS_CLASS _GLT;
     private ReciveFindResultData _mRecieveInterface;
+    private ArrayList<Ad>list = new ArrayList<>();
+    private User user;
 
     @Nullable
     @Override
@@ -104,7 +107,9 @@ public class FragmentFind extends Fragment{
         edit_text_find.setAdapter(mAdapter);
     }
 
-    public void mFragmentConstructor(Activity a){
+    public void mFragmentConstructor(Activity a, ArrayList<Ad> l, User u){
+        user = u;
+        list = l;
         activity = a;
     }
 
@@ -204,6 +209,6 @@ public class FragmentFind extends Fragment{
         );
 
         FindLogic _mFindLogic = new FindLogic();
-        _mFindLogic.toFindQuestionParameters(_m_FqP,activity);
+        _mFindLogic.toFindQuestionParameters(_m_FqP,activity,list,user);
     }
 }
