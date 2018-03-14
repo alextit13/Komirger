@@ -37,6 +37,7 @@ public class FindResult extends AppCompatActivity{
             mListResult.setAdapter(
                     new BoxAdapter(
                             this,(ArrayList<Ad>) getIntent().getSerializableExtra("list")
+                            ,null
                     )
             );
             mListResult.setOnItemClickListener(

@@ -18,11 +18,13 @@ import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.accherniakocich.android.findjob.R;
 import com.accherniakocich.android.findjob.adapters.BoxAdapter;
+import com.accherniakocich.android.findjob.admin.classes.PremAd;
 import com.accherniakocich.android.findjob.classes.Ad;
 import com.accherniakocich.android.findjob.classes.User;
 import com.google.android.gms.ads.MobileAds;
@@ -40,9 +42,9 @@ public class MainList extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
 
     private ProgressBar pr_b;
-    private GridView list;
+    private ListView list;
     private ArrayList <Ad> listAd;
-    private TextView text_view_name;
+    private ArrayList <PremAd> listPremium = new ArrayList<>();
     private FirebaseAuth mAuth;
     private User user;
     private FirebaseDatabase database;
@@ -68,9 +70,6 @@ public class MainList extends AppCompatActivity
     }
 
     private void init() {
-
-
-
         find_main_screen = (ImageView)findViewById(R.id.find_main_screen);
         find_main_screen.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,10 +94,7 @@ public class MainList extends AppCompatActivity
         reference = database.getReference();
         listAd = new ArrayList<>();
 
-        list = (GridView)findViewById(R.id.list);
-        list.setNumColumns(1);
-        list.setVerticalSpacing(10);
-        list.setHorizontalSpacing(10);
+        list = (ListView) findViewById(R.id.list);
 
         pr_b = (ProgressBar)findViewById(R.id.pr_b);
 
@@ -176,14 +172,10 @@ public class MainList extends AppCompatActivity
 
     private void downlodList(String category_download_list){
 
-
-
         reference.child("ads").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 listAd.clear();
-
-
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
                     if (postSnapshot.getValue(Ad.class).isCheck()){
                         if (category_download_list.equals("ВСЕ КАТЕГОРИИ")){
@@ -194,6 +186,7 @@ public class MainList extends AppCompatActivity
                     }
                 }
                 sortPremiumAds();
+                //getPremiumAds();
                 adapter();
             }
 
@@ -214,16 +207,15 @@ public class MainList extends AppCompatActivity
     }
 
     private void adapter(){
+        //getPremiumAds();
         if (listAd.size()!=0){
             if (user==null){
                 adapter = new BoxAdapter(this,listAd);
-                list.setAdapter(adapter);
-                pr_b.setVisibility(View.INVISIBLE);
             }else{
                 adapter = new BoxAdapter(this,listAd,user);
-                list.setAdapter(adapter);
-                pr_b.setVisibility(View.INVISIBLE);
             }
+            pr_b.setVisibility(View.INVISIBLE);
+            list.setAdapter(adapter);
         }
     }
 

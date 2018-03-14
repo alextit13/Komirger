@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:padding="10dp"
+    android:layout_gravity="start"
+    android:gravity="start"
+    android:orientation="horizontal"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:background="@drawable/premium_background"
+    android:alpha="0.8"
+    xmlns:tools="http://schemas.android.com/tools">
+    <TextView
+        android:lines="1"
+        android:textAlignment="center"
+        android:fontFamily="serif"
+        android:textSize="20sp"
+        android:textColor="#fff7aa"
+        tools:text="Новые окна Fabric!"
+        android:id="@+id/name_premium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/name_premium"
+        android:textAlignment="center"
+        android:fontFamily="serif"
+        android:textSize="18sp"
+        android:textColor="#fff"
+        tools:text="Пария новых окон Fabric уже на складе! Спешите! \n +358464564"
+        android:id="@+id/about_premium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

@@ -6,19 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.accherniakocich.android.findjob.admin.AdminPanel">
-    <ListView
+    <FrameLayout
         android:layout_above="@id/navigation_panel_admin"
-        android:id="@+id/admin_list"
-        android:layout_margin="5dp"
+        android:id="@+id/container_admin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    </ListView>
-    <ProgressBar
-        android:id="@+id/progress_bar_admin"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    </FrameLayout>
     <LinearLayout
         android:id="@+id/navigation_panel_admin"
         android:layout_alignParentBottom="true"
@@ -32,8 +25,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
         <ImageView
+            android:id="@+id/premium"
             android:layout_weight="1"
-            app:srcCompat="@drawable/list_users"
+            app:srcCompat="@drawable/premium"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
         <ImageView

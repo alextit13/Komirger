@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.accherniakocich.android.findjob.R;
+import com.accherniakocich.android.findjob.admin.classes.PremAd;
 import com.accherniakocich.android.findjob.classes.Ad;
 import com.accherniakocich.android.findjob.classes.User;
 import com.google.firebase.storage.StorageReference;
@@ -65,7 +66,6 @@ public class BoxAdapter extends BaseAdapter {
 
     @Override
     public int getItemViewType(int position) {
-
         return position;
     }
 
@@ -77,7 +77,6 @@ public class BoxAdapter extends BaseAdapter {
         if (view == null) {
             view = lInflater.inflate(R.layout.item_list, parent, false);
         }
-
         Ad ad = getAd(position);
 
         ((TextView) view.findViewById(R.id.tvText)).setText(ad.getNameJobAd());
@@ -87,10 +86,6 @@ public class BoxAdapter extends BaseAdapter {
         }else{
             about_job = about_job;
         }
-
-
-        //((ImageView)view.findViewById(R.id.eye)).setVisibility(View.INVISIBLE);
-
         String outputPattern = "dd MMM";
         SimpleDateFormat outputFormat = new SimpleDateFormat(outputPattern);
         Date date = new Date(ad.getDateAd());
@@ -122,6 +117,7 @@ public class BoxAdapter extends BaseAdapter {
             view.setBackgroundColor(Color.parseColor("#e3ffae"));
 
         }
+
         return view;
     }
 

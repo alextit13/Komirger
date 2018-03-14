@@ -32,7 +32,7 @@ public class FindResults extends AppCompatActivity {
         list_with_find_result = (GridView) findViewById(R.id.list_with_find_result);
         Intent intent = getIntent();
         list = (ArrayList<Ad>) intent.getSerializableExtra("results");
-        BoxAdapter adapter = new BoxAdapter(this,list);
+        BoxAdapter adapter = new BoxAdapter(this,list,null);
         if (list.size()!=0){
             list_with_find_result.setAdapter(adapter);
         }else{

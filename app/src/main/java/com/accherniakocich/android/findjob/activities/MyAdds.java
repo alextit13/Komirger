@@ -61,7 +61,7 @@ public class MyAdds extends AppCompatActivity {
                 if (dataSnapshot.getValue(Ad.class).getUser().getNickName().equals(user.getNickName())){
                     //Log.d(MainActivity.LOG_TAG,"dataSnapshot = "+ dataSnapshot);
                     list.add(dataSnapshot.getValue(Ad.class));
-                    BoxAdapter adapter = new BoxAdapter(MyAdds.this,list);
+                    BoxAdapter adapter = new BoxAdapter(MyAdds.this,list,null);
                     list_view_my_adds.setAdapter(adapter);
                     pb_my_adds.setVisibility(View.INVISIBLE);
                     tve.setVisibility(View.INVISIBLE);

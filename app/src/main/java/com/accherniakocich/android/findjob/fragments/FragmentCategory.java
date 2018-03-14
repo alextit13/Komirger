@@ -71,7 +71,7 @@ public class FragmentCategory extends Fragment{
     @Subscribe
     public void mGettingListResult(ArrayList<Ad> list){
         listAd=list;
-        mAdapter = new BoxAdapter(mContext,listAd);
+        mAdapter = new BoxAdapter(mContext,listAd,null);
         listView.setAdapter(mAdapter);
     }
 }

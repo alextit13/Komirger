@@ -150,4 +150,8 @@
     <string name="color">Цвет</string>
     <string name="material">Материал</string>
     <string name="error_registration">Вы неправильно ввели \n данные для регистрации</string>
+    <string name="premium_1">Добавить объявление</string>
+    <string name="name_ad">Название объявления</string>
+    <string name="rewiew_ad">Описание объявления</string>
+    <string name="complete">Сохранить</string>
 </resources>
