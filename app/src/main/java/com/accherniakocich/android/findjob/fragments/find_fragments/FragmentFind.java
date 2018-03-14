@@ -41,7 +41,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class FragmentFind extends Fragment{
-    private Context context;
+    private Activity activity;
     @BindView(R.id.frame_layout_find)FrameLayout mFrameLayout;
     @BindView(R.id.edit_text_find)AutoCompleteTextView edit_text_find;
     @BindView(R.id.premium)Button premium;
@@ -55,7 +55,6 @@ public class FragmentFind extends Fragment{
 
     private int swich = 0;
     private GENERATE_LISTS_CLASS _GLT;
-
     private ReciveFindResultData _mRecieveInterface;
 
     @Nullable
@@ -87,13 +86,13 @@ public class FragmentFind extends Fragment{
     }
 
     private void completeCategories() {
-        ArrayAdapter mAdapterCategories = new ArrayAdapter(context,android.R.layout.simple_list_item_1,
+        ArrayAdapter mAdapterCategories = new ArrayAdapter(activity,android.R.layout.simple_list_item_1,
                 _GLT.getListCategories(Arrays.asList(EnumForCategories.values()),"ВСЕ КАТЕГОРИИ"));
         spinner_category_find.setAdapter(mAdapterCategories);
     }
 
     private void completeCities() {
-        ArrayAdapter mAdapterCities = new ArrayAdapter (context,android.R.layout.simple_spinner_item,
+        ArrayAdapter mAdapterCities = new ArrayAdapter (activity,android.R.layout.simple_spinner_item,
                 _GLT.getListCitiesRussia(Arrays.asList(EnumCitiesRUSSIA.values()),"ВСЕ ГОРОДА"));
         spinner_city_find.setAdapter(mAdapterCities);
         _GLT = null;
@@ -101,12 +100,12 @@ public class FragmentFind extends Fragment{
 
     @Subscribe
     public void mOnCompleteAutocompleteEtitText(Event event){
-        ArrayAdapter mAdapter = new ArrayAdapter(context,android.R.layout.simple_list_item_1,event.getProduct());
+        ArrayAdapter mAdapter = new ArrayAdapter(activity,android.R.layout.simple_list_item_1,event.getProduct());
         edit_text_find.setAdapter(mAdapter);
     }
 
-    public void mFragmentConstructor(Context c){
-        context = c;
+    public void mFragmentConstructor(Activity a){
+        activity = a;
     }
 
     @OnClick(R.id.premium)public void bullonPrivateClick(Button mPremiumButton){
@@ -205,6 +204,6 @@ public class FragmentFind extends Fragment{
         );
 
         FindLogic _mFindLogic = new FindLogic();
-        _mFindLogic.toFindQuestionParameters(_m_FqP,context);
+        _mFindLogic.toFindQuestionParameters(_m_FqP,activity);
     }
 }

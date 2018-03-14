@@ -1,5 +1,6 @@
 package com.accherniakocich.android.findjob.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -16,6 +17,7 @@ public class Find extends AppCompatActivity implements ReciveFindResultData{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find);
+
         FragmentFind mFragmentFind = new FragmentFind();
         getFragmentManager().beginTransaction()
                 .add(R.id.find_container,mFragmentFind,"mFragmentFind")
@@ -25,10 +27,13 @@ public class Find extends AppCompatActivity implements ReciveFindResultData{
 
     @Override
     public void getListAds(ArrayList<Ad> listresultAds) {
-        FragmentFindResult mFragmentFindResult = new FragmentFindResult();
+        Intent intent = new Intent(Find.this,FindResult.class);
+        intent.putExtra("list",listresultAds);
+        startActivity(intent);
+        /*FragmentFindResult mFragmentFindResult = new FragmentFindResult();
         getFragmentManager().beginTransaction()
                 .replace(R.id.find_container,mFragmentFindResult)
                 .commit();
-        mFragmentFindResult.setContextFragment(Find.this,listresultAds);
+        mFragmentFindResult.setContextFragment(Find.this,listresultAds);*/
     }
 }
