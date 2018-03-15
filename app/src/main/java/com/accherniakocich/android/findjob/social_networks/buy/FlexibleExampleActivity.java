@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 import com.accherniakocich.android.findjob.R;
+import com.accherniakocich.android.findjob.classes.User;
 import com.cloudipsp.android.Card;
 import com.cloudipsp.android.CardInputLayout;
 import com.cloudipsp.android.Cloudipsp;
@@ -17,27 +18,30 @@ import com.cloudipsp.android.CloudipspWebView;
 import com.cloudipsp.android.Currency;
 import com.cloudipsp.android.Order;
 import com.cloudipsp.android.Receipt;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class FlexibleExampleActivity extends Activity implements View.OnClickListener {
     private static final int MERCHANT_ID = 1396424;
 
-    private EditText editAmount;
-    private Spinner spinnerCcy;
+    //private EditText editAmount;
+    //private Spinner spinnerCcy;
     private EditText editEmail;
     private EditText editDescription;
     private CardInputLayout cardLayout;
     private CloudipspWebView webView;
 
     private Cloudipsp cloudipsp;
+    private int MmMamount = 3000; // 30 рублей
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flexible_example);
 
-        findViewById(R.id.btn_amount).setOnClickListener(this);
-        editAmount = (EditText) findViewById(R.id.edit_amount);
-        spinnerCcy = (Spinner) findViewById(R.id.spinner_ccy);
+        //findViewById(R.id.btn_amount).setOnClickListener(this);
+        //editAmount = (EditText) findViewById(R.id.edit_amount);
+        //spinnerCcy = (Spinner) findViewById(R.id.spinner_ccy);
         editEmail = (EditText) findViewById(R.id.edit_email);
         editDescription = (EditText) findViewById(R.id.edit_description);
         cardLayout = (CardInputLayout) findViewById(R.id.card_layout);
@@ -46,7 +50,7 @@ public class FlexibleExampleActivity extends Activity implements View.OnClickLis
         webView = (CloudipspWebView) findViewById(R.id.web_view);
         cloudipsp = new Cloudipsp(MERCHANT_ID, webView);
 
-        spinnerCcy.setAdapter(new ArrayAdapter<Currency>(this, android.R.layout.simple_spinner_item, Currency.values()));
+        //spinnerCcy.setAdapter(new ArrayAdapter<Currency>(this, android.R.layout.simple_spinner_item, Currency.values()));
     }
 
     @Override
@@ -57,31 +61,33 @@ public class FlexibleExampleActivity extends Activity implements View.OnClickLis
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btn_amount:
+            /*case R.id.btn_amount:
                 fillTest();
-                break;
+                break;*/
             case R.id.btn_pay:
                 processPay();
                 break;
         }
     }
 
-    private void fillTest() {
+    /*private void fillTest() {
         editAmount.setText("1");
         editEmail.setText("test@test.com");
         editDescription.setText("test payment");
-    }
+    }*/
 
     private void processPay() {
-        editAmount.setError(null);
+        //editAmount.setError(null);
         editEmail.setError(null);
         editDescription.setError(null);
 
         final int amount;
         try {
-            amount = Integer.valueOf(editAmount.getText().toString());
+            amount = MmMamount;
+            //amount = Integer.valueOf(editAmount.getText().toString());
+
         } catch (Exception e) {
-            editAmount.setError(getString(R.string.e_invalid_amount));
+            //editAmount.setError(getString(R.string.e_invalid_amount));
             return;
         }
 
@@ -104,7 +110,8 @@ public class FlexibleExampleActivity extends Activity implements View.OnClickLis
             });
 
             if (card != null) {
-                final Currency currency = (Currency) spinnerCcy.getSelectedItem();
+                //final Currency currency = (Currency) spinnerCcy.getSelectedItem();
+                final Currency currency = Currency.RUB;
                 final Order order = new Order(amount, currency, "vb_" + System.currentTimeMillis(), description, email);
                 order.setLang(Order.Lang.ru);
 
@@ -128,13 +135,36 @@ public class FlexibleExampleActivity extends Activity implements View.OnClickLis
                         } else if (e instanceof Cloudipsp.Exception.NetworkAccess) {
                             Toast.makeText(FlexibleExampleActivity.this, "Network error", Toast.LENGTH_LONG).show();
                         } else {
-                            Toast.makeText(FlexibleExampleActivity.this, "Payment Failed", Toast.LENGTH_LONG).show();
+                            refreshUser();
+                            Toast.makeText(FlexibleExampleActivity.this, "Платеж успешно произведен", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(FlexibleExampleActivity.this, "Payment Failed", Toast.LENGTH_LONG).show();
+
                         }
                         e.printStackTrace();
                     }
                 });
             }
         }
+    }
+
+    private void refreshUser() {
+        FirebaseDatabase.getInstance().getReference().child("users")
+                .child(
+                        ((User)getIntent().getSerializableExtra("user"))
+                        .getNickName()
+                )
+                .child(
+                       "premium"
+                )
+                .setValue(true)
+                    .addOnSuccessListener(
+                            new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Toast.makeText(FlexibleExampleActivity.this, "Теперь Вы премиум!", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                    );
     }
 
     @Override

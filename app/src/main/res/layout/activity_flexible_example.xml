@@ -12,21 +12,21 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
+            <!--<TextView
                 android:id="@+id/btn_amount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/lbl_amount" />
+                android:text="@string/lbl_amount" />-->
 
-            <EditText
-                android:id="@+id/edit_amount"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="7dp"
-                android:inputType="number"
-                android:maxLength="7" />
+            <!--<EditText-->
+                <!--android:id="@+id/edit_amount"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="7dp"-->
+                <!--android:inputType="number"-->
+                <!--android:maxLength="7" />-->
 
-            <TextView
+            <!--<TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7dp"
@@ -36,7 +36,7 @@
                 android:id="@+id/spinner_ccy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="7dp" />
+                android:layout_marginTop="7dp" />-->
 
             <TextView
                 android:layout_width="match_parent"

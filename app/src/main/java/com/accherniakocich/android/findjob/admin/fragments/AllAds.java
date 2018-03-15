@@ -63,7 +63,7 @@ public class AllAds extends Fragment implements GetDataFromFirebase{
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Intent intent = new Intent(getActivity(), Details.class);
                         intent.putExtra("ad",list.get(position));
-                        intent.putExtra("user",new User("admin@admin.com","admin","admin","","",0,false,1));
+                        intent.putExtra("user",new User("admin@admin.com","admin","admin","","",0,false,1,false));
                         intent.putExtra("fromWhereIntent",3);
                         startActivity(intent);
                     }

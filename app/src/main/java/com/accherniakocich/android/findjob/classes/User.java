@@ -11,11 +11,12 @@ public class User implements Serializable{
     private int rating;
     private boolean my_locate;
     private int blocked;
+    private boolean premium;
 
     public User() {
     }
 
-    public User(String email, String nickName, String name, String image_path, String about_me, int rating, boolean my_locate, int blocked) {
+    public User(String email, String nickName, String name, String image_path, String about_me, int rating, boolean my_locate, int blocked, boolean premium) {
         this.email = email;
         this.nickName = nickName;
         this.name = name;
@@ -24,6 +25,15 @@ public class User implements Serializable{
         this.rating = rating;
         this.my_locate = my_locate;
         this.blocked = blocked;
+        this.premium = premium;
+    }
+
+    public boolean isPremium() {
+        return premium;
+    }
+
+    public void setPremium(boolean premium) {
+        this.premium = premium;
     }
 
     public int getBlocked() {
