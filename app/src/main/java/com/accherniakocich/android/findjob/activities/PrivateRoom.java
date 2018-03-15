@@ -1,16 +1,13 @@
 package com.accherniakocich.android.findjob.activities;
 
 import android.app.AlertDialog;
-import android.app.DialogFragment;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.media.Rating;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,9 +22,8 @@ import android.widget.Toast;
 import com.accherniakocich.android.findjob.R;
 import com.accherniakocich.android.findjob.activities.log_and_reg.MainActivity;
 import com.accherniakocich.android.findjob.classes.User;
-import com.accherniakocich.android.findjob.classes.square_otto.BusStation;
 import com.accherniakocich.android.findjob.edit_profile.EditProfile;
-import com.accherniakocich.android.findjob.social_networks.vk.BuyPremium;
+import com.accherniakocich.android.findjob.social_networks.buy.FlexibleExampleActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -42,6 +38,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
+
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -62,6 +59,12 @@ public class PrivateRoom extends AppCompatActivity {
     private TextView name_user_private_room,email_user_private_room,log_in_user_private_room;
     private Button message_to_developers_button,delete_user,buy_premium_account;
     @BindView(R.id.rating_private_room)RatingBar rating_private_room;
+
+
+    private static final String CLIENT_ID = "A3473DE3211F584BDE0F11AE411FF69696BA9210419193E5885587E9C49F20EE";
+    private static final String HOST = "https://demomoney.yandex.ru";
+    private static final int REQUEST_CODE = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -129,7 +132,11 @@ public class PrivateRoom extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+        //super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
+            // payment was successful
+            Log.d("yandex_money", "Платеж успешно совершено");
+        }
         if(requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
                 && data != null && data.getData() != null )
         {
@@ -239,7 +246,7 @@ public class PrivateRoom extends AppCompatActivity {
             case R.id.buy_premium_account:
                 //
                 buyPremiumAccount();
-                Snackbar.make(buy_premium_account,"Функция в разработке!",Snackbar.LENGTH_SHORT).show();
+                //Snackbar.make(buy_premium_account,"Функция в разработке!",Snackbar.LENGTH_SHORT).show();
                 break;
                     default:
                         break;
@@ -304,7 +311,45 @@ public class PrivateRoom extends AppCompatActivity {
     }
 
     private void buyPremiumAccount() {
-        Intent intent = new Intent(PrivateRoom.this, BuyPremium.class);
+
+        Intent intent = new Intent(PrivateRoom.this, FlexibleExampleActivity.class);
+        intent.putExtra("user",user);
         startActivity(intent);
     }
+
+    /*private static class ApiData {
+
+        final String clientId;
+        final String host;
+
+        private ApiData(String clientId, String host) {
+            this.clientId = clientId;
+            this.host = host;
+        }
+
+        static ApiData getFromProperties(Context context) {
+            Properties prop = loadProperties(context);
+            return new ApiData(prop.getProperty("client_id"), prop.getProperty("host"));
+        }
+
+        private static Properties loadProperties(Context context) {
+            InputStream is = null;
+            try {
+                is = context.getAssets().open("app.properties");
+                Properties prop = new Properties();
+                prop.load(is);
+                return prop;
+            } catch (IOException e) {
+                throw new IllegalStateException("no properties file found", e);
+            } finally {
+                if (is != null) {
+                    try {
+                        is.close();
+                    } catch (IOException e) {
+                        // does nothing
+                    }
+                }
+            }
+        }
+    }*/
 }

@@ -28,7 +28,7 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
-        android:name=".social_networks.vk.VKInicialization"
+        android:name=".social_networks.buy.VKInicialization"
         android:allowBackup="true"
         android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
@@ -125,9 +125,6 @@
             android:name=".activities.Find"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".social_networks.vk.BuyPremium"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
             android:name=".activities.ActivityContainer"
             android:parentActivityName=".activities.MainList"
             android:screenOrientation="portrait"
@@ -137,10 +134,10 @@
         <activity android:name=".admin.AllUsersAdmin" />
         <activity
             android:name=".activities.review.RewiewActivity"
-            android:theme="@style/Base.Theme.AppCompat.Dialog"></activity>
+            android:theme="@style/Base.Theme.AppCompat.Dialog" />
         <activity
             android:name=".activities.OnModerate"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
         <service android:name=".notifications.Notifications">
             <intent-filter>
@@ -153,7 +150,8 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".activities.FindResult"></activity>
+        <activity android:name=".activities.FindResult" />
+        <activity android:name=".social_networks.buy.FlexibleExampleActivity"></activity>
     </application>
 
 </manifest>

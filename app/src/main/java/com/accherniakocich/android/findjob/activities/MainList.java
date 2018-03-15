@@ -83,21 +83,14 @@ public class MainList extends AppCompatActivity
         initDrawer();
         MobileAds.initialize(getApplicationContext(),"ca-app-pub-8152940176557798~4343674587");
         mAuth = FirebaseAuth.getInstance();
-
-
         Intent intent = getIntent();
         user = (User) intent.getSerializableExtra("user");// если тут пришел null то мы вошли как гость
-
         mStorageRef = FirebaseStorage.getInstance().getReference();
-
         database = FirebaseDatabase.getInstance();
         reference = database.getReference();
         listAd = new ArrayList<>();
-
         list = (ListView) findViewById(R.id.list);
-
         pr_b = (ProgressBar)findViewById(R.id.pr_b);
-
         downlodList("ВСЕ КАТЕГОРИИ");
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -171,7 +164,6 @@ public class MainList extends AppCompatActivity
     }
 
     private void downlodList(String category_download_list){
-
         reference.child("ads").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -186,7 +178,6 @@ public class MainList extends AppCompatActivity
                     }
                 }
                 sortPremiumAds();
-                //getPremiumAds();
                 adapter();
             }
 

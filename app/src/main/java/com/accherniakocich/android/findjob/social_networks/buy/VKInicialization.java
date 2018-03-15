@@ -1,4 +1,4 @@
-package com.accherniakocich.android.findjob.social_networks.vk;
+package com.accherniakocich.android.findjob.social_networks.buy;
 
 import android.app.Application;
 
