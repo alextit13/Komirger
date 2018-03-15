@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -53,19 +54,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
         android:orientation="horizontal"
         android:paddingBottom="2dp" >
 
+        <ImageView
+            android:id="@+id/attach"
+            app:srcCompat="@drawable/attach"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
 
         <EditText
+            android:layout_width="match_parent"
             android:id="@+id/edit_text_message"
-            android:layout_width="252dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignTop="@+id/button1"
-            android:layout_toLeftOf="@+id/sendMessageButton"
             android:layout_weight="0.72"
             android:ems="10"
             android:maxHeight="80dp" />
@@ -76,8 +77,6 @@
             android:id="@+id/button_send_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
             android:background="@drawable/ic_send_black_24dp" />
     </LinearLayout>
 </RelativeLayout>

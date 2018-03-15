@@ -52,5 +52,9 @@
             android:layout_gravity="end|center"
             android:layout_width="20dp"
             android:layout_height="20dp" />
+        <ImageView
+            android:id="@+id/image_attach"
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
     </LinearLayout>
 </LinearLayout>

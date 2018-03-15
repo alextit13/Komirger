@@ -9,16 +9,26 @@ public class Message implements Serializable{
     private String text_message;
     private String date_message;
     private boolean readOrNot;
+    private String uri_download_attach;
 
     public Message() {
     }
 
-    public Message(String name_user_from, String name_user_to, String text_message, String date_message, boolean readOrNot) {
+    public Message(String name_user_from, String name_user_to, String text_message, String date_message, boolean readOrNot, String uri_download_attach) {
         this.name_user_from = name_user_from;
         this.name_user_to = name_user_to;
         this.text_message = text_message;
         this.date_message = date_message;
         this.readOrNot = readOrNot;
+        this.uri_download_attach = uri_download_attach;
+    }
+
+    public String getUri_download_attach() {
+        return uri_download_attach;
+    }
+
+    public void setUri_download_attach(String uri_download_attach) {
+        this.uri_download_attach = uri_download_attach;
     }
 
     public String getName_user_from() {

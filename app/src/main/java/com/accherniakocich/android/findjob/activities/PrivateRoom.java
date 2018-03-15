@@ -316,40 +316,4 @@ public class PrivateRoom extends AppCompatActivity {
         intent.putExtra("user",user);
         startActivity(intent);
     }
-
-    /*private static class ApiData {
-
-        final String clientId;
-        final String host;
-
-        private ApiData(String clientId, String host) {
-            this.clientId = clientId;
-            this.host = host;
-        }
-
-        static ApiData getFromProperties(Context context) {
-            Properties prop = loadProperties(context);
-            return new ApiData(prop.getProperty("client_id"), prop.getProperty("host"));
-        }
-
-        private static Properties loadProperties(Context context) {
-            InputStream is = null;
-            try {
-                is = context.getAssets().open("app.properties");
-                Properties prop = new Properties();
-                prop.load(is);
-                return prop;
-            } catch (IOException e) {
-                throw new IllegalStateException("no properties file found", e);
-            } finally {
-                if (is != null) {
-                    try {
-                        is.close();
-                    } catch (IOException e) {
-                        // does nothing
-                    }
-                }
-            }
-        }
-    }*/
 }

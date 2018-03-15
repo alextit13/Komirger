@@ -1,6 +1,7 @@
 package com.accherniakocich.android.findjob.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -11,11 +12,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.accherniakocich.android.findjob.activities.Details;
 import com.accherniakocich.android.findjob.activities.log_and_reg.MainActivity;
 import com.accherniakocich.android.findjob.R;
 import com.accherniakocich.android.findjob.classes.Message;
 import com.accherniakocich.android.findjob.classes.User;
+import com.accherniakocich.android.findjob.viewer_images.ViewerImages;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -77,11 +81,20 @@ public class DialogAdapter extends BaseAdapter {
         LinearLayout lls= (LinearLayout)view.findViewById(R.id.subparent);
 
 
-
-        Log.d(MainActivity.LOG_TAG,"message.getName_user_to() = " + message.getName_user_to());
-        Log.d(MainActivity.LOG_TAG,"user = " + user.getNickName());
-
-
+        if (!message.getUri_download_attach().equals("")){
+            Picasso.with(ctx).load(message.getUri_download_attach())
+                    .resize(100,100)
+                    .centerCrop()
+                    .into(((ImageView)view.findViewById(R.id.image_attach)));
+            ((ImageView)view.findViewById(R.id.image_attach)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(ctx, ViewerImages.class);
+                    intent.putExtra("link",message.getUri_download_attach());
+                    ctx.startActivity(intent);
+                }
+            });
+        }
 
         if (message.getName_user_to().equals(user.getNickName()) &&!message.isReadOrNot()){
             Log.d(MainActivity.LOG_TAG,"change to true");
