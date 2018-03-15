@@ -53,11 +53,11 @@ public class ListUserAdapter extends BaseAdapter{
 
         ((TextView) view.findViewById(R.id.list_users_nick_name)).setText(user.getNickName());
 
-        Picasso.with(ctx)
-                .load(objects.get(position).getImage_path())
-                .into((CircleImageView) view.findViewById(R.id.profile_image_list_users));
-        //Log.d(MainActivity.LOG_TAG,"image = " + mStorageRef+ad.getImagePathAd().substring(31));
-        //Log.d(MainActivity.LOG_TAG,"url = " + ad.getImagePathAd());
+        if (!objects.get(position).getImage_path().equals("")){
+            Picasso.with(ctx)
+                    .load(objects.get(position).getImage_path())
+                    .into((CircleImageView) view.findViewById(R.id.profile_image_list_users));
+        }
         return view;
     }
 

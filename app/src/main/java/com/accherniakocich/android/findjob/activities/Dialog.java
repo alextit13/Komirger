@@ -67,7 +67,6 @@ public class Dialog extends AppCompatActivity {
 
     private ImageView attach;
     private Uri filePath;
-    private long date;
 
     private String path_image = "";
 
@@ -81,7 +80,6 @@ public class Dialog extends AppCompatActivity {
     }
 
     private void init() {
-        date = new Date().getTime();
         list = new ArrayList<>();
         list_messages = (ListView)findViewById(R.id.list_messages);
         user_I = (User) getIntent().getSerializableExtra("user_1"); // я
@@ -132,7 +130,7 @@ public class Dialog extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                sendMessage(edit_text_message.getText().toString(),user_I,user_You, date);
+                sendMessage(edit_text_message.getText().toString(),user_I,user_You, new Date().getTime());
             }
         });
         circle_image_view_communicator = (CircleImageView)findViewById(R.id.circle_image_view_communicator);
@@ -248,7 +246,8 @@ public class Dialog extends AppCompatActivity {
     private void sendMessage(String s, User user_i, User user_you, long date) {
         reference
                 .child(date+"")
-                .setValue(new Message(user_i.getNickName(),user_you.getNickName(),s,date+"",false,path_image));
+                .setValue(new Message(user_i.getNickName(),user_you.getNickName(),s,
+                        date+"",false,path_image));
         edit_text_message.setText("");
         path_image = "";
     }

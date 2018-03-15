@@ -84,5 +84,6 @@ dependencies {
 
     // yandex money
     compile 'com.cloudipsp:android:1.03'
+    implementation 'com.android.support:cardview-v7:27.1.0'
 }
 apply plugin: 'com.google.gms.google-services'
