@@ -311,7 +311,6 @@ public class PrivateRoom extends AppCompatActivity {
     }
 
     private void buyPremiumAccount() {
-
         Intent intent = new Intent(PrivateRoom.this, FlexibleExampleActivity.class);
         intent.putExtra("user",user);
         startActivity(intent);

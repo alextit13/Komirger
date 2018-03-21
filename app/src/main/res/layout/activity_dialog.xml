@@ -71,12 +71,12 @@
             android:ems="10"
             android:maxHeight="80dp" />
 
-        <ImageButton
+        <ImageView
             android:layout_margin="4dp"
             android:layout_gravity="center"
             android:id="@+id/button_send_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_send_black_24dp" />
+            app:srcCompat="@drawable/ic_send_black_24dp" />
     </LinearLayout>
 </RelativeLayout>

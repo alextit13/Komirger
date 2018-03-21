@@ -58,7 +58,7 @@ public class Dialog extends AppCompatActivity {
     private FirebaseDatabase database;
     private DatabaseReference reference;
     private EditText edit_text_message;
-    private ImageButton button_send_message;
+    private ImageView button_send_message;
 
     private CircleImageView circle_image_view_communicator;
     private TextView text_view_communicator;
@@ -125,7 +125,7 @@ public class Dialog extends AppCompatActivity {
         });
 
         edit_text_message = (EditText)findViewById(R.id.edit_text_message);
-        button_send_message = (ImageButton)findViewById(R.id.button_send_message);
+        button_send_message = (ImageView) findViewById(R.id.button_send_message);
         button_send_message.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

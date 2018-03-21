@@ -93,9 +93,16 @@ public class Details extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (!text_number_of_phone.getText().toString().equals("")){
-                    Intent intent = new Intent(Intent.ACTION_DIAL);
-                    intent.setData(Uri.parse("tel:" + ad.getPeopleSourceAd()));
-                    startActivity(intent);
+                    if (user!=null){
+                        try {
+                            Intent intent = new Intent(Intent.ACTION_DIAL);
+                            intent.setData(Uri.parse("tel:" + ad.getPeopleSourceAd()));
+                            startActivity(intent);
+                        }catch (Exception e){
+                            Toast.makeText(Details.this,
+                                    "К сожалению, пользователь указал неверный номер. Свяжитесь посредством чата", Toast.LENGTH_SHORT).show();
+                        }
+                    }
                 }
             }
         });
@@ -258,8 +265,10 @@ public class Details extends AppCompatActivity {
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.getValue().toString().contains(user.getNickName())){
-                    fab_favorit.setImageResource(R.drawable.ic_favorite_gold_24dp);
+                if (user!=null){
+                    if (dataSnapshot.getValue().toString().contains(user.getNickName())){
+                        fab_favorit.setImageResource(R.drawable.ic_favorite_gold_24dp);
+                    }
                 }
             }
 

@@ -160,6 +160,13 @@
                 android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:text="@string/btn_pay" />
+
+            <TextView
+                android:id="@+id/offer"
+                android:textAlignment="center"
+                android:text="@string/offer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
         </LinearLayout>
     </ScrollView>
 

@@ -1,6 +1,8 @@
 package com.accherniakocich.android.findjob.social_networks.buy;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -8,6 +10,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.accherniakocich.android.findjob.R;
 import com.accherniakocich.android.findjob.classes.User;
@@ -26,6 +29,7 @@ public class FlexibleExampleActivity extends Activity implements View.OnClickLis
 
     //private EditText editAmount;
     //private Spinner spinnerCcy;
+    private TextView offer;
     private EditText editEmail;
     private EditText editDescription;
     private CardInputLayout cardLayout;
@@ -42,6 +46,7 @@ public class FlexibleExampleActivity extends Activity implements View.OnClickLis
         //findViewById(R.id.btn_amount).setOnClickListener(this);
         //editAmount = (EditText) findViewById(R.id.edit_amount);
         //spinnerCcy = (Spinner) findViewById(R.id.spinner_ccy);
+        offer = (TextView) findViewById(R.id.offer);
         editEmail = (EditText) findViewById(R.id.edit_email);
         editDescription = (EditText) findViewById(R.id.edit_description);
         cardLayout = (CardInputLayout) findViewById(R.id.card_layout);
@@ -49,6 +54,29 @@ public class FlexibleExampleActivity extends Activity implements View.OnClickLis
 
         webView = (CloudipspWebView) findViewById(R.id.web_view);
         cloudipsp = new Cloudipsp(MERCHANT_ID, webView);
+
+        offer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(FlexibleExampleActivity.this);
+                builder.setTitle("ОФЕРТА");
+                builder.setMessage("Тут текст оферты");
+                builder.setPositiveButton("ПРИНЯТЬ", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                builder.setNegativeButton("ОТМЕНА", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        finish();
+                    }
+                });
+                builder.show();
+            }
+        });
 
         //spinnerCcy.setAdapter(new ArrayAdapter<Currency>(this, android.R.layout.simple_spinner_item, Currency.values()));
     }
@@ -65,9 +93,29 @@ public class FlexibleExampleActivity extends Activity implements View.OnClickLis
                 fillTest();
                 break;*/
             case R.id.btn_pay:
-                processPay();
+                offerCheck();
                 break;
         }
+    }
+
+    private void offerCheck() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(FlexibleExampleActivity.this);
+        builder.setTitle("Пользовательское соглашение");
+        builder.setMessage("Тут текст пользовательского соглашения");
+        builder.setPositiveButton("ПРИНЯТЬ", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                processPay();
+            }
+        });
+        builder.setNegativeButton("ОТМЕНА", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                finish();
+            }
+        });
+        builder.show();
     }
 
     /*private void fillTest() {
