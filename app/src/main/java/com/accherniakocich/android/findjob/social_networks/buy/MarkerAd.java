@@ -4,16 +4,16 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.accherniakocich.android.findjob.R;
-import com.accherniakocich.android.findjob.classes.User;
+import com.accherniakocich.android.findjob.classes.Ad;
 import com.accherniakocich.android.findjob.classes.WriteReadText;
 import com.cloudipsp.android.Card;
 import com.cloudipsp.android.CardInputLayout;
@@ -22,10 +22,11 @@ import com.cloudipsp.android.CloudipspWebView;
 import com.cloudipsp.android.Currency;
 import com.cloudipsp.android.Order;
 import com.cloudipsp.android.Receipt;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class FlexibleExampleActivity extends Activity implements View.OnClickListener {
+public class MarkerAd extends Activity implements View.OnClickListener {
     private static final int MERCHANT_ID = 1396424;
 
     //private EditText editAmount;
@@ -36,7 +37,8 @@ public class FlexibleExampleActivity extends Activity implements View.OnClickLis
     private CardInputLayout cardLayout;
     private CloudipspWebView webView;
     private Cloudipsp cloudipsp;
-    private int MmMamount = 3000; // 30 рублей
+    private Ad ad;
+    private int MmMamount = 1000; // 30 рублей
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,10 +51,11 @@ public class FlexibleExampleActivity extends Activity implements View.OnClickLis
         findViewById(R.id.btn_pay).setOnClickListener(this);
         webView = (CloudipspWebView) findViewById(R.id.web_view);
         cloudipsp = new Cloudipsp(MERCHANT_ID, webView);
+        ad = (Ad) getIntent().getSerializableExtra("ad");
         offer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(FlexibleExampleActivity.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(MarkerAd.this);
                 builder.setTitle("ОФЕРТА");
                 builder.setMessage("Тут текст оферты");
                 builder.setPositiveButton("ПРИНЯТЬ", new DialogInterface.OnClickListener() {
@@ -91,7 +94,7 @@ public class FlexibleExampleActivity extends Activity implements View.OnClickLis
     }
 
     private void offerCheck() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(FlexibleExampleActivity.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(MarkerAd.this);
         builder.setTitle("Пользовательское соглашение");
         builder.setMessage(WriteReadText.readFromFile(this));
         builder.setPositiveButton("ПРИНЯТЬ", new DialogInterface.OnClickListener() {
@@ -152,7 +155,7 @@ public class FlexibleExampleActivity extends Activity implements View.OnClickLis
                 cloudipsp.pay(card, order, new Cloudipsp.PayCallback() {
                     @Override
                     public void onPaidProcessed(Receipt receipt) {
-                        Toast.makeText(FlexibleExampleActivity.this, "Paid " + receipt.status.name() + "\nPaymentId:" + receipt.paymentId, Toast.LENGTH_LONG).show();
+                        Toast.makeText(MarkerAd.this, "Paid " + receipt.status.name() + "\nPaymentId:" + receipt.paymentId, Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -160,17 +163,17 @@ public class FlexibleExampleActivity extends Activity implements View.OnClickLis
                         if (e instanceof Cloudipsp.Exception.Failure) {
                             Cloudipsp.Exception.Failure f = (Cloudipsp.Exception.Failure) e;
 
-                            Toast.makeText(FlexibleExampleActivity.this, "Failure\nErrorCode: " +
+                            Toast.makeText(MarkerAd.this, "Failure\nErrorCode: " +
                                     f.errorCode + "\nMessage: " + f.getMessage() + "\nRequestId: " + f.requestId, Toast.LENGTH_LONG).show();
                         } else if (e instanceof Cloudipsp.Exception.NetworkSecurity) {
-                            Toast.makeText(FlexibleExampleActivity.this, "Network security error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(MarkerAd.this, "Network security error: " + e.getMessage(), Toast.LENGTH_LONG).show();
                         } else if (e instanceof Cloudipsp.Exception.ServerInternalError) {
-                            Toast.makeText(FlexibleExampleActivity.this, "Internal server error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(MarkerAd.this, "Internal server error: " + e.getMessage(), Toast.LENGTH_LONG).show();
                         } else if (e instanceof Cloudipsp.Exception.NetworkAccess) {
-                            Toast.makeText(FlexibleExampleActivity.this, "Network error", Toast.LENGTH_LONG).show();
+                            Toast.makeText(MarkerAd.this, "Network error", Toast.LENGTH_LONG).show();
                         } else {
                             refreshUser();
-                            Toast.makeText(FlexibleExampleActivity.this, "Платеж успешно произведен", Toast.LENGTH_LONG).show();
+                            Toast.makeText(MarkerAd.this, "Платеж успешно произведен", Toast.LENGTH_LONG).show();
                             //Toast.makeText(FlexibleExampleActivity.this, "Payment Failed", Toast.LENGTH_LONG).show();
 
                         }
@@ -182,23 +185,16 @@ public class FlexibleExampleActivity extends Activity implements View.OnClickLis
     }
 
     private void refreshUser() {
-        FirebaseDatabase.getInstance().getReference().child("users")
-                .child(
-                        ((User)getIntent().getSerializableExtra("user"))
-                        .getNickName()
-                )
-                .child(
-                       "premium"
-                )
-                .setValue(true)
-                    .addOnSuccessListener(
-                            new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    Toast.makeText(FlexibleExampleActivity.this, "Теперь Вы премиум!", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                    );
+        FirebaseDatabase.getInstance().getReference().child("ads").child(ad.getDateAd()+"").removeValue().addOnCompleteListener(
+                new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        ad.setPremium(true);
+                        FirebaseDatabase.getInstance().getReference().child("ads").child(ad.getDateAd()+"").setValue(ad);
+                        Toast.makeText(MarkerAd.this, "Объявление успешно выделено!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
     }
 
     @Override

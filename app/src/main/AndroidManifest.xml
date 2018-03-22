@@ -151,7 +151,15 @@
         </service>
 
         <activity android:name=".activities.FindResult" />
-        <activity android:name=".social_networks.buy.FlexibleExampleActivity"></activity>
+        <activity android:name=".social_networks.buy.FlexibleExampleActivity">
+
+        </activity>
+        <activity android:name=".social_networks.buy.MarkerAd">
+
+        </activity>
+        <activity android:name=".social_networks.buy.BuyUpAd">
+
+        </activity>
     </application>
 
 </manifest>

@@ -2,6 +2,7 @@ package com.accherniakocich.android.findjob.activities;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,14 +11,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.accherniakocich.android.findjob.R;
 import com.accherniakocich.android.findjob.activities.review.RewiewActivity;
 import com.accherniakocich.android.findjob.adapters.BoxAdapter;
 import com.accherniakocich.android.findjob.classes.Ad;
 import com.accherniakocich.android.findjob.classes.User;
+import com.accherniakocich.android.findjob.social_networks.buy.BuyUpAd;
+import com.accherniakocich.android.findjob.social_networks.buy.MarkerAd;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,6 +32,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class MyAdds extends AppCompatActivity {
 
@@ -111,21 +119,51 @@ public class MyAdds extends AppCompatActivity {
         list_view_my_adds.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                LinearLayout dialog = (LinearLayout) getLayoutInflater().inflate(R.layout.dialog, null);
                 AlertDialog.Builder builder = new AlertDialog.Builder(MyAdds.this);
-                builder.setMessage("ПРОДАНО?");
-                builder.setTitle("Вы продали товар/услугу?");
-                builder.setPositiveButton("ДА", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(MyAdds.this,RewiewActivity.class);
-                        intent.putExtra("add",list.get(position));
-                        startActivity(intent);
-                    }
-                })
-                .show();
+                builder.setView(dialog);
+                ((TextView)dialog.findViewById(R.id.dialog_up_ad))
+                        .setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                // поднять объявление
+                                upAd(list.get(position));
+                            }
+                        });
+                ((TextView)dialog.findViewById(R.id.dialog_seller))
+                        .setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                // продано
+                                Intent intent = new Intent(MyAdds.this,RewiewActivity.class);
+                                intent.putExtra("add",list.get(position));
+                                startActivity(intent);
+                            }
+                        });
+                ((TextView)dialog.findViewById(R.id.dialog_marker))
+                        .setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                // выделить объявление
+                                marker(list.get(position));
+                            }
+                        });
+                builder.show();
                 return true;
             }
         });
+    }
+
+    private void marker(Ad ad) {
+        Intent intent = new Intent(MyAdds.this, MarkerAd.class);
+        intent.putExtra("ad",ad);
+        startActivity(intent);
+    }
+
+    private void upAd(Ad ad) {
+        Intent intent = new Intent(MyAdds.this, BuyUpAd.class);
+        intent.putExtra("ad",ad);
+        startActivity(intent);
     }
 
     @Override

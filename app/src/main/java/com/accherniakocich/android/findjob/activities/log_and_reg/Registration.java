@@ -101,10 +101,24 @@ public class Registration extends AppCompatActivity {
                 break;
             case R.id.reg:
 
-                container_frame_registration.setAlpha(0.3f);
-                container_frame_registration.setClickable(false);
-                progress_bar_registration.setVisibility(View.VISIBLE);
-                registration(et_email.getText().toString(),et_password.getText().toString(),et_fio.getText().toString());
+                new AlertDialog.Builder(this)
+                        .setTitle("СОГЛАСШЕНИЕ")
+                        .setMessage(R.string.off)
+                        .setPositiveButton("Принимаю", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                container_frame_registration.setAlpha(0.3f);
+                                container_frame_registration.setClickable(false);
+                                progress_bar_registration.setVisibility(View.VISIBLE);
+                                registration(et_email.getText().toString(),et_password.getText().toString(),et_fio.getText().toString());
+                            }
+                        }).setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                })
+                        .show();
         }
     }
 
