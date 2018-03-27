@@ -16,8 +16,30 @@ public class GENERATE_LISTS_CLASS {
         L.add(0,header);
         return L;
     }
+
+
     public ArrayList<String>getListCitiesRussia(List<EnumCitiesRUSSIA>list,String header){
         list = Arrays.asList(EnumCitiesRUSSIA.values());
+        ArrayList<String>L = new ArrayList<>();
+        for (int i = 0; i<list.size();i++){
+            L.add(list.get(i).name());
+        }
+        Collections.sort(L.subList(1, list.size()));
+        L.add(0,header);
+        return L;
+    }
+    public ArrayList<String>getListCitiesBelarus(List<EnumCitiesBELARUS>list,String header){
+        list = Arrays.asList(EnumCitiesBELARUS.values());
+        ArrayList<String>L = new ArrayList<>();
+        for (int i = 0; i<list.size();i++){
+            L.add(list.get(i).name());
+        }
+        Collections.sort(L.subList(1, list.size()));
+        L.add(0,header);
+        return L;
+    }
+    public ArrayList<String>getListCitiesFrance(List<EnumCitiesFRANCE>list,String header){
+        list = Arrays.asList(EnumCitiesFRANCE.values());
         ArrayList<String>L = new ArrayList<>();
         for (int i = 0; i<list.size();i++){
             L.add(list.get(i).name());

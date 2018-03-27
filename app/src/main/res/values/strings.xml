@@ -37,11 +37,11 @@
     <string name="add_ad">Подать объявление</string>
     <string name="add_ad_text">Информация об объявлении</string>
     <string name="add_information">Добавьте данные</string>
-    <string name="name">Ваше имя</string>
+    <string name="name">Название объявления</string>
     <string name="name_job">Название работы</string>
-    <string name="cost_job">Цена работы</string>
+    <string name="cost_job">Цена</string>
     <string name="contacts">Телефон</string>
-    <string name="add_about_job">Описание работы</string>
+    <string name="add_about_job">Описание</string>
     <string name="photo_image">Фото работы</string>
     <string name="send_message">Отправить</string>
     <string name="message_to_developers">Сообщение разработчикам</string>
@@ -340,7 +340,7 @@ Comirger оставляет за собой право по собственно
 11.2. Ввиду безвозмездности использования Сервисов, предоставляемых Пользователю в рамках настоящего Пользовательского соглашения, положения законодательства о защите прав потребителей не подлежат применению к отношениям между Пользователем и Comirger.
 11.3. Все споры, возникшие в рамках настоящего Соглашения, должны быть переданы на рассмотрение в суд в соответствии с территориальной подсудностью по месту нахождения Comirger .
 11.4. Признание отдельных частей настоящего Пользовательского соглашения недействительными не отменяет действие других положений настоящего Пользовательского соглашения.</string>
-
+    <string name="country">Страна</string>
 
 
 </resources>

@@ -79,46 +79,6 @@
                 android:layout_height="wrap_content" />
 
 
-
-            <EditText
-                android:id="@+id/size"
-                android:fontFamily="sans-serif-condensed"
-                android:layout_marginStart="80dp"
-                android:layout_marginEnd="80dp"
-                android:layout_marginBottom="10dp"
-                android:hint="@string/size"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <EditText
-                android:id="@+id/color"
-                android:fontFamily="sans-serif-condensed"
-                android:layout_marginStart="80dp"
-                android:layout_marginEnd="80dp"
-                android:layout_marginBottom="10dp"
-                android:hint="@string/color"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <EditText
-                android:id="@+id/material"
-                android:fontFamily="sans-serif-condensed"
-                android:layout_marginStart="80dp"
-                android:layout_marginEnd="80dp"
-                android:layout_marginBottom="10dp"
-                android:hint="@string/material"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-
-
-            <EditText
-                android:id="@+id/name_job_ad"
-                android:fontFamily="sans-serif-condensed"
-                android:layout_marginStart="80dp"
-                android:layout_marginEnd="80dp"
-                android:layout_marginBottom="10dp"
-                android:hint="@string/name_job"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -171,6 +131,22 @@
                 android:textColor="@color/red"
                 android:gravity="center"
                 android:layout_gravity="center"
+                android:text="@string/country"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <Spinner
+                android:spinnerMode="dialog"
+                android:id="@+id/spinner_country"
+                android:layout_marginStart="80dp"
+                android:layout_marginEnd="80dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+            </Spinner>
+            <TextView
+                android:textSize="18sp"
+                android:textColor="@color/red"
+                android:gravity="center"
+                android:layout_gravity="center"
                 android:text="@string/city"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -182,19 +158,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp">
             </Spinner>
-            <EditText
-                android:id="@+id/city"
-                android:fontFamily="sans-serif-condensed"
-                android:padding="10dp"
-                android:hint="@string/city"
-                android:layout_marginStart="80dp"
-                android:layout_marginEnd="80dp"
-                android:inputType="textMultiLine"
-                android:gravity="top|left"
-                android:maxLines="10"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:scrollbars="vertical" />
+
             <TextView
                 android:textSize="18sp"
                 android:textColor="@color/red"
@@ -253,7 +217,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
                 <EditText
-                    android:id="@+id/colot"
+                    android:id="@+id/color"
                     android:hint="@string/colot"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -319,8 +283,6 @@
 
 
             </LinearLayout>
-
-
 
             <TableRow
                 android:layout_gravity="bottom"
