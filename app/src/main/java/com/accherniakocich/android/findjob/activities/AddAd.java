@@ -34,7 +34,15 @@ import com.accherniakocich.android.findjob.classes.Ad;
 import com.accherniakocich.android.findjob.classes.User;
 import com.accherniakocich.android.findjob.enums.EnumCitiesBELARUS;
 import com.accherniakocich.android.findjob.enums.EnumCitiesFRANCE;
+import com.accherniakocich.android.findjob.enums.EnumCitiesGERMANY;
+import com.accherniakocich.android.findjob.enums.EnumCitiesITALY;
+import com.accherniakocich.android.findjob.enums.EnumCitiesKAZAKSTAN;
+import com.accherniakocich.android.findjob.enums.EnumCitiesKIRGISTAN;
 import com.accherniakocich.android.findjob.enums.EnumCitiesRUSSIA;
+import com.accherniakocich.android.findjob.enums.EnumCitiesSPAIN;
+import com.accherniakocich.android.findjob.enums.EnumCitiesTADJIKISTAN;
+import com.accherniakocich.android.findjob.enums.EnumCitiesUKRAIN;
+import com.accherniakocich.android.findjob.enums.EnumCitiesUZBEKISTAN;
 import com.accherniakocich.android.findjob.enums.EnumForCategories;
 import com.accherniakocich.android.findjob.enums.GENERATE_LISTS_CLASS;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -183,27 +191,35 @@ public class AddAd extends AppCompatActivity {
                         break;
                     case "Германия":
                         //
+                        completeSpinnerCity(_GLK.getListCitiesGermany(Arrays.asList(EnumCitiesGERMANY.values()),"ВСЕ ГОРОДА"));
                         break;
                     case "Италия":
                         //
+                        completeSpinnerCity(_GLK.getListCitiesItalia(Arrays.asList(EnumCitiesITALY.values()),"ВСЕ ГОРОДА"));
                         break;
                     case "Казахстан":
                         //
+                        completeSpinnerCity(_GLK.getListCitiesKazakstan(Arrays.asList(EnumCitiesKAZAKSTAN.values()),"ВСЕ ГОРОДА"));
                         break;
                     case "Кыргызстан":
                         //
+                        completeSpinnerCity(_GLK.getListCitiesKirgizstan(Arrays.asList(EnumCitiesKIRGISTAN.values()),"ВСЕ ГОРОДА"));
                         break;
                     case "Испания":
                         //
+                        completeSpinnerCity(_GLK.getListCitiesEspaniolla(Arrays.asList(EnumCitiesSPAIN.values()),"ВСЕ ГОРОДА"));
                         break;
                     case "Таджикистан":
                         //
+                        completeSpinnerCity(_GLK.getListCitiesTadjikistan(Arrays.asList(EnumCitiesTADJIKISTAN.values()),"ВСЕ ГОРОДА"));
                         break;
                     case "Украина":
                         //
+                        completeSpinnerCity(_GLK.getListCitiesUkraina(Arrays.asList(EnumCitiesUKRAIN.values()),"ВСЕ ГОРОДА"));
                         break;
                     case "Узбекистан":
                         //
+                        completeSpinnerCity(_GLK.getListCitiesUzbekistan(Arrays.asList(EnumCitiesUZBEKISTAN.values()),"ВСЕ ГОРОДА"));
                         break;
                 }
             }
@@ -454,12 +470,24 @@ public class AddAd extends AppCompatActivity {
         return adapter;
     }
     private void add_ad(String name_people, String name_job, int cost_job, String contacts, String about_job, String type_money, String city) {
+
+        String about = "";
+        if (!edit_text_about_job_ad.getText().toString().equals("")){
+            about = edit_text_about_job_ad.getText().toString();
+        }
+
+
+        if (!spinner_city.getSelectedItem().toString().equals("ВСЕ ГОРОДА")){
+            city = spinner_country.getSelectedItem().toString() + ", "
+                    + spinner_city.getSelectedItem().toString();
+        }
+
+
         urlPathPhoto_1 = "";
         urlPathPhoto_2 = "";
         urlPathPhoto_3 = "";
         urlPathPhoto_4 = "";
         urlPathPhoto_5 = "";
-        String about = "";
         if (spinner_category.getSelectedItem().toString().equals("АВТО")) {
             about = "Состояние авто: " + consistance_auto.getText().toString() + "\n" +
                     "Марка авто: " + marka_auto.getText().toString() + "\n" +

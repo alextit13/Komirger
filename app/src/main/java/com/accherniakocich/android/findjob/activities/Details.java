@@ -74,11 +74,6 @@ public class Details extends AppCompatActivity {
         final Intent intent = getIntent();
         ad = (Ad) intent.getSerializableExtra("ad");
         HSV = (HorizontalScrollView) findViewById(R.id.HSV);
-        indicator_1 = (ImageView) findViewById(R.id.indicator_1);
-        indicator_2 = (ImageView) findViewById(R.id.indicator_2);
-        indicator_3 = (ImageView) findViewById(R.id.indicator_3);
-        indicator_4 = (ImageView) findViewById(R.id.indicator_4);
-        indicator_5 = (ImageView) findViewById(R.id.indicator_5);
         sctoll_details = (ScrollView) findViewById(R.id.sctoll_details);
         message_detail = (FloatingActionButton)findViewById(R.id.message_detail);
         message_detail.setOnClickListener(new View.OnClickListener() {

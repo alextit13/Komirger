@@ -48,4 +48,84 @@ public class GENERATE_LISTS_CLASS {
         L.add(0,header);
         return L;
     }
+    public ArrayList<String>getListCitiesGermany(List<EnumCitiesGERMANY>list,String header){
+        list = Arrays.asList(EnumCitiesGERMANY.values());
+        ArrayList<String>L = new ArrayList<>();
+        for (int i = 0; i<list.size();i++){
+            L.add(list.get(i).name());
+        }
+        Collections.sort(L.subList(1, list.size()));
+        L.add(0,header);
+        return L;
+    }
+    public ArrayList<String>getListCitiesItalia(List<EnumCitiesITALY>list,String header){
+        list = Arrays.asList(EnumCitiesITALY.values());
+        ArrayList<String>L = new ArrayList<>();
+        for (int i = 0; i<list.size();i++){
+            L.add(list.get(i).name());
+        }
+        Collections.sort(L.subList(1, list.size()));
+        L.add(0,header);
+        return L;
+    }
+    public ArrayList<String>getListCitiesKazakstan(List<EnumCitiesKAZAKSTAN>list,String header){
+        list = Arrays.asList(EnumCitiesKAZAKSTAN.values());
+        ArrayList<String>L = new ArrayList<>();
+        for (int i = 0; i<list.size();i++){
+            L.add(list.get(i).name());
+        }
+        Collections.sort(L.subList(1, list.size()));
+        L.add(0,header);
+        return L;
+    }
+    public ArrayList<String>getListCitiesKirgizstan(List<EnumCitiesKIRGISTAN>list,String header){
+        list = Arrays.asList(EnumCitiesKIRGISTAN.values());
+        ArrayList<String>L = new ArrayList<>();
+        for (int i = 0; i<list.size();i++){
+            L.add(list.get(i).name());
+        }
+        Collections.sort(L.subList(1, list.size()));
+        L.add(0,header);
+        return L;
+    }
+    public ArrayList<String>getListCitiesEspaniolla(List<EnumCitiesSPAIN>list,String header){
+        list = Arrays.asList(EnumCitiesSPAIN.values());
+        ArrayList<String>L = new ArrayList<>();
+        for (int i = 0; i<list.size();i++){
+            L.add(list.get(i).name());
+        }
+        Collections.sort(L.subList(1, list.size()));
+        L.add(0,header);
+        return L;
+    }
+    public ArrayList<String>getListCitiesTadjikistan(List<EnumCitiesTADJIKISTAN>list,String header){
+        list = Arrays.asList(EnumCitiesTADJIKISTAN.values());
+        ArrayList<String>L = new ArrayList<>();
+        for (int i = 0; i<list.size();i++){
+            L.add(list.get(i).name());
+        }
+        Collections.sort(L.subList(1, list.size()));
+        L.add(0,header);
+        return L;
+    }
+    public ArrayList<String>getListCitiesUkraina(List<EnumCitiesUKRAIN>list,String header){
+        list = Arrays.asList(EnumCitiesUKRAIN.values());
+        ArrayList<String>L = new ArrayList<>();
+        for (int i = 0; i<list.size();i++){
+            L.add(list.get(i).name());
+        }
+        Collections.sort(L.subList(1, list.size()));
+        L.add(0,header);
+        return L;
+    }
+    public ArrayList<String>getListCitiesUzbekistan(List<EnumCitiesUZBEKISTAN>list,String header){
+        list = Arrays.asList(EnumCitiesUZBEKISTAN.values());
+        ArrayList<String>L = new ArrayList<>();
+        for (int i = 0; i<list.size();i++){
+            L.add(list.get(i).name());
+        }
+        Collections.sort(L.subList(1, list.size()));
+        L.add(0,header);
+        return L;
+    }
 }
