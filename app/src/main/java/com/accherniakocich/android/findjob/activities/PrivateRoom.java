@@ -51,7 +51,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class PrivateRoom extends AppCompatActivity {
     private FrameLayout container_fragment;
-    public static final int PICK_IMAGE_REQUEST = 71;
     private CircleImageView profile_image;
     private User user;
     private String link;
@@ -112,12 +111,9 @@ public class PrivateRoom extends AppCompatActivity {
 
             }
         });
-        Log.d(MainActivity.LOG_TAG,"name = " + user.getName());
-
         name_user_private_room.setText(user.getName());
         email_user_private_room.setText(user.getEmail());
         log_in_user_private_room.setText(user.getNickName());
-        Log.d("log","user rating = " + user.getRating());
         if (user.getRating()!=0){
             rating_private_room.setRating(user.getRating());
         }
@@ -127,17 +123,13 @@ public class PrivateRoom extends AppCompatActivity {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+        startActivityForResult(Intent.createChooser(intent, "Выберите фото"), 71);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        //super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
-            // payment was successful
-            Log.d("yandex_money", "Платеж успешно совершено");
-        }
-        if(requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 71 && resultCode == RESULT_OK
                 && data != null && data.getData() != null )
         {
             filePath = data.getData();

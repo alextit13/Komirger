@@ -28,8 +28,6 @@ import com.google.firebase.database.FirebaseDatabase;
 public class FlexibleExampleActivity extends Activity implements View.OnClickListener {
     private static final int MERCHANT_ID = 1396424;
 
-    //private EditText editAmount;
-    //private Spinner spinnerCcy;
     private TextView offer;
     private EditText editEmail;
     private EditText editDescription;
@@ -54,7 +52,7 @@ public class FlexibleExampleActivity extends Activity implements View.OnClickLis
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(FlexibleExampleActivity.this);
                 builder.setTitle("ОФЕРТА");
-                builder.setMessage("Тут текст оферты");
+                builder.setMessage(getResources().getString(R.string.off));
                 builder.setPositiveButton("ПРИНЯТЬ", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

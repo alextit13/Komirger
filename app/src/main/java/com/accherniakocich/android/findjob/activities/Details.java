@@ -71,12 +71,14 @@ public class Details extends AppCompatActivity {
     }
 
     private void init() {
+        final Intent intent = getIntent();
+        ad = (Ad) intent.getSerializableExtra("ad");
         HSV = (HorizontalScrollView) findViewById(R.id.HSV);
         indicator_1 = (ImageView) findViewById(R.id.indicator_1);
-        indicator_2 = (ImageView) findViewById(R.id.indicator_1);
-        indicator_3 = (ImageView) findViewById(R.id.indicator_1);
-        indicator_4 = (ImageView) findViewById(R.id.indicator_1);
-        indicator_5 = (ImageView) findViewById(R.id.indicator_1);
+        indicator_2 = (ImageView) findViewById(R.id.indicator_2);
+        indicator_3 = (ImageView) findViewById(R.id.indicator_3);
+        indicator_4 = (ImageView) findViewById(R.id.indicator_4);
+        indicator_5 = (ImageView) findViewById(R.id.indicator_5);
         sctoll_details = (ScrollView) findViewById(R.id.sctoll_details);
         message_detail = (FloatingActionButton)findViewById(R.id.message_detail);
         message_detail.setOnClickListener(new View.OnClickListener() {
@@ -139,7 +141,7 @@ public class Details extends AppCompatActivity {
 //            }
 //        });
 
-        final Intent intent = getIntent();
+
 
         int fromWhereIntent = intent.getIntExtra("fromWhereIntent",1);
         if (fromWhereIntent==1){
@@ -152,16 +154,17 @@ public class Details extends AppCompatActivity {
             admin = new Admin("admin@admin.com","admin",new Date().getTime()+"");
         }
         user = (User) intent.getSerializableExtra("user");
-        if (user!=null&&!user.getImage_path().equals("")){
-            Picasso.with(this).load(user.getImage_path())
+        if (ad.getUser()!=null&&!ad.getUser().getImage_path().equals("")){
+            Picasso.with(this).load(ad.getUser().getImage_path())
                     .into(circle_image_view_people);
         }
 
-        if (user!=null){
-            if (!user.getName().equals("")){
-                people_name.setText(user.getName());
-            }else{
-                people_name.setText(user.getNickName());
+        if (ad!=null&&ad.getUser()!=null){
+            User u = ad.getUser();
+            if (!u.getName().equals("")){
+                people_name.setText(u.getName());
+            }else if (!u.getNickName().equals("")){
+                people_name.setText(u.getNickName());
             }
         }
 
@@ -225,7 +228,7 @@ public class Details extends AppCompatActivity {
             });
         }
 
-        ad = (Ad) intent.getSerializableExtra("ad");
+
         name_ad_details.setText(ad.getNameJobAd());
         adress_detail.setText(ad.getCity());
 
@@ -385,10 +388,10 @@ public class Details extends AppCompatActivity {
         layoutParams_4.width = wirth;
         layoutParams_5.width = wirth;
         image_content_details_1.setLayoutParams(layoutParams_1);
-        image_content_details_2.setLayoutParams(layoutParams_1);
-        image_content_details_3.setLayoutParams(layoutParams_1);
-        image_content_details_4.setLayoutParams(layoutParams_1);
-        image_content_details_5.setLayoutParams(layoutParams_1);
+        image_content_details_2.setLayoutParams(layoutParams_2);
+        image_content_details_3.setLayoutParams(layoutParams_3);
+        image_content_details_4.setLayoutParams(layoutParams_4);
+        image_content_details_5.setLayoutParams(layoutParams_5);
 
         changeIndicators(wirth);
     }
@@ -487,50 +490,5 @@ public class Details extends AppCompatActivity {
 
             }
         });
-    }
-
-    public class Application extends android.app.Application {
-        VKAccessTokenTracker vkAccessTokenTracker = new VKAccessTokenTracker() {
-            @Override
-            public void onVKAccessTokenChanged(VKAccessToken oldToken, VKAccessToken newToken) {
-                if (newToken == null) {
-                    Toast.makeText(Application.this, "Вход выполнен", Toast.LENGTH_SHORT).show();
-                    postVk();
-                }
-            }
-        };
-        @Override
-        public void onCreate() {
-            super.onCreate();
-            vkAccessTokenTracker.startTracking();
-            VKSdk.initialize(this);
-        }
-    }
-
-    private void postVk() {
-        VKShareDialogBuilder builder = new VKShareDialogBuilder();
-        builder.setText(ad.getTextAd()+"\n"+ad.getCostAd()+ad.getType_money()+"\n"+ad.getNameAd()+"\n"
-                +ad.getNameJobAd());
-        builder.setAttachmentImages(new VKUploadImage[]{
-                new VKUploadImage(((BitmapDrawable)image_content_details_1.getDrawable()).getBitmap(), VKImageParameters.pngImage())
-        });
-        builder.setShareDialogListener(new VKShareDialog.VKShareDialogListener() {
-            @Override
-            public void onVkShareComplete(int postId) {
-                // recycle bitmap if need
-                Toast.makeText(Details.this, "onVkShareComplete", Toast.LENGTH_SHORT).show();
-            }
-            @Override
-            public void onVkShareCancel() {
-                // recycle bitmap if need
-                Toast.makeText(Details.this, "onVkShareCancel", Toast.LENGTH_SHORT).show();
-            }
-            @Override
-            public void onVkShareError(VKError error) {
-                // recycle bitmap if need
-                Toast.makeText(Details.this, "onVkShareError", Toast.LENGTH_SHORT).show();
-            }
-        });
-        builder.show(getFragmentManager(), "Поделиться");
     }
 }
