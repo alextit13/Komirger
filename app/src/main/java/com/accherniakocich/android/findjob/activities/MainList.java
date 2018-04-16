@@ -27,6 +27,7 @@ import com.accherniakocich.android.findjob.adapters.BoxAdapter;
 import com.accherniakocich.android.findjob.admin.classes.PremAd;
 import com.accherniakocich.android.findjob.classes.Ad;
 import com.accherniakocich.android.findjob.classes.User;
+import com.accherniakocich.android.findjob.services.ServiceNotificationUsers;
 import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -67,6 +68,11 @@ public class MainList extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         init();
+        startServiceNotification();
+    }
+
+    private void startServiceNotification() {
+        startService(new Intent(this,ServiceNotificationUsers.class));
     }
 
     private void init() {

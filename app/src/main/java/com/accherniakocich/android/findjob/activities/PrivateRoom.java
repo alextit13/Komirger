@@ -59,11 +59,6 @@ public class PrivateRoom extends AppCompatActivity {
     private Button message_to_developers_button,delete_user,buy_premium_account;
     @BindView(R.id.rating_private_room)RatingBar rating_private_room;
 
-
-    private static final String CLIENT_ID = "A3473DE3211F584BDE0F11AE411FF69696BA9210419193E5885587E9C49F20EE";
-    private static final String HOST = "https://demomoney.yandex.ru";
-    private static final int REQUEST_CODE = 1;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,12 +106,32 @@ public class PrivateRoom extends AppCompatActivity {
 
             }
         });
-        name_user_private_room.setText(user.getName());
-        email_user_private_room.setText(user.getEmail());
-        log_in_user_private_room.setText(user.getNickName());
-        if (user.getRating()!=0){
-            rating_private_room.setRating(user.getRating());
+        if (user!=null){
+            FirebaseDatabase.getInstance().getReference().child("users").child(user.getNickName()+"")
+                    .addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            User u = dataSnapshot.getValue(User.class);
+                            try {
+                                name_user_private_room.setText(u.getName());
+                                email_user_private_room.setText(u.getEmail());
+                                log_in_user_private_room.setText(u.getNickName());
+                                if (u.getRating()!=0){
+                                    rating_private_room.setRating(u.getRating());
+                                }
+                            }catch (Exception e){
+                                Toast.makeText(PrivateRoom.this, "Ошибка получения данных. \n " +
+                                        "Проверьте подключение к сети или обратитесь в техподдержку", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
         }
+
     }
 
     private void choseAndDownloadImage() {

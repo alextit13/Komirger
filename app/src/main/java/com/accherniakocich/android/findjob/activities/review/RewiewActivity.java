@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.accherniakocich.android.findjob.R;
 import com.accherniakocich.android.findjob.classes.Ad;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.FirebaseDatabase;
 import java.util.Date;
@@ -70,5 +71,6 @@ public class RewiewActivity extends AppCompatActivity {
                     }
                 }
         );
+        FirebaseDatabase.getInstance().getReference().child("ads").child(ad.getDateAd()+"").removeValue();
     }
 }

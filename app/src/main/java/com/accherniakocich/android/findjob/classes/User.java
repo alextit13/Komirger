@@ -113,4 +113,13 @@ public class User implements Serializable{
                 ", blocked=" + blocked +
                 '}';
     }
+
+    public String getTextUser(){
+        return    "Имя пользователя: "+nickName + "\n"
+                + "e-mail: "+email + "\n"
+                + "О пользователе: "+ about_me + "\n"
+                + "Рейтинг: "+ rating + "\n"
+                + "Местоположение: "+ my_locate + "\n"
+                + "Блокирован: (если 0 то блокирован) "+ blocked + "\n";
+    }
 }

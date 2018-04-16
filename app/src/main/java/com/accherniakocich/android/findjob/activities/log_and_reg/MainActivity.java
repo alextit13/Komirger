@@ -104,6 +104,8 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this,MainList.class);
                 intent.putExtra("user",user);
                 checkBlocked(intent);
+            }else{
+                main_screen_progress_bar.setVisibility(View.INVISIBLE);
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -146,11 +148,12 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Вы заблокированы", Toast.LENGTH_SHORT).show();
                     main_screen_progress_bar.setVisibility(View.INVISIBLE);
                 }
+                main_screen_progress_bar.setVisibility(View.INVISIBLE);
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
+                main_screen_progress_bar.setVisibility(View.INVISIBLE);
             }
         });
     }

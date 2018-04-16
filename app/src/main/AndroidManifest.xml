@@ -160,6 +160,12 @@
         <activity android:name=".social_networks.buy.BuyUpAd">
 
         </activity>
+        <service android:name=".services.ServiceNotificationUsers"/>
+        <receiver android:name=".services.BroadcastServiceRestart">
+            <intent-filter>
+                <action android:name="YouWillNeverKillMe"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

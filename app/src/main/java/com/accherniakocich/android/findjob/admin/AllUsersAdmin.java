@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.accherniakocich.android.findjob.R;
 import com.accherniakocich.android.findjob.classes.User;
@@ -44,7 +45,12 @@ public class AllUsersAdmin extends AppCompatActivity {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         for (DataSnapshot data : dataSnapshot.getChildren()){
                             mList.add(data.getValue(User.class));
-                            mListUsers.add(data.getValue(User.class).toString());
+                            try {
+                                mListUsers.add(data.getValue(User.class).getTextUser());
+                            }catch (Exception e){
+                                Toast.makeText(AllUsersAdmin.this, "Что то пошло не так(" + "\n" +
+                                        "Обратитесь к разработчику", Toast.LENGTH_SHORT).show();
+                            }
                         }
                         showList();
                     }

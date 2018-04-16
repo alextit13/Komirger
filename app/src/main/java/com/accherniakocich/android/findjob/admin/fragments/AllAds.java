@@ -52,8 +52,10 @@ public class AllAds extends Fragment implements GetDataFromFirebase{
     // TODO stack from class through the interfaces is located low
     @Override
     public void dataList(ArrayList<Ad> listAdNotCheck) {
-        admin_list.setAdapter(new BoxAdapter(getActivity(),listAdNotCheck,null));
-        clicker(listAdNotCheck);
+        if (listAdNotCheck.size()>0){
+            admin_list.setAdapter(new BoxAdapter(getActivity(),listAdNotCheck,null));
+            clicker(listAdNotCheck);
+        }
     }
 
     private void clicker(ArrayList<Ad>list) {
