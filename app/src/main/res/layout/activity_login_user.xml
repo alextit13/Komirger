@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.accherniakocich.android.findjob.activities.log_and_reg.LoginUser"
+    tools:context="com.mukmenev.android.findjob.activities.log_and_reg.LoginUser"
     android:orientation="vertical"
     android:layout_gravity="center"
     android:gravity="center">

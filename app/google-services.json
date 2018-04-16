@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:48929194650:android:a6d0df945a7656d0",
         "android_client_info": {
-          "package_name": "com.accherniakocich.android.findjob"
+          "package_name": "com.mukmenev.android.findjob"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "48929194650-fl6u77dflkns8voh9sn1597evnfqda2b.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.accherniakocich.android.findjob",
+            "package_name": "com.mukmenev.android.findjob",
             "certificate_hash": "1007549abc549a3a7d35cde4b7d1bb87423703bc"
           }
         },
@@ -26,7 +26,7 @@
           "client_id": "48929194650-5ue7o71ubs0k4un638qpr9stff6k93om.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.accherniakocich.android.findjob",
+            "package_name": "com.mukmenev.android.findjob",
             "certificate_hash": "9e783b5b481329f3bf521c2d2612271ae1fad93f"
           }
         },
@@ -34,7 +34,7 @@
           "client_id": "48929194650-2rk7obbuuniqb1gu88dhqr1ibhk6p2ob.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.accherniakocich.android.findjob",
+            "package_name": "com.mukmenev.android.findjob",
             "certificate_hash": "1001de1a6b8579288ff162e1fb7fc93b898b52ab"
           }
         },

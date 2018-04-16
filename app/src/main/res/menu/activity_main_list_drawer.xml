@@ -79,7 +79,7 @@
         android:title="@string/computers"/>
 
     <item android:id="@+id/electronics"
-        android:icon="@drawable/home_prod"
+        android:icon="@drawable/electronics"
         android:title="@string/electronics"/>
 
     <item android:id="@+id/for_home_for_dacha"

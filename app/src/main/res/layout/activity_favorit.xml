@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.accherniakocich.android.findjob.activities.Favorit">
+    tools:context="com.mukmenev.android.findjob.activities.Favorit">
     <GridView
         android:horizontalSpacing="5dp"
         android:verticalSpacing="5dp"

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center"
-    tools:context="com.accherniakocich.android.findjob.activities.log_and_reg.MainActivity"
+    tools:context="com.mukmenev.android.findjob.activities.log_and_reg.MainActivity"
     android:orientation="vertical"
     android:fitsSystemWindows="false">
     <ScrollView
