@@ -23,6 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="90dp">
                 <ImageView
+                    android:adjustViewBounds="true"
                     android:layout_weight="1"
                     android:layout_gravity="center"
                     android:id="@+id/imageAd_1"
@@ -30,7 +31,7 @@
                     android:layout_margin="10sp"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
-                    app:srcCompat="@drawable/photo_image_add"/>
+                    android:src="@drawable/photo_addition"/>
                 <ImageView
                     android:layout_weight="1"
                     android:layout_gravity="center"
@@ -39,7 +40,7 @@
                     android:layout_margin="10sp"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
-                    app:srcCompat="@drawable/photo_image_add"/>
+                    android:src="@drawable/photo_addition"/>
                 <ImageView
                     android:layout_weight="1"
                     android:layout_gravity="center"
@@ -48,8 +49,8 @@
                     android:layout_margin="10sp"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
-                    app:srcCompat="@drawable/photo_image_add"/>
-                <ImageView
+                    android:src="@drawable/photo_addition"/>
+                <!--<ImageView
                     android:layout_weight="1"
                     android:layout_gravity="center"
                     android:id="@+id/imageAd_4"
@@ -57,7 +58,7 @@
                     android:layout_margin="10sp"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
-                    app:srcCompat="@drawable/photo_image_add"/>
+                    android:src="@drawable/photo_addition"/>
                 <ImageView
                     android:layout_weight="1"
                     android:layout_gravity="center"
@@ -66,7 +67,7 @@
                     android:layout_margin="10sp"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
-                    app:srcCompat="@drawable/photo_image_add"/>
+                    android:src="@drawable/photo_addition"/>-->
             </TableRow>
             <EditText
                 android:id="@+id/name_ad"

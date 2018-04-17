@@ -1,5 +1,6 @@
 package com.mukmenev.android.findjob.activities;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -28,6 +29,13 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.single.PermissionListener;
+import com.mukmenev.android.findjob.Manifest;
 import com.mukmenev.android.findjob.R;
 import com.mukmenev.android.findjob.activities.log_and_reg.MainActivity;
 import com.mukmenev.android.findjob.classes.Ad;
@@ -61,13 +69,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 
-public class AddAd extends AppCompatActivity {
+public class AddAd extends Activity {
 
     static final int REQUEST_TAKE_PHOTO = 500;
     public static final int PICK_IMAGE_REQUEST_AD = 72;
     private User user;
     private StorageReference storageRef;
-    private ImageView image_ad_1, image_ad_2, image_ad_3, image_ad_4, image_ad_5;
+    private ImageView image_ad_1, image_ad_2, image_ad_3; /*image_ad_4, image_ad_5*/;
     private EditText edit_text_name_ad, edit_text_cost_job, edit_text_contacts_ad,
             edit_text_about_job_ad, consistance_auto, marka_auto, model_auto, type_of_body, colot,
             region, category, year_production_car, how_much_completed_road, type_of_engine, value_engine, transmission,color;
@@ -92,11 +100,29 @@ public class AddAd extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_ad);
+        Dexter.withActivity(this)
+                .withPermission(android.Manifest.permission.CAMERA)
+                .withListener(new PermissionListener() {
+                    @Override
+                    public void onPermissionGranted(PermissionGrantedResponse response) {
+                        Log.d("PERMISSION_CAMERA","onPermissionGranted");
+                    }
+
+                    @Override
+                    public void onPermissionDenied(PermissionDeniedResponse response) {
+                        Log.d("PERMISSION_CAMERA","onPermissionDenied");
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
+                        Log.d("PERMISSION_CAMERA","onPermissionRationaleShouldBeShown");
+                    }
+                })
+                .check();
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
         init();
     }
-
     private void init() {
         spinner_country = (Spinner)findViewById(R.id.spinner_country);
         completeSpinnerCountry();
@@ -122,8 +148,8 @@ public class AddAd extends AppCompatActivity {
         image_ad_1 = (ImageView) findViewById(R.id.imageAd_1);
         image_ad_2 = (ImageView) findViewById(R.id.imageAd_2);
         image_ad_3 = (ImageView) findViewById(R.id.imageAd_3);
-        image_ad_4 = (ImageView) findViewById(R.id.imageAd_4);
-        image_ad_5 = (ImageView) findViewById(R.id.imageAd_5);
+        /*image_ad_4 = (ImageView) findViewById(R.id.imageAd_4);
+        image_ad_5 = (ImageView) findViewById(R.id.imageAd_5);*/
         spinner_category = (Spinner) findViewById(R.id.spinner_category);
         completeSpinnerCategory();
         spinner_city = (Spinner) findViewById(R.id.spinner_city);
@@ -158,7 +184,6 @@ public class AddAd extends AppCompatActivity {
             edit_text_contacts_ad.setText(adFromEditDetail.getPeopleSourceAd() + "");
         }
     }
-
     private void completeSpinnerCountry() {
         ArrayList<String>list = new ArrayList<>();
         list.add("Россия");
@@ -360,7 +385,7 @@ public class AddAd extends AppCompatActivity {
                 }).show();
                 //dispatchTakePictureIntentTwo();
                 break;
-            case R.id.imageAd_4:
+            /*case R.id.imageAd_4:
                 RETURNED_PHOTO = 4;
                 // нажатие на изображение
                 //getPhoto();
@@ -401,7 +426,7 @@ public class AddAd extends AppCompatActivity {
                     }
                 }).show();
                 //dispatchTakePictureIntentTwo();
-                break;
+                break;*/
             case R.id.cancel_button_ad:
                 new AlertDialog.Builder(AddAd.this)
                         .setTitle("Выход")
@@ -502,6 +527,11 @@ public class AddAd extends AppCompatActivity {
                     "Объем: " + value_engine.getText().toString() + "\n" +
                     "Тип трансмиссии: " + transmission.getText().toString() + "\n" +
                     "Цвет:" +color.getText().toString();
+            if (adFromEditDetail != null) {
+                ad = new Ad(false, spinner_category.getSelectedItem().toString(), name_people, name_job, about, urlPathPhoto_1, urlPathPhoto_2, urlPathPhoto_3, urlPathPhoto_4, urlPathPhoto_5, cost_job, contacts, adFromEditDetail.getDateAd(), type_money, user, 0, "", false, city);
+            } else {
+                ad = new Ad(false, spinner_category.getSelectedItem().toString(), name_people, name_job, about, cost_job, contacts, new Date().getTime(), type_money, user, 0, "", false, city);
+            }
         } else if (spinner_category.getSelectedItem().toString().equals("НЕДВИЖИМОСТЬ")) {
             about = "Количство комнат: " + consistance_auto.getText().toString() + "\n" +
                     "Общая площадь: " + marka_auto.getText().toString() + "\n" +
@@ -516,6 +546,11 @@ public class AddAd extends AppCompatActivity {
                     "Год постройки: " + value_engine.getText().toString() + "\n" +
                     "Вода/газ/канализация: " + transmission.getText().toString()+
                     "Цвет:" +color.getText().toString();
+            if (adFromEditDetail != null) {
+                ad = new Ad(false, spinner_category.getSelectedItem().toString(), name_people, name_job, about, urlPathPhoto_1, urlPathPhoto_2, urlPathPhoto_3, urlPathPhoto_4, urlPathPhoto_5, cost_job, contacts, adFromEditDetail.getDateAd(), type_money, user, 0, "", false, city);
+            } else {
+                ad = new Ad(false, spinner_category.getSelectedItem().toString(), name_people, name_job, about, cost_job, contacts, new Date().getTime(), type_money, user, 0, "", false, city);
+            }
         } else if (!spinner_category.getSelectedItem().toString().equals("НЕДВИЖИМОСТЬ") || !spinner_category.getSelectedItem().toString().equals("АВТО")){
             if (adFromEditDetail != null) {
                 ad = new Ad(false, spinner_category.getSelectedItem().toString(), name_people, name_job, about, urlPathPhoto_1, urlPathPhoto_2, urlPathPhoto_3, urlPathPhoto_4, urlPathPhoto_5, cost_job, contacts, adFromEditDetail.getDateAd(), type_money, user, 0, "", false, city);
@@ -530,7 +565,6 @@ public class AddAd extends AppCompatActivity {
         uploadPhoto(photo_5);
         ad.setCity(spinner_city.getSelectedItem().toString());
     }
-
     private void add_ad_withoutPhoto(String name_people, String name_job, int cost_job, String contacts, String about_job, String type_money, String url, String city) {
         urlPathPhoto_1 = "";
         urlPathPhoto_2 = "";
@@ -601,7 +635,6 @@ public class AddAd extends AppCompatActivity {
         reference.child("ads").child(ad.getDateAd() + "").setValue(ad);
         finish();
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         Uri filePath = null;
@@ -621,14 +654,14 @@ public class AddAd extends AppCompatActivity {
                         photo_3 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI_3); // тут мы получаем полноценное изображение
                         image_ad_3.setImageBitmap(photo_3);
                     }
-                    if (RETURNED_PHOTO == 4) {
+                    /*if (RETURNED_PHOTO == 4) {
                         photo_4 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI_4); // тут мы получаем полноценное изображение
                         image_ad_4.setImageBitmap(photo_4);
                     }
                     if (RETURNED_PHOTO == 5) {
                         photo_5 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI_5); // тут мы получаем полноценное изображение
                         image_ad_5.setImageBitmap(photo_5);
-                    }
+                    }*/
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -651,22 +684,22 @@ public class AddAd extends AppCompatActivity {
                     photo_3 = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
                     image_ad_3.setImageBitmap(photo_3);
                 }
-                if (RETURNED_PHOTO == 4) {
+                /*if (RETURNED_PHOTO == 4) {
                     photo_4 = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
                     image_ad_4.setImageBitmap(photo_4);
                 }
                 if (RETURNED_PHOTO == 5) {
                     photo_5 = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
                     image_ad_5.setImageBitmap(photo_5);
-                }
+                }*/
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
-
     private void uploadPhoto(Bitmap bitmap) {
         iterator++;
+
         String namePhoto = user.getNickName() + "_" + ad.getNameAd() + "_" + ad.getNameJobAd() + new Date().getTime() + ".jpg"; // уникальное имя фото
         StorageReference mountainsRef = storageRef.child(namePhoto);
 
@@ -741,7 +774,6 @@ public class AddAd extends AppCompatActivity {
         }
 
     }
-
     private File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
@@ -757,7 +789,6 @@ public class AddAd extends AppCompatActivity {
         mCurrentPhotoPath = image.getAbsolutePath();
         return image;
     }
-
     private void dispatchTakePictureIntentTwo() {
         //Log.d(MainActivity.LOG_TAG,"1");
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -774,31 +805,31 @@ public class AddAd extends AppCompatActivity {
             // Continue only if the File was successfully created
             if (photoFile != null) {
                 if (RETURNED_PHOTO == 1) {
-                    photoURI_1 = FileProvider.getUriForFile(this, "com.accherniakocich.android.findjob", photoFile);
+                    photoURI_1 = FileProvider.getUriForFile(this, "com.mukmenev.android.findjob", photoFile);
                     /*Log.d(MainActivity.LOG_TAG,"photoFile = "+photoFile);*/
                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI_1);
                     startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
                 }
                 if (RETURNED_PHOTO == 2) {
-                    photoURI_2 = FileProvider.getUriForFile(this, "com.accherniakocich.android.findjob", photoFile);
+                    photoURI_2 = FileProvider.getUriForFile(this, "com.mukmenev.android.findjob", photoFile);
                     /*Log.d(MainActivity.LOG_TAG,"photoFile = "+photoFile);*/
                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI_2);
                     startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
                 }
                 if (RETURNED_PHOTO == 3) {
-                    photoURI_3 = FileProvider.getUriForFile(this, "com.accherniakocich.android.findjob", photoFile);
+                    photoURI_3 = FileProvider.getUriForFile(this, "com.mukmenev.android.findjob", photoFile);
                     /*Log.d(MainActivity.LOG_TAG,"photoFile = "+photoFile);*/
                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI_3);
                     startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
                 }
                 if (RETURNED_PHOTO == 4) {
-                    photoURI_4 = FileProvider.getUriForFile(this, "com.accherniakocich.android.findjob", photoFile);
+                    photoURI_4 = FileProvider.getUriForFile(this, "com.mukmenev.android.findjob", photoFile);
                     /*Log.d(MainActivity.LOG_TAG,"photoFile = "+photoFile);*/
                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI_4);
                     startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
                 }
                 if (RETURNED_PHOTO == 5) {
-                    photoURI_5 = FileProvider.getUriForFile(this, "com.accherniakocich.android.findjob", photoFile);
+                    photoURI_5 = FileProvider.getUriForFile(this, "com.mukmenev.android.findjob", photoFile);
                     /*Log.d(MainActivity.LOG_TAG,"photoFile = "+photoFile);*/
                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI_5);
                     startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);

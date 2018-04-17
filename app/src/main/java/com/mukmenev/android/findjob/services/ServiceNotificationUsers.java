@@ -59,7 +59,6 @@ public class ServiceNotificationUsers extends Service{
 
                                     }
                                 });
-                        Log.d("_LOG_TAG_SERVICE","log");
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
