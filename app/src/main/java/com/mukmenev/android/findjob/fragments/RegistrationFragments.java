@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.mukmenev.android.findjob.R;
 import com.mukmenev.android.findjob.classes.Company;
@@ -67,15 +68,35 @@ public class RegistrationFragments extends Fragment {
     }
 
     private void saveDataCompany() {
-        Company company = new Company(name_company.getText().toString(),
-                about_company.getText().toString()
-        ,new Date().getTime()+"",date_of_start_company.getText().toString()
-        ,type_of_work_company.getText().toString()
-        ,3,false,spinner_kategory_company.getSelectedItem().toString(),
-                contacts_company.getText().toString()
-        ,address_company.getText().toString());
-        FirebaseDatabase.getInstance().getReference().child("companies").child(company.getName())
-                .setValue(company);
+        if (checkCompleteAllFields()){
+            Company company = new Company(name_company.getText().toString(),
+                    about_company.getText().toString()
+                    ,new Date().getTime()+"",date_of_start_company.getText().toString()
+                    ,type_of_work_company.getText().toString()
+                    ,3,false,spinner_kategory_company.getSelectedItem().toString(),
+                    contacts_company.getText().toString()
+                    ,address_company.getText().toString());
+            FirebaseDatabase.getInstance().getReference().child("companies").child(company.getName())
+                    .setValue(company);
+            Toast.makeText(context, "Ваша компания успешно добавлена в каталог! \n" +
+                    " Благодарим Вас!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private boolean checkCompleteAllFields() {
+        boolean check = false;
+        if (name_company.getText().toString().length()>0
+                &&about_company.getText().toString().length()>0
+                &&date_of_start_company.getText().toString().length()>0
+                &&type_of_work_company.getText().toString().length()>0
+                &&contacts_company.getText().toString().length()>0
+                &&address_company.getText().toString().length()>0){
+            check = true;
+        }else{
+            Toast.makeText(context, "Все поля обязательны для заполнения", Toast.LENGTH_SHORT).show();
+            check = false;
+        }
+        return check;
     }
 
     private void init(View view) {

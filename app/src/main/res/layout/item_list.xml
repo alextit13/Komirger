@@ -77,5 +77,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </TableRow>
+        <TextView
+            android:id="@+id/visions"
+            android:textColor="#000"
+            android:layout_margin="4dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            tools:text="23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </RelativeLayout>
 </LinearLayout>

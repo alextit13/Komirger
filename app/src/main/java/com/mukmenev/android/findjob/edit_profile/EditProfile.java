@@ -128,11 +128,11 @@ public class EditProfile extends AppCompatActivity {
 
     private void enebledMyLocate() {
         String nameUser = (et_edit_name.getText().toString());
-        Locate locate = new Locate();
-        locate.getLocation(EditProfile.this,nameUser);
+        /*Locate locate = new Locate();
+        locate.getLocation(EditProfile.this,nameUser);*/
     }
 
-    public class Locate extends AppCompatActivity{
+    /*public static class Locate extends AppCompatActivity{
         Context context;
         private static final int REQUEST_CODE_PERMISSION = 2;
         String mPermission = Manifest.permission.ACCESS_FINE_LOCATION;
@@ -143,7 +143,7 @@ public class EditProfile extends AppCompatActivity {
                 if (ActivityCompat.checkSelfPermission(context, mPermission)
                         != MockPackageManager.PERMISSION_GRANTED) {
 
-                    ActivityCompat.requestPermissions(EditProfile.this, new String[]{mPermission, Manifest.permission.READ_PHONE_STATE},
+                    ActivityCompat.requestPermissions(getParent(), new String[]{mPermission, Manifest.permission.READ_PHONE_STATE},
                             REQUEST_CODE_PERMISSION);
                 }else{
                     //read location
@@ -217,9 +217,9 @@ public class EditProfile extends AppCompatActivity {
             }
         }
 
-    }
+    }*/
 
-    private void pushToFirebaseCoordinates(double[]coordinates) {
+    /*private void pushToFirebaseCoordinates(double[]coordinates) {
         User user = (User)getIntent().getSerializableExtra("user");
         String userName = user.getNickName();
         Map<String,double[]> mapLocation = new HashMap<>();
@@ -254,5 +254,5 @@ public class EditProfile extends AppCompatActivity {
                             }
                         }
                 );
-    }
+    }*/
 }

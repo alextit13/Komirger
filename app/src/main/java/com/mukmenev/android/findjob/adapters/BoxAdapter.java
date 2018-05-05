@@ -94,12 +94,12 @@ public class BoxAdapter extends BaseAdapter {
         ((TextView) view.findViewById(R.id.cost_job_main_list_red)).setText(ad.getCostAd()+"");
         ((TextView) view.findViewById(R.id.cost_job_main_list_red_dollar)).setText(" "+ad.getType_money());
         ((TextView) view.findViewById(R.id.about_ad)).setText(" "+about_job);
+        //((TextView) view.findViewById(R.id.visions)).setText("Просмотры: "+ad.getNumOfShowAd());
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM");
         String date_for_item_data = dateFormat.format(ad.getDateAd());
 
-        //((TextView) view.findViewById(R.id.item_data)).setText(date_for_item_data);
-
+        ((TextView) view.findViewById(R.id.visions)).setText("Просмотры: "+ad.getNumOfShowAd());
 
         Picasso.with(ctx)
                 .load(ad.getImagePathAd_1())

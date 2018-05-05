@@ -75,12 +75,13 @@ public class AddAd extends Activity {
     public static final int PICK_IMAGE_REQUEST_AD = 72;
     private User user;
     private StorageReference storageRef;
-    private ImageView image_ad_1, image_ad_2, image_ad_3; /*image_ad_4, image_ad_5*/;
+    private ImageView image_ad_1, image_ad_2, image_ad_3; /*image_ad_4, image_ad_5*/
+    ;
     private EditText edit_text_name_ad, edit_text_cost_job, edit_text_contacts_ad,
             edit_text_about_job_ad, consistance_auto, marka_auto, model_auto, type_of_body, colot,
-            region, category, year_production_car, how_much_completed_road, type_of_engine, value_engine, transmission,color;
+            region, category, year_production_car, how_much_completed_road, type_of_engine, value_engine, transmission, color;
     private CheckBox cb_obmen, rassrochka;
-    private Spinner spinner_type_money, spinner_category, spinner_city,spinner_country;
+    private Spinner spinner_type_money, spinner_category, spinner_city, spinner_country;
     private Button button_cancel_ad, button_add_ad;
     private ProgressBar progress_bar_ad;
     private FrameLayout container_ad_frame_layout;
@@ -105,17 +106,17 @@ public class AddAd extends Activity {
                 .withListener(new PermissionListener() {
                     @Override
                     public void onPermissionGranted(PermissionGrantedResponse response) {
-                        Log.d("PERMISSION_CAMERA","onPermissionGranted");
+                        Log.d("PERMISSION_CAMERA", "onPermissionGranted");
                     }
 
                     @Override
                     public void onPermissionDenied(PermissionDeniedResponse response) {
-                        Log.d("PERMISSION_CAMERA","onPermissionDenied");
+                        Log.d("PERMISSION_CAMERA", "onPermissionDenied");
                     }
 
                     @Override
                     public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
-                        Log.d("PERMISSION_CAMERA","onPermissionRationaleShouldBeShown");
+                        Log.d("PERMISSION_CAMERA", "onPermissionRationaleShouldBeShown");
                     }
                 })
                 .check();
@@ -123,8 +124,9 @@ public class AddAd extends Activity {
         StrictMode.setVmPolicy(builder.build());
         init();
     }
+
     private void init() {
-        spinner_country = (Spinner)findViewById(R.id.spinner_country);
+        spinner_country = (Spinner) findViewById(R.id.spinner_country);
         completeSpinnerCountry();
         color = (EditText) findViewById(R.id.color);
         consistance_auto = (EditText) findViewById(R.id.consistance_auto);
@@ -184,8 +186,9 @@ public class AddAd extends Activity {
             edit_text_contacts_ad.setText(adFromEditDetail.getPeopleSourceAd() + "");
         }
     }
+
     private void completeSpinnerCountry() {
-        ArrayList<String>list = new ArrayList<>();
+        ArrayList<String> list = new ArrayList<>();
         list.add("Россия");
         list.add("Беларусь");
         list.add("Франция");
@@ -197,54 +200,54 @@ public class AddAd extends Activity {
         list.add("Таджикистан");
         list.add("Украина");
         list.add("Узбекистан");
-        spinner_country.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,list));
+        spinner_country.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list));
         spinner_country.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                switch (list.get(position)){
+                switch (list.get(position)) {
                     case "Россия":
                         //
-                        completeSpinnerCity(_GLK.getListCitiesRussia(Arrays.asList(EnumCitiesRUSSIA.values()),"ВСЕ ГОРОДА"));
+                        completeSpinnerCity(_GLK.getListCitiesRussia(Arrays.asList(EnumCitiesRUSSIA.values()), "ВСЕ ГОРОДА"));
                         break;
                     case "Беларусь":
                         //
-                        completeSpinnerCity(_GLK.getListCitiesBelarus(Arrays.asList(EnumCitiesBELARUS.values()),"ВСЕ ГОРОДА"));
+                        completeSpinnerCity(_GLK.getListCitiesBelarus(Arrays.asList(EnumCitiesBELARUS.values()), "ВСЕ ГОРОДА"));
                         break;
                     case "Франция":
                         //
-                        completeSpinnerCity(_GLK.getListCitiesFrance(Arrays.asList(EnumCitiesFRANCE.values()),"ВСЕ ГОРОДА"));
+                        completeSpinnerCity(_GLK.getListCitiesFrance(Arrays.asList(EnumCitiesFRANCE.values()), "ВСЕ ГОРОДА"));
                         break;
                     case "Германия":
                         //
-                        completeSpinnerCity(_GLK.getListCitiesGermany(Arrays.asList(EnumCitiesGERMANY.values()),"ВСЕ ГОРОДА"));
+                        completeSpinnerCity(_GLK.getListCitiesGermany(Arrays.asList(EnumCitiesGERMANY.values()), "ВСЕ ГОРОДА"));
                         break;
                     case "Италия":
                         //
-                        completeSpinnerCity(_GLK.getListCitiesItalia(Arrays.asList(EnumCitiesITALY.values()),"ВСЕ ГОРОДА"));
+                        completeSpinnerCity(_GLK.getListCitiesItalia(Arrays.asList(EnumCitiesITALY.values()), "ВСЕ ГОРОДА"));
                         break;
                     case "Казахстан":
                         //
-                        completeSpinnerCity(_GLK.getListCitiesKazakstan(Arrays.asList(EnumCitiesKAZAKSTAN.values()),"ВСЕ ГОРОДА"));
+                        completeSpinnerCity(_GLK.getListCitiesKazakstan(Arrays.asList(EnumCitiesKAZAKSTAN.values()), "ВСЕ ГОРОДА"));
                         break;
                     case "Кыргызстан":
                         //
-                        completeSpinnerCity(_GLK.getListCitiesKirgizstan(Arrays.asList(EnumCitiesKIRGISTAN.values()),"ВСЕ ГОРОДА"));
+                        completeSpinnerCity(_GLK.getListCitiesKirgizstan(Arrays.asList(EnumCitiesKIRGISTAN.values()), "ВСЕ ГОРОДА"));
                         break;
                     case "Испания":
                         //
-                        completeSpinnerCity(_GLK.getListCitiesEspaniolla(Arrays.asList(EnumCitiesSPAIN.values()),"ВСЕ ГОРОДА"));
+                        completeSpinnerCity(_GLK.getListCitiesEspaniolla(Arrays.asList(EnumCitiesSPAIN.values()), "ВСЕ ГОРОДА"));
                         break;
                     case "Таджикистан":
                         //
-                        completeSpinnerCity(_GLK.getListCitiesTadjikistan(Arrays.asList(EnumCitiesTADJIKISTAN.values()),"ВСЕ ГОРОДА"));
+                        completeSpinnerCity(_GLK.getListCitiesTadjikistan(Arrays.asList(EnumCitiesTADJIKISTAN.values()), "ВСЕ ГОРОДА"));
                         break;
                     case "Украина":
                         //
-                        completeSpinnerCity(_GLK.getListCitiesUkraina(Arrays.asList(EnumCitiesUKRAIN.values()),"ВСЕ ГОРОДА"));
+                        completeSpinnerCity(_GLK.getListCitiesUkraina(Arrays.asList(EnumCitiesUKRAIN.values()), "ВСЕ ГОРОДА"));
                         break;
                     case "Узбекистан":
                         //
-                        completeSpinnerCity(_GLK.getListCitiesUzbekistan(Arrays.asList(EnumCitiesUZBEKISTAN.values()),"ВСЕ ГОРОДА"));
+                        completeSpinnerCity(_GLK.getListCitiesUzbekistan(Arrays.asList(EnumCitiesUZBEKISTAN.values()), "ВСЕ ГОРОДА"));
                         break;
                 }
             }
@@ -260,6 +263,7 @@ public class AddAd extends Activity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
         spinner_city.setAdapter(adapter);
     }
+
     private void completeSpinnerCategory() {
         _GLK = new GENERATE_LISTS_CLASS();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext()
@@ -285,6 +289,7 @@ public class AddAd extends Activity {
             }
         });
     }
+
     private void setTextsAuto() {
         consistance_auto.setHint("Состояние авто");
         marka_auto.setHint("Марка авто");
@@ -299,6 +304,7 @@ public class AddAd extends Activity {
         value_engine.setHint("Объем");
         transmission.setHint("Тип трансмиссии");
     }
+
     private void setTexts() {
         consistance_auto.setHint("Количство комнат");
         marka_auto.setHint("Общая площадь");
@@ -311,8 +317,9 @@ public class AddAd extends Activity {
         how_much_completed_road.setHint("Тип дома");
         type_of_engine.setHint("Инфраструктура");
         value_engine.setHint("Год постройки");
-        transmission.setHint("Вода/гад/канализация");
+        transmission.setHint("Вода/газ/канализация");
     }
+
     private ArrayList<String> generateListForSpnner() {
         ArrayList<String> list = new ArrayList<>();
         list.add("$");
@@ -320,6 +327,7 @@ public class AddAd extends Activity {
         list.add("€");
         return list;
     }
+
     public void onClickAd(View view) {
         switch (view.getId()) {
             case R.id.imageAd_1:
@@ -484,25 +492,28 @@ public class AddAd extends Activity {
                 break;
         }
     }
+
     private void takePhotoFromGallery() {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST_AD);
     }
+
     private ArrayAdapter<String> generateAdapter(ArrayList<String> list) {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
         return adapter;
     }
+
     private void add_ad(String name_people, String name_job, int cost_job, String contacts, String about_job, String type_money, String city) {
 
         String about = "";
-        if (!edit_text_about_job_ad.getText().toString().equals("")){
+        if (!edit_text_about_job_ad.getText().toString().equals("")) {
             about = edit_text_about_job_ad.getText().toString();
         }
 
 
-        if (!spinner_city.getSelectedItem().toString().equals("ВСЕ ГОРОДА")){
+        if (!spinner_city.getSelectedItem().toString().equals("ВСЕ ГОРОДА")) {
             city = spinner_country.getSelectedItem().toString() + ", "
                     + spinner_city.getSelectedItem().toString();
         }
@@ -526,7 +537,7 @@ public class AddAd extends Activity {
                     "Тип двигателя: " + type_of_engine.getText().toString() + "\n" +
                     "Объем: " + value_engine.getText().toString() + "\n" +
                     "Тип трансмиссии: " + transmission.getText().toString() + "\n" +
-                    "Цвет:" +color.getText().toString();
+                    "Цвет:" + color.getText().toString();
             if (adFromEditDetail != null) {
                 ad = new Ad(false, spinner_category.getSelectedItem().toString(), name_people, name_job, about, urlPathPhoto_1, urlPathPhoto_2, urlPathPhoto_3, urlPathPhoto_4, urlPathPhoto_5, cost_job, contacts, adFromEditDetail.getDateAd(), type_money, user, 0, "", false, city);
             } else {
@@ -544,14 +555,14 @@ public class AddAd extends Activity {
                     "Тип дома: " + how_much_completed_road.getText().toString() + "\n" +
                     "Инфраструктура: " + type_of_engine.getText().toString() + "\n" +
                     "Год постройки: " + value_engine.getText().toString() + "\n" +
-                    "Вода/газ/канализация: " + transmission.getText().toString()+
-                    "Цвет:" +color.getText().toString();
+                    "Вода/газ/канализация: " + transmission.getText().toString() +
+                    "Цвет:" + color.getText().toString();
             if (adFromEditDetail != null) {
                 ad = new Ad(false, spinner_category.getSelectedItem().toString(), name_people, name_job, about, urlPathPhoto_1, urlPathPhoto_2, urlPathPhoto_3, urlPathPhoto_4, urlPathPhoto_5, cost_job, contacts, adFromEditDetail.getDateAd(), type_money, user, 0, "", false, city);
             } else {
                 ad = new Ad(false, spinner_category.getSelectedItem().toString(), name_people, name_job, about, cost_job, contacts, new Date().getTime(), type_money, user, 0, "", false, city);
             }
-        } else if (!spinner_category.getSelectedItem().toString().equals("НЕДВИЖИМОСТЬ") || !spinner_category.getSelectedItem().toString().equals("АВТО")){
+        } else if (!spinner_category.getSelectedItem().toString().equals("НЕДВИЖИМОСТЬ") || !spinner_category.getSelectedItem().toString().equals("АВТО")) {
             if (adFromEditDetail != null) {
                 ad = new Ad(false, spinner_category.getSelectedItem().toString(), name_people, name_job, about, urlPathPhoto_1, urlPathPhoto_2, urlPathPhoto_3, urlPathPhoto_4, urlPathPhoto_5, cost_job, contacts, adFromEditDetail.getDateAd(), type_money, user, 0, "", false, city);
             } else {
@@ -565,6 +576,7 @@ public class AddAd extends Activity {
         uploadPhoto(photo_5);
         ad.setCity(spinner_city.getSelectedItem().toString());
     }
+
     private void add_ad_withoutPhoto(String name_people, String name_job, int cost_job, String contacts, String about_job, String type_money, String url, String city) {
         urlPathPhoto_1 = "";
         urlPathPhoto_2 = "";
@@ -583,8 +595,8 @@ public class AddAd extends Activity {
                     "Пробег: " + how_much_completed_road.getText().toString() + "\n" +
                     "Тип двигателя: " + type_of_engine.getText().toString() + "\n" +
                     "Объем: " + value_engine.getText().toString() + "\n" +
-                    "Тип трансмиссии: " + transmission.getText().toString()+
-                    "Цвет:" +color.getText().toString();
+                    "Тип трансмиссии: " + transmission.getText().toString() +
+                    "Цвет:" + color.getText().toString();
             if (adFromEditDetail != null) {
                 ad = new Ad(false, spinner_category.getSelectedItem().toString(), name_people, name_job, about, urlPathPhoto_1, urlPathPhoto_2, urlPathPhoto_3, urlPathPhoto_4, urlPathPhoto_5, cost_job, contacts, adFromEditDetail.getDateAd(), type_money, user, 0, "", false, city);
             } else {
@@ -603,13 +615,13 @@ public class AddAd extends Activity {
                     "Инфраструктура: " + type_of_engine.getText().toString() + "\n" +
                     "Год постройки: " + value_engine.getText().toString() + "\n" +
                     "Вода/газ/канализация: " + transmission.getText().toString() +
-                    "Цвет:" +color.getText().toString();
+                    "Цвет:" + color.getText().toString();
             if (adFromEditDetail != null) {
                 ad = new Ad(false, spinner_category.getSelectedItem().toString(), name_people, name_job, about, urlPathPhoto_1, urlPathPhoto_2, urlPathPhoto_3, urlPathPhoto_4, urlPathPhoto_5, cost_job, contacts, adFromEditDetail.getDateAd(), type_money, user, 0, "", false, city);
             } else {
                 ad = new Ad(false, spinner_category.getSelectedItem().toString(), name_people, name_job, about, cost_job, contacts, new Date().getTime(), type_money, user, 0, "", false, city);
             }
-        } else if (!spinner_category.getSelectedItem().toString().equals("НЕДВИЖИМОСТЬ") || !spinner_category.getSelectedItem().toString().equals("АВТО")){
+        } else if (!spinner_category.getSelectedItem().toString().equals("НЕДВИЖИМОСТЬ") || !spinner_category.getSelectedItem().toString().equals("АВТО")) {
             if (adFromEditDetail != null) {
                 ad = new Ad(false, spinner_category.getSelectedItem().toString(), name_people, name_job, about_job, urlPathPhoto_1, urlPathPhoto_2, urlPathPhoto_3, urlPathPhoto_4, urlPathPhoto_5, cost_job, contacts, adFromEditDetail.getDateAd(), type_money, user, 0, "", false, city);
             } else {
@@ -617,12 +629,11 @@ public class AddAd extends Activity {
             }
         }
         String about = "";
-        if (!edit_text_about_job_ad.getText().toString().equals("")){
-             about = edit_text_about_job_ad.getText().toString();
+        if (!edit_text_about_job_ad.getText().toString().equals("")) {
+            about = edit_text_about_job_ad.getText().toString();
         }
 
         if (adFromEditDetail != null) {
-
             ad = new Ad(false, spinner_category.getSelectedItem().toString(), name_people, name_job, about, urlPathPhoto_1, urlPathPhoto_2, urlPathPhoto_3, urlPathPhoto_4, urlPathPhoto_5, cost_job, contacts, adFromEditDetail.getDateAd(), type_money, user, 0, "", false, city);
         } else {
             ad = new Ad(false, spinner_category.getSelectedItem().toString(), name_people, name_job, about, cost_job, contacts, new Date().getTime(), type_money, user, 0, "", false, city);
@@ -635,6 +646,7 @@ public class AddAd extends Activity {
         reference.child("ads").child(ad.getDateAd() + "").setValue(ad);
         finish();
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         Uri filePath = null;
@@ -654,7 +666,7 @@ public class AddAd extends Activity {
                         photo_3 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI_3); // тут мы получаем полноценное изображение
                         image_ad_3.setImageBitmap(photo_3);
                     }
-                    /*if (RETURNED_PHOTO == 4) {
+                   /* if (RETURNED_PHOTO == 4) {
                         photo_4 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI_4); // тут мы получаем полноценное изображение
                         image_ad_4.setImageBitmap(photo_4);
                     }
@@ -697,9 +709,9 @@ public class AddAd extends Activity {
             }
         }
     }
+
     private void uploadPhoto(Bitmap bitmap) {
         iterator++;
-
         String namePhoto = user.getNickName() + "_" + ad.getNameAd() + "_" + ad.getNameJobAd() + new Date().getTime() + ".jpg"; // уникальное имя фото
         StorageReference mountainsRef = storageRef.child(namePhoto);
 
@@ -739,7 +751,7 @@ public class AddAd extends Activity {
                         FirebaseDatabase.getInstance().getReference().child("ads").child(ad.getDateAd() + "").child("imagePathAd_3")
                                 .setValue(ad.getImagePathAd_3());
                     }
-                    if (iterator_sucsess == 4) {
+                    /*if (iterator_sucsess == 4) {
                         ad.setImagePathAd_4(u + "");
                         FirebaseDatabase.getInstance().getReference().child("ads").child(ad.getDateAd() + "").child("imagePathAd_4")
                                 .setValue(ad.getImagePathAd_4());
@@ -748,7 +760,7 @@ public class AddAd extends Activity {
                         ad.setImagePathAd_5(u + "");
                         FirebaseDatabase.getInstance().getReference().child("ads").child(ad.getDateAd() + "").child("imagePathAd_5")
                                 .setValue(ad.getImagePathAd_5());
-                    }
+                    }*/
                 }
             });
         } else {
@@ -761,12 +773,12 @@ public class AddAd extends Activity {
             if (iterator == 3) {
                 ad.setImagePathAd_3("https://firebasestorage.googleapis.com/v0/b/findjob-51270.appspot.com/o/empty.png?alt=media&token=3d73aba3-5e79-4643-82dc-244c6ce326fb");
             }
-            if (iterator == 4) {
+            /*if (iterator == 4) {
                 ad.setImagePathAd_4("https://firebasestorage.googleapis.com/v0/b/findjob-51270.appspot.com/o/empty.png?alt=media&token=3d73aba3-5e79-4643-82dc-244c6ce326fb");
             }
             if (iterator == 5) {
                 ad.setImagePathAd_5("https://firebasestorage.googleapis.com/v0/b/findjob-51270.appspot.com/o/empty.png?alt=media&token=3d73aba3-5e79-4643-82dc-244c6ce326fb");
-            }
+            }*/
         }
         if (iterator == 5) {
             reference.child("ads").child(ad.getDateAd() + "").setValue(ad);
@@ -774,6 +786,7 @@ public class AddAd extends Activity {
         }
 
     }
+
     private File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
@@ -789,6 +802,7 @@ public class AddAd extends Activity {
         mCurrentPhotoPath = image.getAbsolutePath();
         return image;
     }
+
     private void dispatchTakePictureIntentTwo() {
         //Log.d(MainActivity.LOG_TAG,"1");
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -820,18 +834,6 @@ public class AddAd extends Activity {
                     photoURI_3 = FileProvider.getUriForFile(this, "com.mukmenev.android.findjob", photoFile);
                     /*Log.d(MainActivity.LOG_TAG,"photoFile = "+photoFile);*/
                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI_3);
-                    startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
-                }
-                if (RETURNED_PHOTO == 4) {
-                    photoURI_4 = FileProvider.getUriForFile(this, "com.mukmenev.android.findjob", photoFile);
-                    /*Log.d(MainActivity.LOG_TAG,"photoFile = "+photoFile);*/
-                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI_4);
-                    startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
-                }
-                if (RETURNED_PHOTO == 5) {
-                    photoURI_5 = FileProvider.getUriForFile(this, "com.mukmenev.android.findjob", photoFile);
-                    /*Log.d(MainActivity.LOG_TAG,"photoFile = "+photoFile);*/
-                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI_5);
                     startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
                 }
             }

@@ -28,7 +28,7 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
-        android:name="com.mukmenev.android.findjob.social_networks.buy.VKInicialization"
+        android:name=".social_networks.buy.VKInicialization"
         android:allowBackup="true"
         android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
@@ -48,7 +48,121 @@
         </provider>
 
         <activity
-            android:name="com.mukmenev.android.findjob.activities.log_and_reg.MainActivity"
+            android:name=".activities.log_and_reg.MainActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        </activity>
+        <activity
+            android:name=".activities.log_and_reg.LoginUser"
+            android:noHistory="true"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activities.log_and_reg.Registration"
+            android:noHistory="true"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activities.MainList"
+            android:label="@string/app_name"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".activities.Details"
+            android:label="@string/title_activity_details"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activities.AddAd"
+            android:parentActivityName=".activities.MainList"
+            android:theme="@style/MyActionBar" />
+        <activity
+            android:name=".activities.MessageToDevelopers"
+            android:parentActivityName=".activities.MainList"
+            android:theme="@style/MyActionBar" />
+        <activity
+            android:name=".activities.MyAdds"
+            android:parentActivityName=".activities.MainList"
+            android:theme="@style/MyActionBar" />
+        <activity
+            android:name=".activities.ListUsers"
+            android:launchMode="singleTop"
+            android:parentActivityName=".activities.MainList"
+            android:theme="@style/MyActionBar" />
+        <activity
+            android:name=".activities.Dialog"
+            android:parentActivityName=".activities.ListUsers"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activities.PrivateRoom"
+            android:noHistory="true"
+            android:parentActivityName=".activities.MainList"
+            android:theme="@style/MyActionBar" />
+        <activity
+            android:name=".activities.Favorit"
+            android:parentActivityName=".activities.ListUsers"
+            android:theme="@style/MyActionBar" />
+        <activity android:name=".admin.AdminPanel" />
+        <activity
+            android:name=".find.FindResults"
+            android:theme="@style/MyActionBar" />
+        <activity
+            android:name=".coupons.Coupons"
+            android:theme="@style/MyActionBar" />
+        <activity
+            android:name=".edit_profile.EditProfile"
+            android:theme="@style/Base.Theme.AppCompat.Light.Dialog" />
+        <activity
+            android:name=".viewer_images.ViewerImages"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name="com.vk.sdk.VKServiceActivity"
+            android:label="ServiceActivity"
+            android:theme="@style/VK.Transparent" />
+        <activity
+            android:name=".activities.Find"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activities.ActivityContainer"
+            android:parentActivityName=".activities.MainList"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".activities.log_and_reg.ActivityContainerReg" />
+        <activity android:name=".edit_profile.EditProfile$Locate" />
+        <activity android:name=".admin.AllUsersAdmin" />
+        <activity
+            android:name=".activities.review.RewiewActivity"
+            android:theme="@style/Base.Theme.AppCompat.Dialog" />
+        <activity
+            android:name=".activities.OnModerate"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <service android:name=".notifications.Notifications">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name=".notifications.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <activity android:name=".activities.FindResult" />
+        <activity android:name=".social_networks.buy.FlexibleExampleActivity">
+        </activity>
+        <activity android:name=".social_networks.buy.MarkerAd">
+        </activity>
+        <activity android:name=".social_networks.buy.BuyUpAd">
+        </activity>
+
+        <service android:name=".services.ServiceNotificationUsers" />
+
+        <receiver android:name=".services.BroadcastServiceRestart">
+            <intent-filter>
+                <action android:name="YouWillNeverKillMe" />
+            </intent-filter>
+        </receiver>
+
+        <activity android:name=".activities.Splash"
+            android:noHistory="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -56,116 +170,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.mukmenev.android.findjob.activities.log_and_reg.LoginUser"
-            android:noHistory="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name="com.mukmenev.android.findjob.activities.log_and_reg.Registration"
-            android:noHistory="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name="com.mukmenev.android.findjob.activities.MainList"
-            android:label="@string/app_name"
-            android:launchMode="singleTop"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:windowSoftInputMode="stateHidden" />
-        <activity
-            android:name="com.mukmenev.android.findjob.activities.Details"
-            android:label="@string/title_activity_details"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name="com.mukmenev.android.findjob.activities.AddAd"
-            android:parentActivityName="com.mukmenev.android.findjob.activities.MainList"
-            android:theme="@style/MyActionBar" />
-        <activity
-            android:name="com.mukmenev.android.findjob.activities.MessageToDevelopers"
-            android:parentActivityName="com.mukmenev.android.findjob.activities.MainList"
-            android:theme="@style/MyActionBar" />
-        <activity
-            android:name="com.mukmenev.android.findjob.activities.MyAdds"
-            android:parentActivityName="com.mukmenev.android.findjob.activities.MainList"
-            android:theme="@style/MyActionBar" />
-        <activity
-            android:name="com.mukmenev.android.findjob.activities.ListUsers"
-            android:launchMode="singleTop"
-            android:parentActivityName="com.mukmenev.android.findjob.activities.MainList"
-            android:theme="@style/MyActionBar" />
-        <activity
-            android:name="com.mukmenev.android.findjob.activities.Dialog"
-            android:parentActivityName="com.mukmenev.android.findjob.activities.ListUsers"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name="com.mukmenev.android.findjob.activities.PrivateRoom"
-            android:noHistory="true"
-            android:parentActivityName="com.mukmenev.android.findjob.activities.MainList"
-            android:theme="@style/MyActionBar" />
-        <activity
-            android:name="com.mukmenev.android.findjob.activities.Favorit"
-            android:parentActivityName="com.mukmenev.android.findjob.activities.ListUsers"
-            android:theme="@style/MyActionBar" />
-        <activity android:name="com.mukmenev.android.findjob.admin.AdminPanel" />
-        <activity
-            android:name="com.mukmenev.android.findjob.find.FindResults"
-            android:theme="@style/MyActionBar" />
-        <activity
-            android:name="com.mukmenev.android.findjob.coupons.Coupons"
-            android:theme="@style/MyActionBar" />
-        <activity
-            android:name="com.mukmenev.android.findjob.edit_profile.EditProfile"
-            android:theme="@style/Base.Theme.AppCompat.Light.Dialog" />
-        <activity
-            android:name="com.mukmenev.android.findjob.viewer_images.ViewerImages"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name="com.vk.sdk.VKServiceActivity"
-            android:label="ServiceActivity"
-            android:theme="@style/VK.Transparent" />
-        <activity
-            android:name="com.mukmenev.android.findjob.activities.Find"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name="com.mukmenev.android.findjob.activities.ActivityContainer"
-            android:parentActivityName="com.mukmenev.android.findjob.activities.MainList"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name="com.mukmenev.android.findjob.activities.log_and_reg.ActivityContainerReg" />
-        <activity android:name="com.mukmenev.android.findjob.edit_profile.EditProfile$Locate" />
-        <activity android:name="com.mukmenev.android.findjob.admin.AllUsersAdmin" />
-        <activity
-            android:name="com.mukmenev.android.findjob.activities.review.RewiewActivity"
-            android:theme="@style/Base.Theme.AppCompat.Dialog" />
-        <activity
-            android:name="com.mukmenev.android.findjob.activities.OnModerate"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-
-        <service android:name="com.mukmenev.android.findjob.notifications.Notifications">
-            <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
-            </intent-filter>
-        </service>
-        <service android:name="com.mukmenev.android.findjob.notifications.MyFirebaseMessagingService">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
-
-        <activity android:name="com.mukmenev.android.findjob.activities.FindResult" />
-        <activity android:name="com.mukmenev.android.findjob.social_networks.buy.FlexibleExampleActivity">
-
-        </activity>
-        <activity android:name="com.mukmenev.android.findjob.social_networks.buy.MarkerAd">
-
-        </activity>
-        <activity android:name="com.mukmenev.android.findjob.social_networks.buy.BuyUpAd">
-
-        </activity>
-        <service android:name="com.mukmenev.android.findjob.services.ServiceNotificationUsers"/>
-        <receiver android:name="com.mukmenev.android.findjob.services.BroadcastServiceRestart">
-            <intent-filter>
-                <action android:name="YouWillNeverKillMe"/>
-            </intent-filter>
-        </receiver>
     </application>
 
 </manifest>
